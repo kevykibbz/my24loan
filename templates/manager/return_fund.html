@@ -1,0 +1,41 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Return Fund Policy</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'return fund policy' %}">Return Fund Policy</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section id="section-privacy">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>We&#39;re grateful for your visit and purchase at {{obj.site_name}}!</p>
+
+<p><strong>Is the Membership Card fee refundable?</strong></p>
+
+<p>A customer might get a refund of the Membership Card fee if the company hasn&rsquo;t started the &#39;Customer Service Initiation&#39; (explained below) within 48 hours of the payment and a request for the same has been raised through <a href="{% url 'raise request' %}">{% url 'raise request' %}</a> within 48 hours of the payment.</p>
+
+<p><strong>What is Customer Service Initiation?</strong></p>
+
+<p>It is the first process done by the company that includes calling the customer for verification within 24-48 hours of the Membership Card payment. Even if the customer does not respond to the verification call, the Customer Service Initiation is considered as started and the update has been shown in the customer portal.</p>
+
+<p><strong>What if you have queries/concerns regarding this policy or loan process?</strong></p>
+
+<p>You can contact us by sending your query/doubts at <a href="mailto:{{obj.site_email}}">{{obj.site_email}}</a> or call on <a href="tel:{{obj.phone}}">{{obj.phone}}</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

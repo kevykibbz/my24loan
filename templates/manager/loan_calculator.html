@@ -1,0 +1,138 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Loan Calculator</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'loan calculator' %}">Loan Calculator</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- EMI Calculator Widget START -->
+        <div id="ecww-widgetwrapper" style="min-width:250px;width:100%;">
+          <div id="ecww-widget" style="position:relative;padding-top:0;padding-bottom:280px;height:0;overflow:hidden;"></div>
+        </div>
+        <!-- EMI Calculator Widget END -->
+      </div>
+    </div>
+  </div>
+</section>
+<section class="background-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="lead">Instant personal loan calculator makes it easy for you to get monthly instalments for your loans.</p>
+
+        <p class="lead">If you are taking out a <a href="{% url 'personal loan' %}" target="_self">quick personal loan</a>, an average monthly instalment is an important factor in determining the loan amount and time. The personal loan calculator helps you quickly calculate your repayments, making it easier for you to plan loans and your payments.</p>
+
+        <p class="lead">To calculate your EMI, simply enter the loan amount, interest rate and loan lease, and your EMI will be displayed immediately. You can apply for loans from Rs. 25,000/- to 40,00,000/- per hour from 1 to 5 years.</p>
+
+        <p class="lead">The EMI loan calculator is designed to be easy to use and accurate. You can use the EMI loan calculator to calculate EMI for personal loans at any bank or financial institution. It's free to use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="accordion">
+          <div class="ac-item">
+            <h5 class="ac-title">What is personal loan EMI?</h5>
+            <div class="ac-content">
+              <p>EMI, or Equated Monthly Instalment, is the fixed amount paid by a borrower every month to clear off the loan taken from a bank. It is scheduled at a specific date of every calendar month and includes both principal and interest components. Your personal loan EMI depends on the loan principal, the rate of interest and the loan tenure.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">How to calculate personal loan EMI?</h5>
+            <div class="ac-content">
+              <p>It is essential to calculate your EMI before applying for a personal loan. While you can do so manually, using a Personal loan calculator can help you determine the more accurate value. You can select the required loan amount, tenure and rate of interest to get the exact payable EMI amount with an interactive chart.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">How to reduce your personal loan EMI?</h5>
+            <div class="ac-content">
+              <p>EMI may affect your monthly expenses until you repay it. Some simple steps that can help you reduce the personal loan EMI and manage outlays easily are:</p>
+              <ul>
+                <li>Option for a longer repayment tenor - It will help you spread the loan cost over a longer duration and help you pay in small installment </li>
+                <li>Negotiate with the loan provider for a lower rate of interest</li>
+                <li>Maintain a strong CIBIL score to enjoy lower interest rates and reduced EMI</li>
+                <li>Become a My24Loan Member for the best deals as per your needs and repaying capacity</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the factors that affect personal loan EMI?</h5>
+            <div class="ac-content">
+              <p>Following factors affect personal loan EMI</p>
+              <ul>
+                <li>Loan amount - Monthly instalments payable are directly proportional to the loan amount opted for. The higher the loan amount the higher will be your EMI.</li>
+                <li>Applicable cornet Interest -Interest rate is a percentage at which lenders charge interest on the Loan amount. A higher interest rate increases the EMIs and vice versa.</li>
+                <li>Tenor - it is the repayment period for the personal loan availed and is inversely related to EMIs. A longer tenor reduces monthly instalments while a shorter tenor increases them.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="accordion">
+          <div class="ac-item">
+            <h5 class="ac-title">What is business loan EMI?</h5>
+            <div class="ac-content">
+              <p>EMI, or Equated Monthly Instalment, is the fixed amount paid by a borrower every month to clear off the loan taken from a bank. It is scheduled at a specific date of every calendar month and includes both principal and interest components. Your <a href="{% url 'bussiness loan' %}" target="_self">business loan EMI</a> depends on the loan principal, the rate of interest and the loan tenure.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">How to calculate business loan EMI?</h5>
+            <div class="ac-content">
+              <p>It is essential to calculate your EMI before applying for a Business loan. While you can do so manually, using a <a href="{% url 'loan calculator' %}" target="_self">Business loan calculator</a> can help you determine the more accurate value. You can select the required loan amount, tenure and rate of interest to get the exact payable EMI amount with an interactive chart.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">How to reduce your Business loan EMI?</h5>
+            <div class="ac-content">
+              <p>EMI may affect your monthly expenses until you repay it. Some simple steps that can help you reduce the Business loan EMI and manage outlays easily are:</p>
+              <ul>
+                <li>Option for a longer repayment tenor - It will help you spread the loan cost over a longer duration and help you pay in small installment</li>
+                <li>Negotiate with the loan provider for a lower rate of interest</li>
+                <li>Maintain a strong CIBIL score to enjoy lower interest rates and reduced EMI</li>
+                <li>Become a My24Loan Member for the best deals as per your needs and repaying capacity</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the factors that affect Business loan EMI?</h5>
+            <div class="ac-content">
+              <p>Following factors affect Business loan EMI:</p>
+              <ul>
+                <li>Loan amount - Monthly instalments payable are directly proportional to the loan amount opted for. The higher the loan amount the higher will be your EMI.</li>
+                <li>Applicable cornet Interest - Interest rate is a percentage at which lenders charge interest on the Loan amount. A higher interest rate increases the EMIs and vice versa.</li>
+                <li>Tenor - it is the repayment period for the Business loan availed and is inversely related to EMIs. A longer tenor reduces monthly instalments while a shorter tenor increases them.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

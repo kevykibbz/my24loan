@@ -1,0 +1,182 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>FAQS</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'faqs' %}">FAQS</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section id="faqs">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="accordion white accordion-shadow">
+          <div class="ac-item">
+            <h5 class="ac-title">When can I opt for a Personal Loan?</h5>
+            <div class="ac-content">
+              <p>Personal Loans can be used for a variety of reasons. A Personal Loan can be used for weddings, education, travel, medical or any other general purposes. You can take a Personal Loan when you need money to fund an event or an emergency.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the mandatory documents required in applying for a Personal Loan?</h5>
+            <div class="ac-content">
+              <p>The mandatory documents are:</p>
+              <ul>
+                <li>Bank Statements for the last three months</li>
+                <li>Salary Slips for the last three months</li>
+                <li>Address Proof and Identity Proof documents</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Do I need to provide any security or collateral or guarantors?</h5>
+            <div class="ac-content">
+              <p>No, for Personal Loan you don’t need to provide any security, collateral or guarantors.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the benefits of a Personal Loan?</h5>
+            <div class="ac-content">
+              <p>Here's why our Personal Loan is perfect for you:</p>
+              <ul>
+                <li>Quick loan payment</li>
+                <li>No collateral or security needed</li>
+                <li>Minimal documentation</li>
+                <li>Flexible EMI plans and many repayment options</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What is the minimum and maximum loan amount?</h5>
+            <div class="ac-content">
+              <p>We provide Personal Loans from a minimum of ₹ 5,000 to a maximum of ₹ 15,00,000/- depending on your eligibility.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the tenure options for a Personal Loan?</h5>
+            <div class="ac-content">
+              <p>You have the option to choose what works best for you while repaying the personal loan. You can go for the fixed amount of loan and interest or can pay higher/lower EMIs in the initial months, lower/higher EMIs at the later months depending on your income.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Can I get a Personal Loan with a low CIBIL score?</h5>
+            <div class="ac-content">
+              <p>It is important to have a good CIBIL score. But this should not stop you from applying for a Personal Loan. Approval of Personal Loans depends on your ability to repay.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Will I get a loan with a low CIBIL score?</h5>
+            <div class="ac-content">
+              <p>If you need a Personal Loan and have a low CIBIL score, you have the option to take a joint loan with your spouse or parent. However, approval of Personal Loans depends on your ability to repay.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">How does credit report impact Personal Loan approval process?</h5>
+            <div class="ac-content">
+              <p>Credit report provides details on your financial status and your ability to repay a Personal Loan. This helps us evaluate your financial history. A good credit report with a score of 750 will help you take a loan easily.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="accordion white accordion-shadow">
+          <div class="ac-item">
+            <h5 class="ac-title">What is a Business Loan?</h5>
+            <div class="ac-content">
+              <p>Whether you are new to business, experiencing a slowdown, need funds to ensure cash flow, access to working capital, hire new employees, buy new equipment, or expand your business, no matter what your business plans and needs are, our Business Loans can help you get quick funds when you need them the most.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What are the documents required for a Business Loan?</h5>
+            <div class="ac-content">
+              <p>We ask for minimal documents in order to process your Business Loan:</p>
+              <ul>
+                <li>Duly filled application form</li>
+                <li>KYC documents of the company including PAN Card, Registration of Incorporation, Partnership deed, Memorandum & Articles of Association.</li>
+                <li>KYC documents of the business owners</li>
+                <li>Balance sheet and Profit & Loss accounts for the last two years</li>
+                <li>Income Tax Returns for the last two years</li>
+                <li>Company bank statements for the last six months
+                <li>GST returns for the last 6 months</li>
+                <li>A report detailing how the Business Loan will be used.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Who can get a Business Loans?</h5>
+            <div class="ac-content">
+              <p>We offer Business Loans to both professionals and non-professionals, who are self-employed. Among self-employed professionals, we have exclusive loans for doctors. These loans are approved quickly and are available at competitive interest rates. The customer segments covered under Business Loans are listed below:</p>
+              <ul>
+                <li>Sole Proprietorship</li>
+                <li>Partnership Firm</li>
+                <li>Private Limited Companies</li>
+                <li>Closely held Public Limited Companies</li>
+                <li>Societies</li>
+                <li>Trusts</li>
+                <li>Hospitals, Nursing Homes, Diagnostic Centers, Pathological Labs.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Can I get a Business Loan without collateral?</h5>
+            <div class="ac-content">
+              <p>Yes, you can get a Business Loan without any collateral or security.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Am I eligible for a Business Loan?</h5>
+            <div class="ac-content">
+              <p>You are eligible for a Business Loan if you:</p>
+              <ul>
+                <li>Are between 25-65 years of age</li>
+                <li>Have business that shows a profit for the last three consecutive financial years</li>
+                <li>Have business that shows an upward turnover trend</li>
+                <li>Are able to show balance sheet that is audited by a registered Chartered Accountant.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">What is the maximum amount can I take through a Business Loan?</h5>
+            <div class="ac-content">
+              <p>You can take up to ₹ 1 Crore, depending on your credit score.</p>
+            </div>
+          </div>
+
+          <div class="ac-item">
+            <h5 class="ac-title">Is the interest rate fixed or floating?</h5>
+            <div class="ac-content">
+              <p>The interest rate for Business Loan is fixed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+{% endblock %}

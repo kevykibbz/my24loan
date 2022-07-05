@@ -1,0 +1,391 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+<section id="page-title">
+	 <div class="container">
+    <h2>Terms And Conditions</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'terms and conditions' %}">Terms And Conditions</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section id="section-terms">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<p dir="ltr">This information mentions the terms and conditions for customers, employees, etc. All these clauses are applied as per your role.</p>
+
+<p dir="ltr">{{obj.site_name}} functions its services under these terms and conditions and all the concerned people (customer, user, employees, etc.) agree to get associated with the company/website on these terms and conditions.</p>
+
+<p dir="ltr">In consideration of this agreement mentioned in these terms and conditions, the concerned people (customer, user, employees, etc.) agree to share authentic information like Your information through application/website or forms that include your name, address, marital status, assets, employment, income, your accounts, holdings, transactions that we receive from you or any other source like account custodians, brokers, financial organizations, banks, etc.</p>
+
+<p dir="ltr">If any person, organization, group, etc. defames or bad-mouth our company, the company will take legal action against them.</p>
+
+<p dir="ltr">{{obj.site_name}} is completely dedicated to ascertaining the safety of our users to prevent them from any possible privacy challenge. Our privacy policies apply to all users across the globe. This policy applies to any information, of any kind, relating to {{obj.site_name}} global business activities, and to all information held by {{obj.site_name}} by other companies with which it operates. These privacy policies also cover all IT (Information Technology) and information communications facilities functioning and operated by {{obj.site_name}} or on its behalf.</p>
+
+<p dir="ltr"><strong>MEMBERSHIP CARD TERMS AND CONDITIONS &amp; RETURN POLICY</strong></p>
+
+<ol>
+	<li dir="ltr">
+	<p dir="ltr">The Membership Card fee is non-refundable under any given instance and circumstance.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Our Membership Card will be valid till the expiry date (card validity: 10 years). The membership card is not transferable. This card can only be used by the card owner and not anyone else.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The membership card is not any sort of a payment card like a debit/credit card.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If {{obj.site_name}} Membership Card is damaged, stolen or lost &ndash; this issue is to be promptly notified to the {{obj.site_name}} Registered Office or to the card issuer who will be responsible to arrange a replacement card (card replacement is chargeable).</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The terms and conditions for renewal are at the discretion of {{obj.site_name}}.</p>
+	</li>
+</ol>
+
+<p dir="ltr"><strong>CUSTOMER TERMS AND CONDITIONS</strong></p>
+
+<ol>
+	<li dir="ltr">
+	<p dir="ltr">Under any circumstances, the Membership Card fees won&rsquo;t be refunded.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Only the charge of the Membership Card will be taken by the company; no other payment is charged by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">It must be noted that the Membership Card provided by the company is not an ATM, DEBIT, or CREDIT CARD. This card must be used for loan purposes and certain other benefits provided by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a customer is seeing any advertisement/promotional content of {{obj.site_name}} and then approaching the company with the intention that they will get the loan approval based on the advertisement, then it must be noted that the loan application will only be submitted once the customer buys the {{obj.site_name}} Membership Card. Even after the membership card is bought, the final loan approval depends on the bank(s) and customer profile. If the customer&rsquo;s profile doesn&rsquo;t match loan eligibility criteria, they won&rsquo;t be able to get a loan. Still, they can use various other benefits and services of the membership card.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The customer or the referral person can use this Membership Card.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If a customer reference makes a payment via the customer&rsquo;s own referral link which is provided by the company &ndash;&nbsp; and if it reflects in the customer&#39;s portal then only the company will release the payout of that customer.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a customer&rsquo;s loan is approved in our company but the customer denies taking the loan &ndash; still the Membership Card fees won&rsquo;t be refunded.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The login department&rsquo;s decision would be final for your loan process.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The OTP, documents and cheques asked by the company&rsquo;s employee are for loan purposes &ndash; if any issue/problem arises in future, the company won&rsquo;t be responsible for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If you do not share the OTP (for loan purposes) with the company&rsquo;s employee, your file will be rejected. As per the criteria, if your file matched without OTP, the loan will be processed further.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the company executive asks you to share any transaction OTP, kindly do not share it.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case any customer has any questions/queries regarding the loan process, they have to contact that department where their file is being processed.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">We will verify your documents in multiple banks; so whatever documents are submitted by customers in our company that will match with any bank criteria, in that bank only we will proceed with the loan process. (For instance, if your file will match in 3 banks then our company&rsquo;s login department will log in your document only on that 3 banks. The verification is done by the company&rsquo;s employee. The company or bank won&rsquo;t provide any proof for that.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Your loan documents will be verified by the company in multiple banks. If the documents match the bank criteria, then the login process will be done in that bank. In case it doesn&rsquo;t match, the company will provide a solution which you can consider and reapply.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">It is not fixed that the customer file will be logged in only certain banks. It may be verified in other banks also, depending on the customer file.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company doesn&rsquo;t charge anything extra other than the Membership Card fees. If any other external person or third-party charges you then our company won&rsquo;t be responsible for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company doesn&rsquo;t charge for processing or file charges for customer loan approval. Only the Membership Card fee is charged by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If a customer file is logged in uncoded banks, then the customer has to pay charges separately.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The customer files will be logged in by the company according to the customer&rsquo;s requirements. For instance, If the customer requirement is INR 2 lakhs and if some bank criteria is up to INR 1 Lakh then we will not log in customer file in that bank.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the customer shares their profile and asks us whether the loan will be approved or not; so, the answer to this question would be &ndash; the loan approval estimated ratio is 60% and 40%. It means that there are 60% chances of approval and 40% chances of rejection. So, If your file gets rejected in our company then the customer shouldn&rsquo;t argue for that. Because the company is not taking any guarantee for the loan.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Even if the customer file is rejected in our company, any bank can reopen that file for processing. But code activation time is dependent on various banks, ranging from 3 to 4 months. If approval will come from that bank within that code activation time then only company reference would be applicable. So, the customer would not have any doubt that the loan has been taken from his/her own or someone else&rsquo;s reference. After a code deactivation, if the loan is approved by that bank then there is no responsibility of our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Wherever the customer file is logged in by the company, such information and details will not be given to any customer in written or digital form.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">All the documents submitted by the customer are safe and secure in our company. We are using those documents only for loan purposes. In case the documents are misused by any other sources, then the company won&rsquo;t be responsible for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Loan offers and pre-approval loans process is dependent only on the bank&#39;s rules and that type of loan will be given only on customer behaviour. So, there exists some difference between that type of process and the company&rsquo;s process. In case that loan is approved by another company then the customer can&rsquo;t blame our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Loan approval depends on your profile so if your documents are perfect then you will get a loan from our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Any information regarding the loan is only provided to that person who has applied for the loan.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">During the loan processing time, if any customer would not be in contact with us for 3 days, then that file will be rejected by our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case your file is rejected in our company, then the customer has to ascertain that they re-submit their documents with the solution in our company after a period of 6 months.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company won&rsquo;t be responsible in case the customer loan is rejected by queries.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case your file gets rejected in our company, then also the membership card payment remains non-refundable.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">After processing, in case the customer cancels the file, then also the Membership Card payment remains non-refundable.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the customer will apply for the first time but his/her loan is rejected in our company then the company will give them reason and solution for that. So at re-applying time, if the customer will not re-submit the file with a solution then the file will again face rejection in our company for the same reason.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company will give only the reason for rejection to the customer and it would not be provided in hard or soft copy. Banks only provide general reasons, they don&rsquo;t give us the specific reason &ndash; so the customer should not complain about that.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The customer must give correct information about their CIBIL SCORE and PROFILE. If the customer will provide the wrong information, then the company holds no responsibility for loan rejection.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Under any situation, the company will not be providing any CIBIL REPORT or VALUATION REPORT in digital or hard copy to any customer.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Bank charges are applied according to the banks&#39; rules and regulations.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a customer submits fake documents, the company will take legal action against that customer.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">After logging in your file, the customer has to contact only the login department &ndash; and not any telecaller or other department.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The person who has already applied for a loan in the same bank, then our company will not apply in that bank.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">During the loan process if the rules of any bank change, then the company will have to follow those new rules.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Only the person who needs a loan has to apply for the loan process.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The customer has to give their registered phone number so that the login department can contact the customer.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Once the loan process is completed, the customer has to cancel their cheque by visiting the concerned bank only.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">At the time of loan processing, if the company gets any queries and it is not solving that in the given time, then the company can take more time for that. So, the customer must not argue or complain about this.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case the customer wants to reapply in our company after file rejection or approval, then the customer has to re-submit their documents in the customer login menu.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">When you are applying for a loan on our website, we are showing you only your Eligibility for the loan. So whatever details you enter on the website are accepted by software only, and that only shows your pre-approval and not your final loan approval. The final loan approval depends on your documents. We are not giving you any guarantee for the final loan approval.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The Membership Card is shown on our websites during the processing time, which are only for demo purposes. So that&rsquo;s not your real membership card. In that, whatever details are entered by the customer are accepted by the software and the system shows you the pre-approval depending on the customer details. The customer will get a card after completing the entire process of the loan on our website.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company&rsquo;s privacy policy, terms and conditions are also applicable to marketing and advertising.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Our marketing contains advertisements, page updates, posts, videos, SMS, E-mails, banners, social media updates or any type of content.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The third-party payment sources execute the customer&rsquo;s payment. So, whenever payment would be received by the company then only the membership card will be generated. If a customer&#39;s payment would be debited from their account but the company doesn&rsquo;t receive any payment in the company&#39;s account then the company holds no responsibility for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Account verification is compulsory for any customer&#39;s payout. If your account is not verified in our company and once payment is credited from the company&#39;s account then the company is not responsible for answering any of the questions/queries/doubts.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Our company is a private limited company and we are tied up with banks so we are providing loans through banks only.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Multiple banks&rsquo; logos are displayed on our portal &ndash; they are shown only for our company&rsquo;s marketing purposes. That banks&rsquo; logos only reflect that our company is tied up with those banks. That&rsquo;s not any bank&rsquo;s advertisement.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a person takes any legal action against the company, only the company&rsquo;s legal advisor would be dealing with that; and Surat, Gujarat will only remain the junction for any legal procedure. No one would be able to contact any employee or director of our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">A verbal/vocal statement won&rsquo;t be accepted. Only the signed agreements would be acceptable for any customer.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The detailed terms and conditions are with the head office which is the main base to all the above-stated terms and conditions.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">For purchasing a membership card, there are no age eligibility criteria. Still, everyone has to follow the Banks and NBFCs&rsquo; age criteria.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Regarding the referral payout, the customer has to complete the payout agreement with the company. No payout will be given to anyone without an agreement.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">5% TDS will be deducted from every reference payout.</p>
+	</li>
+</ol>
+
+<p dir="ltr"><strong>REFERENCE TERMS AND CONDITIONS</strong></p>
+
+<ol>
+	<li dir="ltr">
+	<p dir="ltr">In any situation, the membership card payment of the reference person is non-refundable.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The reference payout will be provided according to the company&rsquo;s rules and regulations.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The reference is only given on the membership card irrespective of the reference approval or rejection.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The loan approval of the customer entirely depends on the customer profile. The company takes no responsibility for the loan approval.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company has some criteria for the references that are being given by the customers for loan purposes, and the customer has to give references according to the criteria. The customers have to agree with the final decision on loan approval given by the login department.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the referral person is giving fake commitments to the customer, the company takes no responsibility for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The terms and conditions for the customers are also applied to the reference persons.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The reference customer&rsquo;s payment is processed through third-party payment mediums. The membership card or the code will be generated only after the company receives the payment. In case the money is debited from the customer&rsquo;s account but it does not reflect in the company&rsquo;s account then the company takes no responsibility for the same. No queries will be entertained in such cases.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">When the reference customer does the online loan process then the company will give the payout of up to 40% per membership card to the customer. But prior to this, invoice generation is mandatory for any payout process.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the customer of reference will do an online process then the customer&#39;s payout will be given to the referral partner. But during processing time, if the company would refund that amount to the customer for any reason, then that customer&#39;s payout will be cut out from the reference person&#39;s next payout.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">All the documents that are submitted by the reference person will be safe and secure with the company. If any other sources misuse the documents in future, the company takes no responsibility for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the partner doesn&rsquo;t submit the agreement to the company within a timeframe of 30 days then the entire payout of their customers would be cancelled.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a person takes any legal action against the company, only the company&rsquo;s legal advisor would be dealing with that; and Surat, Gujarat will only remain the junction for any legal procedure. No one would be able to contact any employee or director of our company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">A verbal/vocal statement won&rsquo;t be accepted. Only the signed agreements would be acceptable for any referral person.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The detailed terms and conditions are with the head office which is the main base to all the above-stated terms and conditions.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The payout agreement with {{obj.site_name}} is mandatory for any referral payout. Without the agreement, no payout will be released.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">5% TDS will be deducted from every reference payout.</p>
+	</li>
+</ol>
+
+<p dir="ltr"><strong>GENERAL TERMS AND CONDITIONS</strong></p>
+
+<ol>
+	<li dir="ltr">
+	<p dir="ltr">In case the login department is not able to solve the queries of customers with accuracy, dedication, and responsibility, then the company will cancel the login department agency.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The loan process of customers can take more days due to any festival.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The Privacy Policy and Terms &amp; Conditions are also applied to marketing and advertising.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If the person has a GST number, they can add it to their portal &ndash; and the company will provide them with a GST Return.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company uses blogs for advertisement purposes and that content could have been of any third-party &ndash; so the company takes no guarantee for that content/information to be accurate or correct.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case a customer has any dispute/query/problem regarding the company&#39;s policy, products or service, they will have to accept the solution stated/communicated by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If customers, employees, etc., or any other party has a problem with the company then they have to inform that problem to our company through notice; so, we can try to give you a solution of that but after that, any of them want to take legal action then they have to inform the company through notice. Only then, the legal process will be started.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case any customer, employee, etc., or any third party has a dispute/problem/misunderstanding with the company, the company holds exclusive rights for taking the final decision over the concerned issue and the concerned person has to accept the solution given by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The Company can change the Terms &amp; Conditions at any instance and the same would be effectively applied to all the departments.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Once a customer has availed the services of the company, the company can use the customer&rsquo;s names and photographs for displaying company testimonials on any platform.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The OTP, documents and cheques asked by the company&rsquo;s employee are for loan purposes &ndash; if any issue/problem arises in future, the company won&rsquo;t be responsible for the same.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">During any process on the website, if there is any kind of mistake that happens due to the software or website technical problems, the final decision on such disputes can only be taken by the company and it has to be accepted by anyone concerned.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The authorized person of the company can change any rules and regulations anytime. All the concerned people shall remain regularly updated with the company&rsquo;s terms and conditions and has to accept them without any conditions.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">All the commitments made by the company&rsquo;s employees (any employee/person from the company), telecallers, or salespersons, etc. should be cross-checked by any concerned person (customer/user) from the Terms &amp; Conditions section of {{obj.site_name}}.in before using any service of the company. Only the terms and conditions and the rules and regulations mentioned on the company website will be considered official.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The terms, criteria, and information behind any of the company&rsquo;s promotional content (social media ads, banners, SMS, advertisements, emails, etc.) are mentioned in the Privacy Policy and Terms &amp; Conditions sections of the website. Any user, customer, employee, etc., or any other concerned person shall check and accept all the rules and regulations before using the services of the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If any Customer Referral&rsquo;s customer gets a refund (due to any dispute like payment gateway problem or any other issue) then the referral payout will not be provided (if provided, it would be deducted from the next payout of the customer referral).</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">While generating the payout for Customer Referrals, the company uses a third-party payment gateway. So, in case the payout is stuck and put on hold due to any payment gateway issue (or any other issue), then the payout would be delayed and all the terms and conditions of the third-party payment gateway would be applied. In such cases, the payout will be released only when the third-party payment gateway releases the stuck payment. In case of a payout dispute with any bank, the bank&rsquo;s criteria will be applied and the payout will be released only when the bank approves the payment.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case of a dispute between the company and any concerned person (user, customer, customer referral, etc.), their account will be disabled immediately by the company. In such instances, the user would be needed to contact the company for any query.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">Though in the company&rsquo;s promotional content it might be mentioned/communicated/displayed that a person can get a personal loan in just 30 minutes or a business loan in just 48 hours, the actual loan processing time depends on the rules and regulations of various banks (or the concerned bank). Every customer or any other user must accept this clause and consider the bank&rsquo;s loan processing time only.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">All the rates, figures, and information related to loans used in the promotional content of the company are general and for promotional purposes. The final details and specifics of the loan in terms of the loan amount, interest rate, repayment tenure, loan processing fees, loan insurance, etc., depends solely on the customer profile and the rules and regulations stated by the concerned bank. The final loan details depend on the criteria set by the concerned bank(s).</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">{{obj.site_name}}&#39;s company name, logo, content, business concept, software and system, pattern, website structure and design, and business process and offers are copyrighted with the company. In case any individual, organization, group uses/copies any of the aforementioned by even 1%, legal action may be taken against them.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">In case any person (customer, employee, etc.) is involved in any of the company&#39;s processes then the company is fully authorized to record the phone calls with that person.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">If a person has applied for a loan in our company and if any external person/organization/group does fraud (like taking money or any sort of fraud) with that person, the company takes no responsibility for any sort of loss faced by that person.</p>
+	</li>
+</ol>
+
+<p dir="ltr"><strong>CANDIDATE TERMS AND CONDITIONS</strong></p>
+
+<ol>
+	<li dir="ltr">
+	<p dir="ltr">The time of the interview is fixed. The interview will be taken at the time fixed by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The candidate can be asked any question by the company.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The company can ask the candidate to appear for multiple rounds of interview.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The candidate has to compulsorily bring their resume (xerox) for the interview.</p>
+	</li>
+	<li dir="ltr">
+	<p dir="ltr">The submitted resume won&rsquo;t be returned or misused by the company.</p>
+	</li>
+</ol>
+
+<p dir="ltr"><strong>USAGE OF COOKIES/COOKIES POLICY</strong></p>
+
+<p dir="ltr">Cookies are tiny files that a website or its service provider sends to your computer&#39;s hard drive with your permission, allowing the website&#39;s or service provider&#39;s systems to recognise your browser and capture and remember certain information. We use cookies to better understand and remember your preferences for future visits, track adverts, and compile aggregate statistics about site traffic and interaction so that we can continue to provide better site experiences and tools.</p>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

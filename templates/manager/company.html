@@ -1,0 +1,107 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+<section id="page-title">
+	<div class="container">
+		<div class="container">
+		<h2>Company</h2>
+		<div class="breadcrumb text-left">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page"><a href="{% url 'company' %}">Company</a></li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	</div>
+</section>
+
+<section class="" id="company">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-12 m-b-20">
+				<div class="heading-text heading-plain m-b-0 text-uppercase text-center">
+					<h4>{{obj.site_name}} Service</h4>
+				</div>
+
+				<div class="text-center">
+					<p class="lead">We are India's Finest membership card based loan providing company. We have our head office based in Surat (Gujarat, India). Proudly affiliating with 65+ NBFC banks, we have been successfully providing Personal Loan, Business Loan, Home Loan, Mortgage Loan, Balance Transfer, etc. pan India. Having more than 2,500+ happy customers due to our transparent specialized lending policy. We not only help our customer by providing loan when needed, but we also help them in financial planning and easy loan assistance anytime anywhere.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="background-grey">
+	<div class="container">
+		<div class="heading-text heading-plain m-b-0 text-center">
+			<h4>Our Membership Cards</h4>
+		</div>
+
+		<div class="post-2-columns m-b-30" data-item="post-item">
+			<div class="post-item border p-20">
+				<div class="post-item-wrap">
+					<div class="post-image">
+						<img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/slider/membership-card-prime.png' %}" alt="prime membership card">
+					</div>
+					<div class="post-item-description">
+						<h2>Prime Membership Card</h2>
+						<a href="https://{{obj.site_name}}.in/prime-membership-card" class="item-link">Learn More <i class="fa fa-arrow-right"></i></a> 
+					</div>
+				</div>
+			</div>
+
+			<div class="post-item border p-20">
+				<div class="post-item-wrap">
+					<div class="post-image">
+						<img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/slider/membership-card-elite.png' %}" alt="elite membership card">
+					</div>
+					<div class="post-item-description">
+						<h2>Elite Membership Card</h2>
+						<a href="https://my24loan.in/elite-membership-card" class="item-link">Learn More <i class="fa fa-arrow-right"></i></a> 
+					</div>
+				</div>
+			</div>
+		</div>
+			
+	</div>
+</section>
+
+<section class="p-b-30">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-12 m-b-20">
+				<div class="heading-text heading-plain text-center m-b-0">
+					<h4>Card Benefits</h4>
+				</div>
+
+				<div class="text-center">
+					<p>Once you enroll at {{obj.site_name}}, respective team will ask for your loan related document. We then make a file of all your documents and send them to multiple partnering NBFC Banks. NBFC banks check your profile, matches them to required profile and give approval of loan. If your profile matches in more than one NBFC Banks, {{obj.site_name}} will provide you list of approving NBFC Banks, saving you a great amount of time of going into multiple banks for loan.</p>
+
+					<p>This is one of the most important benefit of our company's membership card, because getting a loan is time consuming process. In daily busy routine no one has time to visit multiple banks for loan process so here our company is providing this facility at one platform. Secondly every time you open your file at a bank for loan, your CIBIL score gets deducted, but with {{obj.site_name}} your file will only open in those banks where your profile matches, helping you in a better CIBIL score even if you don't take a loan.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="p-t-20">
+	<div class="container">
+		<div class="heading-text heading-plain text-center">
+			<h4>Our Bank &amp; NBFC Partners</h4>
+		</div>
+
+		<div class="carousel client-logos" data-items="5" data-arrows="true" data-dots="false">
+		<div class="icon-box box-type effect center process">
+			<img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/023.png' %}" alt="Lendingkart">
+		</div>
+		<div class="icon-box box-type effect center process">
+			<img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/033.jpg' %}" alt="Cholamandalam">
+		</div>
+		<div class="icon-box box-type effect center process">
+			<img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/022.png' %}" alt="Money View"></div>		
+		</div>
+	</div>
+</section>
+{% endblock %}

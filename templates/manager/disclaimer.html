@@ -1,0 +1,42 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Disclaimer</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'disclaimer' %}">Disclaimer</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="section-privacy">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p dir="ltr">{{obj.site_url}} (&quot;Website&quot;) is a brand/domain owned by {{obj.site_name}} Service, which is provided to the company/website&rsquo;s customers, members, employees, and affiliated partners for personal and information purposes only.</p>
+
+<p dir="ltr">We categorically and expressly disclaim any implied or expressed representations or warranties in terms of precision, dependability, quality, suitability, timeliness, completeness, performance for any specific purpose, or legality of the services displayed, conveyed, listed or transacted; and the content on the website.</p>
+
+<p dir="ltr">We also disclaim any express or implied warranties of merchantability and fitness for a particular purpose. Before making any decisions based on any information or other content contained on the {{obj.site_name}} website, you are solely responsible for evaluating and assessing the merits and demerits associated with that information or other content.</p>
+
+<p dir="ltr">Nothing on the website (content, material, or any information) should be construed and comprehended as legal, tax, investment, financial, or other advice. You completely understand, acknowledge, and undertake that you are using and accessing the services on <a href="{{obj.site_url}}">{{obj.site_url}}</a> and transacting at your own risk and using your best and prudent judgment before entering into any transactions through the website.</p>
+
+<p dir="ltr">Nothing on our website shall be construed as a solicitation, recommendation, authorization, endorsement, or offer by {{obj.site_name}} to purchase or sell any shares/securities or other financial instruments in this or any other place (jurisdiction) where such request or offer is prohibited by such security rules.</p>
+
+<p dir="ltr">You further acknowledge that at no time shall any right, title or interest in the services sold through or displayed on the website vest with {{obj.site_name}} nor shall {{obj.site_name}} have any obligations or liabilities in respect of any transactions on the website.</p>
+
+<p dir="ltr">Once you provide your details on our website for any specific purpose, the company takes no responsibility in case you come across incidents of data misuse of any form.</p>
+
+<p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+	<div class="container">
+		<h2>Contact us</h2>
+		<div class="breadcrumb text-left">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page"><a href="{% url 'contact us' %}">Contact Us</a></li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</section>
+
+<section id="contact">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-5 m-b-30">
+				<div class="heading-text heading-plain">
+					<h4>Get in touch</h4>
+				</div>
+
+				<div>
+					<p><a href="tel:{{obj.phone}}"><i class="fa fa-phone m-r-5"></i> {{obj.phone}}</a></p>
+					<p><a href="mailto:{{obj.site_email}}"><i class="fa fa-envelope m-r-5"></i> {{obj.site_email}}</a></p>
+					<p><i class="fa fa-certificate m-r-5"></i> GST No.: 24CHEPM6065J1Z5</p>
+					<p><i class="fa fa-map-marker m-r-5"></i> Registered Office: {{obj.address}}</p>
+				</div>
+              
+				<div class="social-icons social-icons-colored social-icons-rounded float-left">
+					<h6>Follow us:</h6>
+					<ul>
+					  <li class="social-facebook"><a href="{{obj.facebook}}" target="_blank" rel="nofollow"><i class="fab fa-facebook-f"></i></a></li>
+
+					  <li class="social-instagram"><a href="{{obj.instagram}}" target="_blank" rel="nofollow"><i class="fab fa-instagram"></i></a></li>
+
+					  <li class="social-twitter"><a href="{{obj.twitter}}" target="_blank" rel="nofollow"><i class="fab fa-twitter"></i></a></li>
+
+					  <li class="social-linkedin"><a href="{{obj.linkedin}}" target="_blank" rel="nofollow"><i class="fab fa-linkedin"></i></a></li>
+
+					  <li class="social-whatsapp"><a href="{{obj.whatsapp}}" target="_blank" rel="nofollow"><i class="fab fa-pinterest"></i></a></li>
+
+					  <li class="social-youtube"><a href="{{obj.youtube}}" target="_blank" rel="nofollow"><i class="fab fa-youtube"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-7">
+				<form action="https://my24loan.in/infopage/contactsubmission" id="submitForm" class="form-horizontal" novalidate="novalidate" method="post" accept-charset="utf-8">
+					<input type="hidden" name="do" value="contactsubmission" class="form-control" required>
+					
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label class="text-dark" for="fullname">Full Name *</label>
+							<input type="text" aria-required="true" name="fullname" class="form-control" required>
+							<div class="help-block font-small-3"></div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="text-dark" for="email">Mobile no *</label>
+							<input type="text" aria-required="true" name="mobile" class="form-control" required>
+							<div class="help-block font-small-3"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label class="text-dark" for="subject">Subject</label>
+							<input type="text" name="subject" class="form-control">
+						</div>
+						<div class="form-group col-md-6">
+							<label class="text-dark" for="email">Email id *</label>
+							<input type="email" aria-required="true" name="email" class="form-control" required>
+							<div class="help-block font-small-3"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="text-dark" for="message">Message *</label>
+						<textarea name="message" rows="5" aria-required="true" class="form-control" required></textarea>
+						<div class="help-block font-small-3"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
+							<label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and this consent will override any registration by me for DNC / NDNC.</small></label>
+							<div class="help-block font-small-3"></div>
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+					</div>
+					<div id="response"></div>
+				</form> 
+			</div>
+
+		</div>
+	</div>
+</section>
+{% endblock %}

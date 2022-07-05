@@ -1,0 +1,142 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+<div id="slider" class="inspiro-slider slider-halfscreen dots-creative" data-height-xs="360" data-autoplay="5000" data-items="1" data-loop="true" data-autoplay="true">
+            <div class="slide background-image" style="background-image:url({% static 'manager/assets/images/slider/slider-home-12.jpg' %});">
+                <div id="particles-stars" class="particles"></div>
+                <div class="container">
+                    <div class="slide-captions">
+                        <h6 class="text-dark">Apply for a</h6>
+                        <h2 class="text-uppercase text-medium text-dark m-b-0">Prime Membership Card</h2>
+                        <p class="lead text-dark">Get instant personal loan offers from 35+ banks</p>
+                        <a class="btn btn-dark" href="{% url 'personal loan' %}">APPLY NOW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide background-image" style="background-image:url({% static 'manager/assets/images/slider/slider-home-11.jpg' %});">
+                <div class="container">
+                    <div class="slide-captions">
+                        <h6 class="text-dark">Apply for a</h6>
+                        <h2 class="text-uppercase text-medium text-dark m-b-0">Elite Membership Card</h2>
+                        <p class="lead text-dark">Get instant business loan offers from 20+ banks</p>
+                        <a class="btn btn-dark" href="{% url 'bussiness loan' %}">APPLY NOW</a>
+                    </div>
+                </div>
+            </div>
+</div>
+<section>
+    <div class="container">
+        <div class="heading-text heading-plain text-center m-b-10">
+            <h4>Our Services</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <a href="#" class="text-secondary">
+                    <div class="icon-box effect small center process p-20">
+                        <h3>Personal Loan</h2>
+                            <p class="m-t-20">Hassel free application for Personal Loan up to 15 lakhs with lowest interest rates starting from 12.5%, minimum paperwork and get your offer in 30 minutes.</p>
+                            <a href="https://my24loan.in/digital/personalLoan" class="btn btn-light">Apply Now</a>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <a href="#" class="text-secondary">
+                    <div class="icon-box effect small center process p-20">
+                        <h3>Business Loan</h2>
+                            <p class="m-t-20">Hassel free application for Business Loan up to 1 Crore with lowest interest rates starting from 11.5%, minimum paperwork and get your offer in 30 minutes.</p>
+                            <a href="https://my24loan.in/digital/businessLoan" class="btn btn-light">Apply Now</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="image-block" class="image-block no-padding">
+	<div class="container-fluid">
+	    <div class="row">
+	        <div class="col-lg-6" style="height:609px;background:url({% static 'manager/assets/images/slider/offer-page-bg.jpg' %}) 50% 50% / cover no-repeat;">
+	        </div>
+	        <div class="col-lg-6">
+	            <div class="heading-text">
+	                <h4>About Company</h4>
+	                <p class="lead">We are India's Finest membership card based loan providing company. We have our head office based in Surat (Gujarat, India). Proudly affiliating with 65+ NBFC banks, we have been successfully providing Personal Loan, Business
+	                    Loan, Home Loan, Mortgage Loan, Balance Transfer, etc. pan India. Having more than 2,500+ happy customers due to our transparent specialized lending policy. We not only help our customer by providing loan when needed, but
+	                    we also help them in financial planning and easy loan assistance anytime anywhere.</p>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</section>
+<section>
+    <div class="container">
+        <div class="heading-text heading-plain text-center">
+            <h4>Our Bank &amp; NBFC Partners</h4>
+        </div>
+
+        <div class="carousel client-logos" data-items="5" data-arrows="true" data-dots="false">
+            <div class="icon-box box-type effect center process"><img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/022.png' %}" alt="Money View"></div>
+            <div class="icon-box box-type effect center process"><img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/023.png' %}" alt="Lendingkart"></div>
+            <div class="icon-box box-type effect center process"><img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/bank/033.jpg' %}" alt="Cholamandalam"></div>
+        </div>
+    </div>
+</section>
+<section class="background-grey">
+    <div class="container">
+        <div class="heading-text heading-plain text-center p-b-10">
+            <h4>Our Customers Testimonials</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="carousel" data-items="3" data-dots="false">
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/5.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/5.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Jay Modi</em></p>
+                    </div>
+
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/6.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/6.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Mehul Patel</em></p>
+                    </div>
+
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/Harilal-Makawana.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/Harilal-Makawana.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Harilal Makawana</em></p>
+                    </div>
+
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/Manoj-Singh.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/Manoj-Singh.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Manoj Singh</em></p>
+                    </div>
+
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/Rasik-Parmar.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/Rasik-Parmar.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Rasik Parmar</em></p>
+                    </div>
+
+                    <div class="video-wrap m-b-20">
+                        <video id="video-js" class="video-js" controls preload="false" poster="{% static 'manager/assets/video/yashvant-kumar.jpg' %}">
+					<source src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/video/yashvant-kumar.mp4' %}" type="video/mp4" />
+				</video>
+                        <p>Customer : <em>Yashvant Kumar</em></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

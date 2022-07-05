@@ -1,0 +1,29 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Important Updates</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'update' %}">Important Updates</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="update">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <p class='text-center'><strong>No update as of now!</strong></p>  
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

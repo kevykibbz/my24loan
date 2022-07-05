@@ -1,0 +1,147 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Elite Membership Card</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'elite' %}">Elite Membership Card</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+
+<section  class="p-b-40" id="membershipcard">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-12">
+        <img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/slider/membership-card-elite.png' %}" alt="elite membership card" class="img-fluid rounded">
+      </div>
+
+      <div class="col-lg-7 col-md-7 col-12">
+        <div class="heading-text heading-plain">
+          <h4>Elite Membership Card</h4>
+        </div>
+
+        <div class="m-b-20 text-justify">
+          <p class="lead">Elite Membership Card for Business Loan Applicant</p>
+
+          <p>For the people applying for a Business loan, he must first enroll as an Elite member at {{obj.site_name}}. Elite membership card enables user to apply for Business loan through our portal in multiple banks. We run your documents through banks and provide you with attractive Interest rates on minimum paperwork with quick offer within 30 minutes*.</p>
+
+          <h3>Rs. <del class="text-danger">5,999.00</del> <span class="text-success">1,999.00</span> only</h3>
+          <a href="{% url 'bussiness loan' %}" class="btn btn-dark btn-outline btn-sm btn-reveal btn-reveal-right"><span>Buy Now</span><i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-t-40 p-b-20">
+  <div class="container">
+    <div class="heading-text heading-plain text-center">
+      <h4>Card Benefits</h4>
+    </div>
+
+    <div class="row">
+      <div class="col-12 m-b-20 text-justify">
+        <p>Once you enroll at {{obj.site_name}}, respective team will ask for your loan related document. We then make a file of all your documents and send them to multiple partnering NBFC Banks. NBFC banks check your profile, matches them to required profile and give approval of loan. If your profile matches in more than one NBFC Banks, {{obj.site_name}} will provide you list of approving NBFC Banks, saving you a great amount of time of going into multiple banks for loan.</p>
+        <p>This is one of the most important benefit of our company's membership card, because getting a loan is time consuming process. In daily busy routine no one has time to visit multiple banks for loan process so here our company is providing this facility at one platform. Secondly every time you open your file at a bank for loan, your CIBIL score gets deducted, but with {{obj.site_name}} your file will only open in those banks where your profile matches, helping you in a better CIBIL score even if you don't take a loan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-t-20">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-12">
+        <div class="heading-text heading-plain m-b-0 text-center">
+          <h4>How it works?</h4>
+        </div>
+
+        <div class="tabs tabs-folder">
+          <ul class="nav nav-tabs" id="myTab3" role="tablist">
+            <li class="nav-item text-center"> <a class="nav-link active" id="point1-tab" data-toggle="tab" href="#point1" role="tab" aria-controls="home" aria-selected="true">Registration</a> </li>
+
+            <li class="nav-item text-center"> <a class="nav-link" id="point2-tab" data-toggle="tab" href="#point2" role="tab" aria-controls="profile" aria-selected="false">Check Eligibility</a> </li>
+            
+            <li class="nav-item text-center"> <a class="nav-link" id="point3-tab" data-toggle="tab" href="#point3" role="tab" aria-controls="profile" aria-selected="false">Buy Membership Card</a> </li>
+            
+            <li class="nav-item text-center"> <a class="nav-link" id="point4-tab" data-toggle="tab" href="#point4" role="tab" aria-controls="profile" aria-selected="false">Submit Document</a> </li>
+            
+            <li class="nav-item text-center"> <a class="nav-link" id="point5-tab" data-toggle="tab" href="#point5" role="tab" aria-controls="profile" aria-selected="false">Bank Verification</a> </li>
+            
+            <li class="nav-itemtext-center"> <a class="nav-link" id="point6-tab" data-toggle="tab" href="#point6" role="tab" aria-controls="profile" aria-selected="false">Bank Sanction</a> </li>
+          </ul>
+        
+          <div class="tab-content" id="myTabContent3">
+            <div class="tab-pane fade show active" id="point1" role="tabpanel" aria-labelledby="point1-tab">
+              <h4>1. Registration</h4>
+              <ul class="list-icon list-icon-check">
+                <li>After coming on the {{obj.site_name}}.in home page, the user/customer will click on "Apply for Personal Loan" or “Apply for Business Loan”.</li>
+                <li>The user/customer will register using their bank registered name and mobile number.</li>
+                <li>If the customer is already registered, they can click on the Login option and login with their credentials.</li>
+                <li>If the customer wants to calculate loan EMI and get its details then they can click on the Loan Calculator. After that, they have to click on “Apply Now”.</li>
+              </ul>
+            </div>
+            
+            <div class="tab-pane fade show" id="point2" role="tabpanel" aria-labelledby="point2-tab">
+              <h4>2. Check Eligibility</h4>
+              <ul class="list-icon list-icon-check">
+                <li>The customer will fill up the given details such as CIBIL score, city, loan purpose, income, and monthly EMI (in case of an existing loan). Then click on “Check Eligibility”.</li>
+                <li>Our automated system will display the eligibility based on the customer details and income. Note: The pre-approval will be shown based only on the customer details, it will not be the final approval.</li>
+                <li>Now after checking the eligibility, the customer will select the tenure and EMI and then click on “Get Offer”.</li>
+              </ul>
+            </div>
+
+            <div class="tab-pane fade show" id="point3" role="tabpanel" aria-labelledby="point3-tab">
+              <h4>3. Buy Membership Card</h4>
+              <ul class="list-icon list-icon-check">
+                <li>Our portal will show you the membership card with customer name with unique code. Click on Buy Now for getting a loan offer and membership card.</li>
+                <li>The customer will enter their phone number and email-id; then click on Proceed.</li>
+                <li>In the next step, the portal will show you multiple payment options. The customer can pay with any suitable payment option from there.</li>
+                <li>The customer can avail several benefits of the membership card. The customer can check the benefits of the membership card on the {{obj.site_name}}.in website.</li>
+              </ul>
+            </div>
+
+            <div class="tab-pane fade show" id="point4" role="tabpanel" aria-labelledby="point4-tab">
+              <h4>4. Submit Documents</h4>
+              <ul class="list-icon list-icon-check">
+                <li>After successful payment, the customer will receive a receipt and password on their email id.</li>
+                <li>The customer will get a call from the login department in 24-48 hours after payment for document verification.</li>
+                <li>Customer has to submit their documents within 3 days through the provided WhatsApp number or their customer portal.</li>
+                <li>Document verification is compulsory as our company is not able to process the loan without it</li>
+              </ul> 
+            </div>
+
+            <div class="tab-pane fade show" id="point5" role="tabpanel" aria-labelledby="point5-tab">
+              <h4>5. Bank Verification</h4>
+              <ul class="list-icon list-icon-check">
+                <li>NBFC Banks will verify the customer's profile as per their rules and criteria.</li>
+                <li>Customer's documents will be verified by the NBFC Bank as per their terms and rules.</li>
+              </ul>
+            </div>
+
+            <div class="tab-pane fade show" id="point6" role="tabpanel" aria-labelledby="point6-tab">
+              <h4>6. Bank Sanction</h4>
+              <ul class="list-icon list-icon-check">
+                <li>Bank Sanction directly depends on the customer's profile and bank criteria & rules and regulations.</li>
+                <li>The final decision on loan sanction, approval, and disbursement will depend on the banks as per their rules and regulations.</li>
+              </ul></br>
+              <p>You can check all the company Terms & Conditions here:<a href="https://{{obj.site_name}}.in/terms-conditions"> https://{{obj.site_name}}.in/terms-conditions</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
