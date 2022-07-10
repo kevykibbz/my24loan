@@ -53,7 +53,7 @@ def dashboard(request):
 #logout
 def user_logout(request):
     logout(request)
-    return redirect('/panel/accounts/login/')
+    return redirect('/panel/accounts/login')
 
 
 @method_decorator(unauthenticated_user,name='dispatch')
@@ -106,7 +106,7 @@ class LoginView(View):
         
 
 #SiteSettings
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class SiteSettings(View):
     def get(self,request):
@@ -202,7 +202,7 @@ def admins(request):
         return render(request,'panel/admins.html',context=data)
 
 #AddAdmins
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class AddAdmins(View):
     def get(self,request):
@@ -237,7 +237,7 @@ class AddAdmins(View):
                     return JsonResponse({'valid':False,'uform_errors':uform.errors,'eform_errors':eform.errors},content_type="application/json")
 
 #EditAdmin
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class EditAdmin(View):
     def get(self,request,id):
@@ -276,7 +276,7 @@ class EditAdmin(View):
                     return JsonResponse({'valid':False,'uform_errors':uform.errors,'eform_errors':eform.errors},content_type="application/json")
 
 #deleteAdmin
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def deleteAdmin(request,id):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -312,7 +312,7 @@ def employees(request):
         return render(request,'panel/employees.html',context=data)
 
 #AddEmployees
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class AddEmployees(View):
     def get(self,request):
@@ -348,7 +348,7 @@ class AddEmployees(View):
                     return JsonResponse({'valid':False,'uform_errors':uform.errors,'eform_errors':eform.errors},content_type="application/json")
 
 #EditEmployee
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class EditEmployee(View):
     def get(self,request,id):
@@ -387,7 +387,7 @@ class EditEmployee(View):
                     return JsonResponse({'valid':False,'uform_errors':uform.errors,'eform_errors':eform.errors},content_type="application/json")
 
 #deleteEmployee
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def deleteEmployee(request,id):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -399,7 +399,7 @@ def deleteEmployee(request,id):
             return JsonResponse({'valid':True,'message':'User does not exist'},content_type='application/json')
 
 #ProfilerView
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 class ProfilerView(View):
     def get(self,request,username):
         obj=SiteConstants.objects.count()
@@ -439,7 +439,7 @@ class ProfilerView(View):
                     return JsonResponse({'valid':False,'uform_errors':uform.errors,'eform_errors':eform.errors},content_type="application/json")
 
 #passwordChange
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 def passwordChange(request):
     if request.method=='POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         passform=UserPasswordChangeForm(request.POST or None,instance=request.user)
@@ -453,7 +453,7 @@ def passwordChange(request):
             return JsonResponse({'valid':False,'uform_errors':passform.errors},content_type='application/json')
 
 #profilePic
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 def profilePic(request):
     if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
         uform=ProfilePicChangeForm(request.POST, request.FILES or None , instance=request.user.extendedauthuser)
@@ -468,7 +468,7 @@ def profilePic(request):
 
 
 #applications
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def applications(request):
     obj=SiteConstants.objects.count()
@@ -527,7 +527,7 @@ def applications(request):
             return render(request,'panel/applications.html',context=data)
 
 #queries
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def queries(request):
     obj=SiteConstants.objects.count()
@@ -550,7 +550,7 @@ def queries(request):
         }
         return render(request,'panel/queries.html',context=data)
 #EditQuery
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class EditQuery(View):
     def get(self,request,id):
@@ -585,7 +585,7 @@ class EditQuery(View):
                 return JsonResponse({'valid':False,'uform_errors':form.errors},content_type="application/json")
 
 #deleteQuery
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def deleteQuery(request,id):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -597,7 +597,7 @@ def deleteQuery(request,id):
             return JsonResponse({'valid':True,'message':'Query does not exist'},content_type='application/json')
 
 #suggestions
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def suggestions(request):
     obj=SiteConstants.objects.count()
@@ -621,7 +621,7 @@ def suggestions(request):
         return render(request,'panel/suggestions.html',context=data)
 
 #deleteSuggestion
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def deleteSuggestion(request,id):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -633,7 +633,7 @@ def deleteSuggestion(request,id):
             return JsonResponse({'valid':True,'message':'Suggestion does not exist'},content_type='application/json')
 
 #customerMessages
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 @allowed_users(allowed_roles=['admins'])
 def customerMessages(request):
     obj=SiteConstants.objects.count()
@@ -659,7 +659,7 @@ def customerMessages(request):
 
 
 #ViewMessage
-@method_decorator(login_required(login_url='/panel/accounts/login/'),name='dispatch')
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
 @method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class ViewMessage(View):
     def get(self,request,id):
@@ -708,7 +708,7 @@ class ViewMessage(View):
 
 
 #delLoan
-@login_required(login_url='/panel/accounts/login/')
+@login_required(login_url='/panel/accounts/login')
 def delLoan(request,loanid):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         try:

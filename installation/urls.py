@@ -4,6 +4,6 @@ from . import views
 from .views import *
 urlpatterns=[
    path('',views.installation,name='installation'),
-   path('installation/start/',InstallationView.as_view(),name='installation start')
+   path('installation/start',InstallationView.as_view(),name='installation start')
 ]
 

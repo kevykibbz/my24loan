@@ -546,7 +546,7 @@ class Suggestion(View):
     def get(self,request):
         obj=SiteConstants.objects.count()
         if obj == 0:
-                return redirect('/installation/')
+                return redirect('/installation')
         obj=SiteConstants.objects.all()[0]
         form=UsersSuggestionForm()
         data={
