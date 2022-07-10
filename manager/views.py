@@ -41,7 +41,9 @@ def home(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':f'Welcome to {obj.site_name}',
         'obj':obj,
@@ -56,7 +58,9 @@ def company(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'company',
         'obj':obj,
@@ -73,7 +77,9 @@ class Prime(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()        
         data={
             'title':'Prime Membership',
             'obj':obj,
@@ -88,7 +94,9 @@ def elite(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Elite Membership',
         'obj':obj,
@@ -104,7 +112,9 @@ class PersonalLoan(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersLoanForm()
         data={
             'title':'Digital Personal Loan',
@@ -148,7 +158,9 @@ class BussinessLoan(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersLoanForm()
         data={
             'title':'Digital Bussiness Loan',
@@ -191,7 +203,9 @@ def terms(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Terms And Conditions',
         'obj':obj,
@@ -206,7 +220,9 @@ def privacy(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Privacy Policy',
         'obj':obj,
@@ -223,7 +239,9 @@ class Contact(View):
         if obj == 0:
             return redirect('/installation/')              
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersContactForm()
         data={
             'title':'Contact Us',
@@ -249,7 +267,9 @@ class Login(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UserLoginForm()
         data={
             'title':'Login',
@@ -288,7 +308,9 @@ class Request(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersRequestForm()
         data={
             'title':'Raise A Request',
@@ -312,7 +334,9 @@ def careers(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+       initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Careers',
         'obj':obj,
@@ -327,7 +351,9 @@ def updates(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Important Updates',
         'obj':obj,
@@ -342,7 +368,9 @@ def faqs(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'FAQS',
         'obj':obj,
@@ -357,7 +385,9 @@ def returnFund(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Return Fund Policy',
         'obj':obj,
@@ -372,7 +402,9 @@ def disclaimer(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Disclaimer',
         'obj':obj,
@@ -388,7 +420,9 @@ def loan_calculator(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Loan Calculator',
         'obj':obj,
@@ -409,7 +443,9 @@ class Verification(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersOTPForm()
         otp_flag=request.GET.get('otp_resend')
         if  otp_flag:
@@ -513,7 +549,9 @@ class Onbording(View):
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
         data=LoanModel.objects.filter(email=request.user.email).order_by("-id")
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         paginator=Paginator(data,10)
         page_num=request.GET.get('page')
         loans=paginator.get_page(page_num)
@@ -543,7 +581,9 @@ class ApplySpecific(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersTotalLoanApplyForm()
         data={
             'title':'Apply for loan',
@@ -570,7 +610,9 @@ class Apply(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersTotalLoanApplyForm()
         data={
             'title':'Apply for loan',
@@ -595,7 +637,9 @@ class Suggestion(View):
         if obj == 0:
                 return redirect('/installation')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersSuggestionForm()
         data={
             'title':'Add suggestion',
@@ -621,7 +665,9 @@ def suggestions(request):
     if obj == 0:
         return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
-    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data=SuggestionForm.objects.all().order_by("-id")
     paginator=Paginator(data,20)
     page_num=request.GET.get('page')
@@ -645,7 +691,9 @@ class EditProfile(View):
         if obj == 0:
                 return redirect('/installation')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersEditForm(instance=request.user)
         data={
             'title':'Edit Profile',
@@ -672,7 +720,9 @@ class UserChangePassword(View):
         if obj == 0:
                 return redirect('/installation')
         obj=SiteConstants.objects.all()[0]
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+        initials='AU'
+        if request.user.is_authenticated:
+           initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
         form=UserPasswordChangeForm()
         data={
             'title':'Change Password',
