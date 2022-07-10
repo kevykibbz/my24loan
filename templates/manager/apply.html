@@ -1,0 +1,155 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Loan Application Form</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'onbording' %}">Loan history</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'apply' %}">Loan Application Form</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="section1" class="fullscreen" data-bg-image="{% static 'manager/assets/images/slider/digital-personal-loan.jpg' %}">
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="container-fullscreen">
+      <div class="text-middle">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="text-light m-t-40 p-t-40"> 
+              <span class="text-medium">Become a Prime member to get Instant Personal Loan Offer</span>
+              <ul class="list-icon list-icon-check list-icon-colored m-t-20">
+                <li>Loan offer from Multiple banks</li>
+                <li>Lowest interest rates ever (starting 12.5% pa.)</li>
+                <li>Disbursal up to Rs.15 Lakh</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="p-cb">
+              <div class="form-wrapper position-relative">
+                <div class="load-overlay" style="display:none">
+                  <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+                      <div class="overlay">
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="loader-container">
+                                  <div class="loader">
+                                      <svg class="circular" viewBox="25 25 50 50">
+                                      <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                      </svg>
+                                  </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+                <form action="" id="submitForm3" class="col-md-12 col-sm-12 ContactForm" novalidate="novalidate" method="post" accept-charset="utf-8">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label class="text-dark" for="username">Full name : <strong>{{data.get_full_name}}</strong></label>
+                    <input type="hidden" aria-required="true" name="name" class="form-control" value="{{data.get_full_name}}">
+                  </div>
+                  <div class="form-group">
+                    <label class="text-dark" for="usermobile">Email : <strong>{{data.email}}</strong></label>
+                  </div>
+                  <div class="form-group btn-group-toggle" data-toggle="buttons">
+                    <div class="btn-group">
+                      <label class="btn btn-light active">
+                        <input type="radio" name="user_type" value="Salaried Person" autocomplete="off" checked><i class="icon-briefcase"></i> Salaried Person
+                      </label>
+                      <label class="btn btn-light">
+                        <input type="radio" name="user_type" value="Employed Person" autocomplete="off"><i class="icon-flag"></i> Self Employed Person
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group btn-group-toggle" data-toggle="buttons">
+                    <label class="text-dark" for="useremail">Select loan category</label>
+                    <select name="category" id="id_category" class="form-control">
+                      <option value="personal loan" selected>Personal loan</option>
+                      <option value="bussiness loan">Bussiness loan</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="text-dark" for="useremail">Email id</label>
+                    <input type="email" aria-required="true" name="email" class="form-control" placeholder="As per your bank records" required value="{{data.email}}" readonly>
+                    <div class="help-block font-small-3"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="text-dark" for="useremail">Credit limit</label>
+                      {{form.credit_limit}}
+                    <div class="help-block font-small-3"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="text-dark" for="useremail">Card number</label>
+                      {{form.card_number}}
+                    <div class="help-block font-small-3"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="text-dark" for="useremail">Full Address</label>
+                      {{form.address}}
+                    <div class="help-block font-small-3"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="text-dark" for="useremail">Mobile number</label>
+                    {{form.phone}}
+                    <div class="help-block font-small-3"></div>
+                  </div>
+              
+                  <div class="mt-4 form-group" style="margin-top:64px !important;">
+                    <label class="text-dark" for="loanamount">Required loan amount </label>
+                    <input type="text" aria-required="true" name="amount" class="form-control text-center" placeholder="As per your requirement" required data-validation-regex-regex="[0-9]+">
+                    <div class="help-block font-small-3"></div>
+                  </div>
+
+                  <div class="form-group m-b-0">
+                    <button type="submit" id="form-submit3" class="btn btn-block btn-secondary">PROCESS</button>
+                  </div>
+                </form>             
+              </div>  
+              <div class="p-t-20 text-center">
+                <p>
+                  <a href="{% url 'loan calculator' %}" class="btn btn-light btn-sm text-uppercase">Loan Calculator</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-t-30 p-b-20">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-12 m-b-20">
+        <h6 class="text-theme">Salaried Person Eligibility Criteria</h6>
+        <p><small>(1) Minimum salary Rs. 15,000/- per month (2) 1 year job stability (3) Minimum age 21 years</small></p>
+        
+        <h6 class="text-theme">Self-Employed Person Eligibility Criteria</h6>
+        <p><small>(1) Minimum 1 year IT return (2) 1 year business stability (3) Minimum age 21 years</small></p>
+      </div>
+
+      <div class="col-md-4 col-12 m-b-20">
+        <h6 class="text-theme">How to works?</h6>
+        <p><small>(1) Quick registration (2) Check eligibility (3) Buy membership card (4) Submit documents (5) Bank Verification (6) Bank Sanction</small></p>
+        <h6 class="text-theme">Membership Card Benefits</h6>
+        <p><small>(1) Let you apply for personal loan in multiple banks (2) You get 4 years free loan consultancy (3) Get 40% referral payout bonus (4) Get loan offers from multiple banks anytime-anywhere (5) You stay at home; our team will go to multiple banks for you (6) On-call Assistance on all your doubts</small></p>
+      </div>
+
+      <div class="col-md-4 col-12 m-b-20">
+        <h6 class="text-theme">Why {{obj.site_name}}?</h6>
+        <p><small>(1) Per month 1000+ happy customers (2) Minimum documents - depend customer profile (3) Compare to multiple banks - loan up to Rs. 15,00,000/-* (4) Annual percentage rate - minimum 12.5% and maximum 24%* (5) Flexible repayment terms - 1 to 6 years (6) Processing fees - depand on customer profile & banks</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

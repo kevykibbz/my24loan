@@ -1,6 +1,158 @@
-{% extends 'manager/base.html' %}
 {% load static %}
-{% block body %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<head>
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="copyright" content="Legit Crew, https://www.devme.com/">
+    <title>{% if obj.site_name %} {{obj.site_name}}  {% else %} {{site_name}} {% endif %} | {{title}}</title>
+    <meta name="description" content="{{obj.description}}">
+    <meta name="author" content="{{designer_name}}">
+    <meta name="theme-color" content="{{obj.theme_color}}">
+    <meta name="msapplication-navbutton-color" content="{{obj.theme_color}}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{obj.theme_color}}">
+    <meta name="keywords" content="{{obj.key_words}}">
+    <meta property="og:site_name" content="{{obj.site_name}}">
+    <meta property="og:url" content="{{obj.site_url}}">
+    <meta http-equiv="Content-type" content="text/html;charset:utf-8">
+    <meta property="og:type" content="website"> 
+    <meta property="og:type" content="website"> 
+    <meta property="twitter:site" content="https://twitter.com/Kevin36285655">
+    <meta property="twitter:title" content="@Kevin36285655">
+    <meta property="twitter:image" content="https://twitter.com/Kevin36285655/photo">
+    <meta property="twitter:description" content="Life's Simple.">
+    <meta property="twitter:text:title" content="Life's Simple.">
+    <meta property="og:title" content="{{obj.site_name}} | {{title}}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:description" content="{{obj.description}}">
+    <meta property="og:image" content="{% static 'manager/assets/images/logos/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="{{obj.site_name}}">
+    <meta name="application-name" content="{{obj.site_name}}">
+    <meta name="msapplication-TileColor" content="{{obj.theme_color}}">
+    <meta name="msapplication-config" content="{% static 'manager/assets/images/logos/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="{{obj.site_url}}" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="icon" href="{% static 'manager/assets/images/logos/favicon.ico' %}" type="image/x-icon">
+    <link rel="mask-icon" href="{% static 'manager/assets/images/logos/safari-pinned-tab.svg' %}" color="#666666">
+    <link rel="manifest" href="{% static 'manager/assets/images/logos/site.html' %}">
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/assets/css/font-awesome.min.css' %}">
+    <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'manager/assets/css/custom.css' %}"> 
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/jquery-spinner/css/bootstrap-spinner.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/bootstrap-select/css/bootstrap-select.css' %}" />
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/nouislider/nouislider.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'manager/assets/plugins/select2/select2.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'manager/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://my24loan.in/assets/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://my24loan.in/assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="https://my24loan.in/assets/images/favicon.ico">
+
+    <link href="https://my24loan.in/assets/plugins/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/css/validation/form-validation.css" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/plugins/pageloader/pageloader.css" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/plugins/rateit/rateit.css" rel="stylesheet" type="text/css" />
+    <style>
+     .right
+     {
+        position: absolute;
+        right:-216px;
+     }
+     #scrollTop
+     {
+        bottom: 17px !important;
+        opacity: 1;
+        z-index: 399;
+    }
+    </style>
+</head>
+<body>
+  <div class="body-inner">
+    <div id="topbar" class="d-none d-xl-block d-lg-block">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="top-menu">
+              <li>India's Most Trustable Loan Provider Company</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6 d-none d-sm-block text-right">
+              <ul class="top-menu float-right">
+                  <li><a href="tel:{{obj.phone}}">Phone: {{obj.phone}}</a></li>
+                  <li><a href="mailto:{{obj.site_email}}">Email: {{obj.site_email}}</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ <header id="header">
+                <div class="header-inner">
+                    <div class="container">
+                       <div id="logo"> 
+                        <a href="{% url 'dashboard' %}">
+                          <span class="logo-default"><img src="https://my24loan.in/assets/images/logo.png" alt="My24Loan" width="250"></span>
+                          <span class="logo-dark"><img src="https://my24loan.in/assets/images/logo-light.png" alt="My24Loan" width="250"></span>
+                        </a> 
+                      </div>
+                        <div id="mainMenu-trigger">
+                            <a class="lines-button x"><span class="lines"></span></a>
+                        </div>
+                        <div id="mainMenu" class="position-relative">
+                            <div class="container">
+                                <nav>
+                                    <ul>
+                                        <li id="101" class=""><a href="{% url 'dashboard' %}">Home</a></li>
+                                        <li id="102" class=""><a href="{% url 'company' %}">Company</a></li>
+                                        <li id="110" class="dropdown"><a href="#">Our Products</a>
+                                            <ul class="dropdown-menu">
+                                                <li id="1101" class=""><a href="{% url 'prime' %}"><i class="fa fa-credit-credit"></i> Prime Membership Card</a></li>
+                                                <li id="1102" class=""><a href="{% url 'elite' %}"><i class="fa fa-credit-credit"></i> Elite Membership Card</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li id="109" class="dropdown"><a href="#">Digital Loan</a>
+                                            <ul class="dropdown-menu">
+                                                <li id="1091" class=""><a href="{% url 'personal loan' %}"><i class="fa fa-home"></i>Digital Personal Loan</a></li>
+                                                <li id="1092" class=""><a href="{% url 'bussiness loan' %}"><i class="fa fa-building"></i>Digital Business Loan</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li id="106" class=""><a href="{% url 'contact us' %}">Contact</a></li>
+                                        {% if data.is_authenticated %}
+                                        <li id="109" class="dropdown"><a href="#">Profile</a>
+                                            <ul class="dropdown-menu">
+                                                <li id="1091" class=""><a href="javascript:void(0)"><i class="fa fa-envelope"></i>{{data.email}}</a></li>
+                                                <li id="1092" class=""><a href="{% url 'bussiness loan' %}"><i class="fa fa-user"></i>{{data.username}}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="108" class=""><a href="{% url 'logout' %}" class="btn btn-dark text-light">Customer Logout</a></li>
+                                        {% else %}
+                                        <li id="108" class=""><a href="{% url 'login' %}" class="btn btn-dark text-light">Customer Login</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                            {% if data.is_authenticated %}
+                            <div class="right d-md-block d-none">
+                               <button class="btn btn-fab btn-theme btn-round" type="button" id="dropdownMenubutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.extendedauthuser.initials}}</button>
+                             </div>
+                             {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </header>
 
 <section id="page-title">
   <div class="container">
@@ -15,11 +167,13 @@
     </div>
   </div>
 </section>
+
 <section>
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <!-- EMI Calculator Widget START -->
+        <script src="https://emicalculator.net/widget/2.0/js/emicalc-loader.min.js" type="text/javascript"></script>
         <div id="ecww-widgetwrapper" style="min-width:250px;width:100%;">
           <div id="ecww-widget" style="position:relative;padding-top:0;padding-bottom:280px;height:0;overflow:hidden;"></div>
         </div>
@@ -28,13 +182,16 @@
     </div>
   </div>
 </section>
+
+
+
 <section class="background-grey">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
         <p class="lead">Instant personal loan calculator makes it easy for you to get monthly instalments for your loans.</p>
 
-        <p class="lead">If you are taking out a <a href="{% url 'personal loan' %}" target="_self">quick personal loan</a>, an average monthly instalment is an important factor in determining the loan amount and time. The personal loan calculator helps you quickly calculate your repayments, making it easier for you to plan loans and your payments.</p>
+        <p class="lead">If you are taking out a <a href="https://my24loan.in/digital/personalLoan" target="_self">quick personal loan</a>, an average monthly instalment is an important factor in determining the loan amount and time. The personal loan calculator helps you quickly calculate your repayments, making it easier for you to plan loans and your payments.</p>
 
         <p class="lead">To calculate your EMI, simply enter the loan amount, interest rate and loan lease, and your EMI will be displayed immediately. You can apply for loans from Rs. 25,000/- to 40,00,000/- per hour from 1 to 5 years.</p>
 
@@ -43,6 +200,7 @@
     </div>
   </div>
 </section>
+
 <section>
   <div class="container">
     <div class="row">
@@ -94,14 +252,14 @@
           <div class="ac-item">
             <h5 class="ac-title">What is business loan EMI?</h5>
             <div class="ac-content">
-              <p>EMI, or Equated Monthly Instalment, is the fixed amount paid by a borrower every month to clear off the loan taken from a bank. It is scheduled at a specific date of every calendar month and includes both principal and interest components. Your <a href="{% url 'bussiness loan' %}" target="_self">business loan EMI</a> depends on the loan principal, the rate of interest and the loan tenure.</p>
+              <p>EMI, or Equated Monthly Instalment, is the fixed amount paid by a borrower every month to clear off the loan taken from a bank. It is scheduled at a specific date of every calendar month and includes both principal and interest components. Your <a href="https://my24loan.in/digital/businessLoan" target="_self">business loan EMI</a> depends on the loan principal, the rate of interest and the loan tenure.</p>
             </div>
           </div>
 
           <div class="ac-item">
             <h5 class="ac-title">How to calculate business loan EMI?</h5>
             <div class="ac-content">
-              <p>It is essential to calculate your EMI before applying for a Business loan. While you can do so manually, using a <a href="{% url 'loan calculator' %}" target="_self">Business loan calculator</a> can help you determine the more accurate value. You can select the required loan amount, tenure and rate of interest to get the exact payable EMI amount with an interactive chart.</p>
+              <p>It is essential to calculate your EMI before applying for a Business loan. While you can do so manually, using a <a href="https://my24loan.in/loan/calculator" target="_self">Business loan calculator</a> can help you determine the more accurate value. You can select the required loan amount, tenure and rate of interest to get the exact payable EMI amount with an interactive chart.</p>
             </div>
           </div>
 
@@ -134,5 +292,100 @@
 
     </div>
   </div>
-</section>
-{% endblock %}
+</section> 
+
+
+     <footer id="footer" class="inverted">
+                <div class="footer-content">
+                    <div class="container">
+                        <div class="row m-b-20">
+                            <div class="col-md-3 col-sm-12 text-center">
+                                <img  style="width:100px" src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/logos/favicon.ico' %}" alt="{{obj.site_name]}" class="m-t-20 m-b-30">
+                                <h3>{{obj.site_name}}</h3>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <h5>USEFUL LINKS</h5>
+                                <ul class="list-inline">
+                                    <li><a href="{% url 'raise request' %}"><i class="fa fa-ticket-alt m-r-5"></i> Raise a Request</a></li>
+                                    <li><a href="{% url 'company' %}"><i class="fa fa-info-circle m-r-5"></i> Company</a></li>
+                                    <li><a href="{% url 'careers' %}"><i class="fa fa-chart-line m-r-5"></i> Career</a></li>
+                                    <li><a href="{% url 'update' %}"><i class="fa fa-exclamation-triangle m-r-5"></i> Important Update</a></li>
+                                    <li><a href="{% url 'contact us' %}"><i class="fa fa-map m-r-5"></i> Contact Us</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <h5>INFO PAGES</h5>
+                                <ul class="list-inline">
+                                    <li><a href="{% url 'faqs' %}"><i class="fa fa-question-circle m-r-5"></i> FAQs</a></li>
+                                    <li><a href="{% url 'privacy policy' %}"><i class="fa fa-file m-r-5"></i> Privacy Policy</a></li>
+                                    <li>
+                                        <a href="{% url 'return fund policy' %}"><i class="fa fa-file m-r-5"></i> Refund &amp; Return Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'view suggestions' %}"><i class="fa fa-file m-r-5"></i>View suggestion</a>
+                                    </li>
+                                    <li><a href="{% url 'disclaimer' %}"><i class="fa fa-file m-r-5"></i> Disclaimer</a></li>
+                                    <li><a href="{% url 'terms and conditions' %}"><i class="fa fa-file m-r-5"></i> Terms & Conditions</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <h5>CONTACT US</h5>
+                                <div>
+                                    <p><a href="tel:{{obj.phone}}"><i class="fa fa-phone m-r-5"></i> {{obj.phone}}</a></p>
+                                    <p><a href="mailto:{{obj.site_email}}"><i class="fa fa-envelope m-r-5"></i> {{obj.site_email}}</a></p>
+                                    <p><i class="fa fa-map-marker m-r-5"></i> Registered Office: {{obj.address}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <a href="{% url 'personal loan' %}" class="btn btn-light btn-block">DIGITAL PERSONAL LOAN</a>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12">
+                                <a href="{% url 'bussiness loan' %}" class="btn btn-light btn-block">DIGITAL BUSINESS LOAN</a>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12">
+                                <a href="{% url 'login' %}" class="btn btn-light btn-block">CUSTOMER LOGIN</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright-content background-dark">
+                    <div class="container">
+                        <div class="copyright-text text-center text-light">
+                            {% now 'Y' %} &copy; {{obj.site_name}} Service All rights reserved.Designed by <a href="{{designer_link}}" target="_blank">{{designer_name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+  </div> 
+
+  <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+
+  <script src="https://my24loan.in/assets/js/jquery.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/js/plugins.js" type="text/javascript"></script>
+
+  <script src="https://my24loan.in/assets/js/functions.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/js/validation/jqBootstrapValidation.js" type="text/javascript"></script>
+  
+  <script src="https://my24loan.in/assets/plugins/validate/form-validation.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/plugins/validate/form-validation.min.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/plugins/bootstrap-switch/bootstrap-switch.min.js" type="text/javascript"></script>
+
+  <script src="https://my24loan.in/assets/plugins/metafizzy/infinite-scroll.min.js" type="text/javascript"></script>
+
+  <script src="https://my24loan.in/assets/plugins/pageloader/pageloader.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/plugins/pageloader/pageloader.init.js" type="text/javascript"></script>
+
+  <script src="https://my24loan.in/assets/plugins/particles/particles.js" type="text/javascript"></script>
+  <script src="https://my24loan.in/assets/plugins/particles/particles-dots.js" type="text/javascript"></script>
+
+  <script src="https://my24loan.in/assets/plugins/rateit/jquery.rateit.min.js" type="text/javascript"></script>
+</body>
+</html>

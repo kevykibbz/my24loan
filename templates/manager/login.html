@@ -97,20 +97,40 @@
 			<div class="container">
 				<div>
 					<div class="text-center m-b-30">
-						<a href="index.html" class="logo"> <img src="https://my24loan.in/assets/images/logo-light.png" alt="My24Loan" width="250"> </a>
+						<a href="{% url 'dashboard' %}" class="logo">
+                            <img src="https://my24loan.in/assets/images/logo-light.png" alt="{{obj.site_name}}" width="250">
+                        </a>
 					</div>
 					<div class="row">
-						<div class="col-lg-5 center p-50 background-white b-r-6">
+						<div class="form-wrapper col-lg-5 center p-50 background-white b-r-6 position-relative">
+                            <div class="load-overlay" style="display:none">
+                            <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+                                <div class="overlay">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="loader-container">
+                                            <div class="loader">
+                                                <svg class="circular" viewBox="25 25 50 50">
+                                                <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                                </svg>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 							<h3 class="text-center">Customer Login Account</h3>
-							
-							<form action="https://my24loan.in/customer/login/validateLogin" id="submitForm1" class="" novalidate="novalidate" method="post" accept-charset="utf-8">
+							<form action="" id="submitForm1" class="ContactForm" novalidate="novalidate" method="post" accept-charset="utf-8">
+                                {% csrf_token %}
 								<div class="form-group">
-									<label class="sr-only">Mobile no</label>
-									<input type="text" name="mobile" class="form-control" placeholder="Mobile no"> 
+									<label>Username</label>
+                                    {{form.username}}
+                                    <div class="help-block font-small-3"></div>
 								</div>
 								<div class="form-group">
-									<label class="sr-only">Password</label>
-									<input type="password" name="password" class="form-control" placeholder="Password"> 
+									<label>Password</label>
+                                     {{form.password}}
+                                    <div class="help-block font-small-3"></div>
 								</div>
 								<div class="form-group">
 									<button type="submit" id="form-submit1" class="btn btn-block btn-dark">LOGIN</button>

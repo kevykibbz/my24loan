@@ -19,63 +19,72 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="col-lg-6 col-md-6 col-12">
-				<form action="https://my24loan.in/support/raiserequest" id="submitForm" class="form-transparent-grey" novalidate="novalidate" method="post" accept-charset="utf-8">
+			<div class="form-wrapper col-lg-6 col-md-6 col-12 position-relative">
+				<div class="load-overlay" style="display:none">
+            <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+            <div class="overlay">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="loader-container">
+                        <div class="loader">
+                            <svg class="circular" viewBox="25 25 50 50">
+                            <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                            </svg>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				<form action="" id="submitForm" class="form-transparent-grey ContactForm" novalidate="novalidate" method="post" accept-charset="utf-8">
+				{% csrf_token %}
 				<div class="row">
-					
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="fullname">I am a,</label>
 						<div class="row p-l-20">
 							<div class="col-lg-4">
-								<input class="form-check-input" name="usertype" id="customer" value="1" checked type="radio">
-								<label class="form-check-label" for="customer">Customer</label>
+								<input class="form-check-input" name="user" id="id_user_0" value="customer" checked type="radio">
+								<label class="form-check-label" for="id_user_0">Customer</label>
 							</div>
 							<div class="col-lg-4">
-								<input class="form-check-input" name="usertype" id="guest" value="2" type="radio">
-								<label class="form-check-label" for="guest">Guest User</label>
+								<input class="form-check-input" name="user" id="id_user_1" value="guest user" type="radio">
+								<label class="form-check-label" for="id_user_1">Guest User</label>
 							</div>
 						</div>
 					</div>
 					
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="fullname">Full Name *</label>
-						<input type="text" aria-required="true" name="fullname" id="fullname" class="form-control" placeholder="John Doe" required>
+						{{form.name}}
 						<div class="help-block font-small-3"></div>
 					</div>
 							
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="email">Mobile no *</label>
-						<input type="text" aria-required="true" name="mobile" id="mobile" class="form-control" placeholder="98765 43210" required>
+						{{form.phone}}
 						<div class="help-block font-small-3"></div>
 					</div>
 
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="email">Email id *</label>
-						<input type="email" aria-required="true" name="email" id="email" class="form-control" placeholder="john@domain.com" required>
+						{{form.email}}
 						<div class="help-block font-small-3"></div>
 					</div>
 
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="cno">Card Number(Optional)</label>
-						<input type="text" name="cardnumber" id="cardnumber" class="form-control" placeholder="9876 5432 1012 3456">
+						{{form.card_number}}
 					</div>
 
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="">Query Related To</label>
-						<select id="requestreason" class="form-control" name="requestreason" required> 
-							<option>Select Issue</option>
-							<option value="Service Problem">Service Problem</option>
-							<option value="Payment Issue">Payment Issue</option>
-							<option value="Technical Problem">Technical Problem</option>
-							<option value="Eligibility or Pre-Approval Query">Eligibility or Pre-Approval Query</option>
-							<option value="Other">Other</option>
-						</select>
+						{{form.query}}
 						<div class="help-block font-small-3"></div>
 					</div>
 
 					<div class="form-group col-md-12">
 						<label class="text-dark" for="message">Request Message</label>
-						<textarea aria-required="true" name="message" id="message" class="form-control" placeholder="Request message in minimum 60 characters" required="" minlength="60" required></textarea>
+						{{form.message}}
 						<div class="help-block font-small-3"></div>
 					</div>
 
@@ -86,8 +95,8 @@
 					<div class="form-group col-md-12" id="submitedmessage"></div>
 					
 				</div>
-				</form>			</div>
-
+				</form>			
+			</div>
 			<div class="col-lg-6 col-md-6 col-12">
 				<div class="heading-text m-b-0 text-center">
 					<h4>Common FAQs</h4>
@@ -134,5 +143,4 @@
 		</div>
 	</div>
 </section>
-
 {% endblock %}

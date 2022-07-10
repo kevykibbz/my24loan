@@ -1,0 +1,134 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Add Suggestion</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'view suggestions' %}">View Suggestions</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'suggestion' %}">Add Suggestion</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="section1" class="fullscreen" data-bg-image="{% static 'manager/assets/images/slider/digital-business-loan.jpg' %}">
+      <div class="bg-overlay"></div>
+      <div class="container">
+        <div class="container-fullscreen">
+          <div class="text-middle">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="text-light m-t-40 p-t-40"> 
+                  <span class="text-medium">Become an Elite member to get Instant Business Loan Offer</span>
+                  <ul class="list-icon list-icon-check list-icon-colored m-t-20">
+                    <li>Loan offer from multiple banks</li>
+                    <li>Lowest interest rates ever (starting 11.5% pa.)</li>
+                    <li>Disbursal up to Rs.1 Crore</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="p-cb">
+                  <div class="form-wrapper position-relative">
+                    <div class="load-overlay" style="display:none">
+                          <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+                          <div class="overlay">
+                              <div class="row">
+                                  <div class="col-12">
+                                      <div class="loader-container">
+                                      <div class="loader">
+                                          <svg class="circular" viewBox="25 25 50 50">
+                                          <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                          </svg>
+                                      </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <form action="" id="submitForm1" class="col-md-12 col-sm-12 ContactForm" novalidate="novalidate" method="post" accept-charset="utf-8">
+                        {% csrf_token %}
+                        <input type="hidden" name="category" value="business loan">
+                        <div class="form-group">
+                          <label class="text-dark" for="fullname">Full name</label>
+                          {{form.name}}
+                          <div class="help-block font-small-3"></div>
+                        </div>
+                        <div class="form-group">
+                          <label class="text-dark" for="fullname">Email id</label>
+                          {{form.email}}
+                          <div class="help-block font-small-3"></div>
+                        </div>
+                      <div class="form-group">
+                        <label class="text-dark" for="mobile">City.</label>
+                        {{form.city}}
+                        <div class="help-block font-small-3"></div>
+                      </div>
+                       <div class="form-group">
+                        <label class="text-dark" for="mobile">State.</label>
+                        {{form.state}}
+                        <div class="help-block font-small-3"></div>
+                      </div>
+                       <div class="form-group">
+                        <label class="text-dark" for="mobile">Subject.</label>
+                        {{form.subject}}
+                        <div class="help-block font-small-3"></div>
+                      </div>
+                      <div class="form-group">
+                        <label class="text-dark" for="mobile">Suggestion.</label>
+                        {{form.suggestion}}
+                        <div class="help-block font-small-3"></div>
+                      </div>
+                      <div class="mt-2 form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
+                                <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize My24Loan representatives to Call / SMS for this application / My24Loan Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
+                                <div class="help-block font-small-3"></div>
+                            </div>
+                        </div>                  
+                      <div class="form-group m-b-0 text-center">
+                        <button type="submit" id="form-submit1" class="btn btn-block btn-secondary">Submit</button>
+                      </div>
+                    </form>             
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-t-30 p-b-20">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-12 m-b-20">
+              <h6 class="text-theme">Small Business Person Eligibility Criteria</h6>
+              <p><small>(1) Minimum age 21 years (2) Minimum 1 year IT return (3) 1 year business stability</small></p>
+              
+              <h6 class="text-theme">Audited Report Person Eligibility Criteria</h6>
+              <p><small>(1) Minimum age 21 years (2) 1 crore plus yearly turnover (3) Minimum 2 year audited Report</small></p>
+            </div>
+
+            <div class="col-md-4 col-12 m-b-20">
+              <h6 class="text-theme">How to works?</h6>
+              <p><small>(1) Quick registration (2) Check eligibility (3) Buy membership card (4) Submit documents (5) Bank Verification (6) Bank Sanction</small></p>
+
+              <h6 class="text-theme">Membership Card Benefits</h6>
+              <p><small>(1) Let you apply for personal loan in multiple banks (2) You get 4 years free loan consultancy (3) Get 40% referral payout bonus (4) Get loan offers from multiple banks anytime-anywhere (5) You stay at home; our team will go to multiple banks for you (6) On-call Assistance on all your doubts</small></p>
+            </div>
+
+            <div class="col-md-4 col-12 m-b-20">
+              <h6 class="text-theme">Why My24Loan?</h6>
+              <p><small>(1) Per month 1000+ happy customers (2) Minimum documents - depend customer profile (3) Compare to multiple banks (4) Flexible repayment terms 1 to 6 years (5) Processing fees & insurance depand banks</small></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

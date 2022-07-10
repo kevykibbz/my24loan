@@ -14,6 +14,34 @@
     box-shadow: inset 0 0 6px #000;
     border-radius:10px;
 }
+.btn-fab
+{
+    display: inline-block;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: 0;
+    border-radius: 50%;
+    line-height: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.btn-fab:focus,
+.btn-fab:active
+{
+    box-shadow: none;
+}
+
+.btn-fab.btn-sm
+{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+
 .load-overlay
 {
     position:absolute;
@@ -214,4 +242,48 @@ padding-top: 100%;
   {
     stroke: #ffa700;
   }
+}
+.bootstrap-select.form-control:not([class*="col-"])
+{
+    width:28%;
+    text-align: left !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#id_phone_0
+{
+    width:30%;
+    float:left;
+}
+#id_phone_1
+{
+    width:68%;
+    float:right;
+}
+
+.phone-call
+{
+    width: 185px;
+    height: 60px;
+    left: 20px;
+    bottom: 20px;
+    background: #000;
+    position: fixed;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all;
+    border-radius: 30px;
+    z-index: 102;
+    display: inline-block;
+    line-height: 57px;
+    font-size: 20px;
+    transition: all;
+}
+.phone-call:hover
+{
+    color: #000;
+    background:#fff;
+    border:1px solid #000;
+
 }

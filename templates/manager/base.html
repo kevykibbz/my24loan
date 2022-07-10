@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{% static 'manager/assets/plugins/bootstrap-select/css/bootstrap-select.css' %}" />
     <link rel="stylesheet" href="{% static 'manager/assets/plugins/nouislider/nouislider.min.css' %}" />
     <link rel="stylesheet" href="{% static 'manager/assets/plugins/select2/select2.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{% static 'manager/assets/plugins/bootstrap-switch/bootstrap-switch.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
@@ -59,18 +60,17 @@
     <link href="{% static 'manager/assets/plugins/rateit/rateit.css' %}" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
     <style>
-        .bootstrap-select.form-control:not([class*="col-"])
-        {
-            width:28%;
-            text-align: left !important;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        #id_phone_1
-        {
-            width:70%;
-            float:right;
-        }
+     .right
+     {
+        position: absolute;
+        right:-216px;
+     }
+     #scrollTop
+     {
+        bottom: 17px !important;
+        opacity: 1;
+        z-index: 399;
+    }
     </style>
 </head>
 <body onload="load()">
@@ -124,14 +124,12 @@
                         <div id="mainMenu-trigger">
                             <a class="lines-button x"><span class="lines"></span></a>
                         </div>
-                        <div id="mainMenu">
+                        <div id="mainMenu" class="position-relative">
                             <div class="container">
                                 <nav>
                                     <ul>
                                         <li id="101" class=""><a href="{% url 'dashboard' %}">Home</a></li>
-
                                         <li id="102" class=""><a href="{% url 'company' %}">Company</a></li>
-
                                         <li id="110" class="dropdown"><a href="#">Our Products</a>
                                             <ul class="dropdown-menu">
                                                 <li id="1101" class=""><a href="{% url 'prime' %}"><i class="fa fa-credit-credit"></i> Prime Membership Card</a></li>
@@ -147,11 +145,23 @@
                                         </li>
 
                                         <li id="106" class=""><a href="{% url 'contact us' %}">Contact</a></li>
-
+                                        {% if data.is_authenticated %}
+                                        <li id="109" class="dropdown"><a href="#">Profile</a>
+                                            <ul class="dropdown-menu">
+                                                <li id="1091" class=""><a href="javascript:void(0)"><i class="fa fa-envelope"></i>{{data.email}}</a></li>
+                                                <li id="1092" class=""><a href="{% url 'bussiness loan' %}"><i class="fa fa-user"></i>{{data.username}}</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="108" class=""><a href="{% url 'logout' %}" class="btn btn-dark text-light">Customer Logout</a></li>
+                                        {% else %}
                                         <li id="108" class=""><a href="{% url 'login' %}" class="btn btn-dark text-light">Customer Login</a></li>
+                                        {% endif %}
                                     </ul>
                                 </nav>
                             </div>
+                            <div class="right d-md-block d-none">
+                               <button class="btn btn-fab btn-theme btn-round" type="button" id="dropdownMenubutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.extendedauthuser.initials}}</button>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -186,6 +196,9 @@
                                     <li><a href="{% url 'privacy policy' %}"><i class="fa fa-file m-r-5"></i> Privacy Policy</a></li>
                                     <li>
                                         <a href="{% url 'return fund policy' %}"><i class="fa fa-file m-r-5"></i> Refund &amp; Return Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'view suggestions' %}"><i class="fa fa-file m-r-5"></i>View suggestion</a>
                                     </li>
                                     <li><a href="{% url 'disclaimer' %}"><i class="fa fa-file m-r-5"></i> Disclaimer</a></li>
                                     <li><a href="{% url 'terms and conditions' %}"><i class="fa fa-file m-r-5"></i> Terms & Conditions</a></li>
@@ -224,11 +237,26 @@
                     </div>
                 </div>
             </footer>
+            <!-- Small Modal -->
+            <div class="modal fade small-model bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mySmallModalLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
     </div>
     <script src="{% static 'manager/assets/js/jquery-3.5.1.min.js' %}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'manager/assets/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'manager/assets/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'manager/assets/js/custom.js' %}"></script>
     <script src="{% static 'manager/assets/js/wow.min.js' %}"></script>

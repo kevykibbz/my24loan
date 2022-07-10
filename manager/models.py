@@ -8,6 +8,8 @@ import random
 from django.utils.crypto import get_random_string
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models import Max
+from django.utils.translation import gettext_lazy as _
+
 
 class ExtendedAdmin(models.Model):
     user=models.OneToOneField(User,primary_key=True,on_delete=models.CASCADE)
@@ -101,3 +103,78 @@ class ExtendedAuthUser(models.Model):
 def generate_serial():
     return get_random_string(12,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ0123456789')
  
+
+
+
+
+
+class ContactModel(models.Model):
+    name=models.CharField(max_length=100,blank=True,null=True)
+    phone=PhoneNumberField(null=True,blank=True,verbose_name='phone',max_length=13)
+    subject=models.CharField(max_length=100,null=True,blank=True)
+    email=models.CharField(max_length=100,blank=True,null=True)
+    is_read=models.BooleanField(default=False,blank=True,null=True)
+    message=models.TextField(blank=True,null=True)
+    reply=models.TextField(blank=True,null=True)
+    created_on=models.DateTimeField(default=now)
+    class Meta:
+        db_table='contact_tbl'
+        verbose_name_plural='contact_tbl'
+    def __str__(self)->str:
+        return f'{self.name} contact message'
+
+class LoanModel(models.Model):
+    name=models.CharField(max_length=100,blank=True,null=True)
+    email=models.CharField(max_length=100,blank=True,null=True)
+    otp=models.IntegerField(blank=True,null=True)
+    phone=PhoneNumberField(null=True,blank=True,verbose_name='phone',max_length=13)
+    category=models.CharField(max_length=100,null=True,blank=True)
+    user_type=models.CharField(max_length=100,null=True,blank=True)
+    status=models.CharField(max_length=100,null=True,blank=True,default="Pending")
+    address=models.CharField(max_length=100,null=True,blank=True)
+    credit_limit=models.CharField(max_length=100,null=True,blank=True)
+    card_number=models.CharField(max_length=100,null=True,blank=True)
+    loanid=models.CharField(max_length=100,null=True,blank=True,default=generate_serial)
+    amount=models.CharField(max_length=100,null=True,blank=True)
+    has_applied=models.BooleanField(default=True,null=True,blank=True)
+    is_verfied=models.BooleanField(default=False,null=True,blank=True)
+    created_on=models.DateTimeField(default=now)
+    class Meta:
+        db_table='loan_tbl'
+        verbose_name_plural='loan_tbl'
+    def __str__(self)->str:
+        return f'{self.name} {self.category} loan'
+
+class RequestModel(models.Model):
+    user=models.CharField(max_length=50,blank=True,null=True)
+    phone=PhoneNumberField(null=True,blank=True,verbose_name='phone',max_length=13)
+    name=models.CharField(max_length=100,blank=True,null=True)
+    email=models.CharField(max_length=100,blank=True,null=True)
+    card_number=models.CharField(max_length=100,blank=True,null=True)
+    query=models.CharField(max_length=100,blank=True,null=True)
+    message=models.TextField(null=True,blank=True)
+    answer=models.TextField(null=True,blank=True)
+    created_on=models.DateTimeField(default=now)
+    class Meta:
+        db_table='users_request_tbl'
+        verbose_name_plural='users_request_tbl'
+    def __str__(self)->str:
+        return f'{self.name} request query'
+
+#suggestion model
+class SuggestionForm(models.Model):
+    name=models.CharField(max_length=50,verbose_name='name',null=True,blank=True)
+    email=models.CharField(max_length=50,verbose_name='email address',null=True,blank=True,help_text= _('email address'))
+    city=models.CharField(max_length=100,verbose_name='city',null=True,blank=True,help_text= _('city'))
+    state=models.CharField(max_length=100,verbose_name='state',null=True,blank=True,help_text= _('state'))
+    subject=models.CharField(max_length=100,verbose_name='subject',null=True,blank=True,help_text= _('subject'))
+    suggestion=models.TextField(null=True,blank=True)
+    isread=models.IntegerField(default=0,blank=True,null=True)
+    date=models.DateTimeField(default=now)
+    
+    class Meta:
+        db_table='suggestions'
+        verbose_name_plural='suggestions'
+
+    def __str__(self)->str:
+        return self.sugggestion

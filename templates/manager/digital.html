@@ -52,26 +52,13 @@
     <link href="{% static 'manager/assets/plugins/bootstrap-switch/bootstrap-switch.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'manager/assets/css/custom.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{% static 'manager/assets/css/animate.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="{% static 'manager/assets/css/validation/form-validation.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/plugins/pageloader/pageloader.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/plugins/rateit/rateit.css' %}" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
-    <style>
-        .bootstrap-select.form-control:not([class*="col-"])
-        {
-            width:28%;
-            text-align: left !important;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        #id_phone_1
-        {
-            width:70%;
-            float:right;
-        }
-    </style>
 </head>
 <body onload="load()">
 	 <!-- preloader -->
@@ -135,36 +122,54 @@
 
 							<div class="col-lg-6">
 								<div class="p-cb">
-									<div class="">
-										<form action="https://my24loan.in/digital/sendotpCode" id="submitForm1" class="col-md-12 col-sm-12" novalidate="novalidate" method="post" accept-charset="utf-8">
+									<div class="form-wrapper position-relative">
+										<div class="load-overlay" style="display:none">
+		                                    <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+		                                    <div class="overlay">
+		                                        <div class="row">
+		                                            <div class="col-12">
+		                                                <div class="loader-container">
+		                                                <div class="loader">
+		                                                    <svg class="circular" viewBox="25 25 50 50">
+		                                                    <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+		                                                    </svg>
+		                                                </div>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+                    					<form action="{% url 'personal loan' %}" id="submitForm1" class="col-md-12 col-sm-12 ContactForm" novalidate="novalidate" method="post" accept-charset="utf-8">
+                    						{% csrf_token %}
+                    						<input type="hidden" name="category" value="business loan">
 											<div class="form-group">
 												<label class="text-dark" for="fullname">Full name</label>
-												<input type="text" aria-required="true" name="fullname" id="fullname" class="form-control" placeholder="Bank registerd name" required data-validation-regex-regex="^[a-zA-z]+([\s][a-zA-Z]+)*$">
+												{{form.name}}
 												<div class="help-block font-small-3"></div>
 											</div>
-
+											<div class="form-group">
+		                                        <label class="text-dark" for="fullname">Email id</label>
+		                                        {{form.email}}
+		                                        <div class="help-block font-small-3"></div>
+		                                    </div>
 											<div class="form-group">
 												<label class="text-dark" for="mobile">Mobile no.</label>
-												<input type="text" aria-required="true" name="mobile" id="mobileno" class="form-control" placeholder="Bank registerd number" required maxlength="10" data-validation-regex-regex="[0-9]+">
+												{{form.phone}}
 												<div class="help-block font-small-3"></div>
 											</div>
 
-											<div class="form-group">
-												<div class="custom-control custom-checkbox">
-													<input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
-													<label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize My24Loan representatives to Call / SMS for this application / My24Loan Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
-													<div class="help-block font-small-3"></div>
-												</div>
-											</div>
-
-											<div class="custom-error" id="mobilenoError"></div>
-									
-											<div class="form-group m-b-0">
+											 <div class="mt-2 form-group" style="margin-top:80px !important;">
+		                                        <div class="custom-control custom-checkbox">
+		                                            <input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
+		                                            <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize My24Loan representatives to Call / SMS for this application / My24Loan Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
+		                                            <div class="help-block font-small-3"></div>
+		                                        </div>
+		                                    </div>									
+											<div class="form-group m-b-0 text-center">
 												<button type="submit" id="form-submit1" class="btn btn-block btn-secondary">APPLY NOW</button>
 											</div>
-										</form>							</div>
-
-									
+										</form>							
+									</div>
 
 									<div class="p-t-20 text-center">
 										<p>Already have an account? 
@@ -215,6 +220,20 @@
 					</div>
 				</div>
 			</footer>
+      <!-- Small Modal -->
+      <div class="modal fade small-model bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mySmallModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+      </div>
 	    </div>
     	<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
     </div>

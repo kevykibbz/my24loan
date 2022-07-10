@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'installation.apps.InstallationConfig',
     'django.contrib.humanize',
+    'panel.apps.PanelConfig',
     'phonenumber_field',
     'errors.apps.ErrorsConfig',
     'manager.apps.ManagerConfig',
@@ -87,7 +88,7 @@ WSGI_APPLICATION = 'my24loan.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+#postgres://agptkacumndmnj:9ae06c996a0a27b8915a51873db92f6102426d7548c182499476de8a99728de4@ec2-3-226-163-72.compute-1.amazonaws.com:5432/dd6bsac2dvd6ug
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -95,7 +96,33 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME':env('DATABASE_NAME'),
+       'HOST':env('DATABASE_HOST'),
+       'USER':env('DATABASE_USER'),
+       'PASSWORD':env('DATABASE_PASSWORD'),
+       'PORT':5432
+   }
+}
 
+# DATABASES = {
+#    'default': 
+#             {
+
+#                 'ENGINE': 'mysql.connector.django',
+#                 'NAME':'my24loan',
+#                 'USER':'root',
+#                 'PASSWORD':'',
+#                 'HOST':'localhost',
+#                 'PORT':3306,
+#                 'OPTIONS':
+#                 {
+#                     'autocommit':True,
+#                 },
+#             }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -148,9 +175,9 @@ USE_TZ = True
 
 
 #login
-LOGIN_URL='/'
-LOGIN_REDIRECT_URL='/dashboard/'
-LOGOUT_REDIRECT_URL='/'
+LOGIN_URL='/accounts/login'
+LOGIN_REDIRECT_URL='/onboarding/'
+LOGOUT_REDIRECT_URL='/accounts/login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

@@ -1,0 +1,45 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>View Suggestions</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'view suggestions' %}">View Suggestions</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="faqs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-right"><p>Total suggestions:{{count|intcomma}}</p></div>
+      <div class="col-md-6 col-12 mx-auto">
+        <div class="accordion white accordion-shadow">
+          {% if suggestions %}
+          {% for item in suggestions %}
+          <div class="ac-item">
+            <h5 class="ac-title">{{item.subject|default:'No subject found'}}?</h5>
+            <div class="ac-content">
+              <p>{{item.answer|default:'Not answered yet'}}</p>
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <p class="text-center"><i class="fa fa-exclamation-triangle"></i> No suggestions found.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<a href="{% url 'suggestion' %}" class="phone-call text-light" data-toggle="tooltip" title="Add suggestion" data-placement="top" data-original-title="Add suggestion">
+  Add Suggestion
+    </a>
+{% endblock %}
