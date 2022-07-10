@@ -84,6 +84,8 @@ class UsersLoanForm(forms.ModelForm):
             data=LoanModel.objects.filter(email=email).last()
             if data.has_applied:
                 raise forms.ValidationError('Sorry your application is still active.')
+            else:
+                return email
         try:
             validate_email(email)
         except ValidationError as e:
@@ -161,7 +163,7 @@ class UsersRequestForm(forms.ModelForm):
 
 class UserLoginForm(forms.Form):
     username=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Username ','aria-label':'username'}),error_messages={'required':'Username  is required'})
-    password=forms.CharField(widget=forms.PasswordInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Password','aria-label':'password'}),error_messages={'required':'Password is required'})
+    password=forms.CharField(widget=forms.PasswordInput(attrs={'aria-required':'true','class':'form-control login-password','placeholder':'Password','aria-label':'password'}),error_messages={'required':'Password is required'})
 
     class Meta:
         model=User
@@ -217,3 +219,63 @@ class UsersTotalLoanApplyForm(forms.ModelForm):
     class Meta:
         model=LoanModel
         fields=['name','phone','category','email','user_type','amount','card_number','address','credit_limit']
+
+#UsersEditForm
+class UsersEditForm(UserChangeForm):
+    first_name=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'First name','aria-label':'first_name'}),error_messages={'required':'First name is required'})
+    last_name=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'last_name','placeholder':'Last name'}),error_messages={'required':'Last name is required'})
+    username=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'username','placeholder':'Username'}),error_messages={'required':'Username is required'})
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'aria-required':'true','class':'form-control','aria-label':'email','placeholder':'Email'}),error_messages={'required':'Email address is required'})
+    class Meta:
+        model=User
+        fields=['first_name','last_name','email','username',]
+
+
+    def clean_first_name(self):
+        first_name=self.cleaned_data['first_name']
+        if not str(first_name).isalpha():
+                raise forms.ValidationError('only characters are allowed.')
+        return first_name
+    
+    def clean_last_name(self):
+        last_name=self.cleaned_data['last_name']
+        if not str(last_name).isalpha():
+                raise forms.ValidationError('only characters are allowed.')
+        return last_name
+
+    def clean_email(self):
+        email=self.cleaned_data['email']
+        if email != self.instance.email:
+            if User.objects.filter(email=email).exists():
+                raise forms.ValidationError('A user with this email already exists.')
+            try:
+                validate_email(email)
+            except ValidationError as e:
+                raise forms.ValidationError('Invalid email address.')
+            return email
+        else:
+           return email
+
+    def clean_username(self):
+        username=self.cleaned_data['username']
+        if username != self.instance.username:
+            if User.objects.filter(username=username).exists():
+                raise forms.ValidationError('A user with this username already exists.')
+        else:
+           return username
+
+class UserPasswordChangeForm(UserCreationForm):
+    oldpassword=forms.CharField(widget=forms.PasswordInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Old password','aria-label':'oldpassword'}),error_messages={'required':'Old password is required','min_length':'enter atleast 6 characters long'})
+    password1=forms.CharField(widget=forms.PasswordInput(attrs={'aria-required':'true','class':'form-control','placeholder':'New password Eg Example12','aria-label':'password1'}),error_messages={'required':'New password is required','min_length':'enter atleast 6 characters long'})
+    password2=forms.CharField(widget=forms.PasswordInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Confirm new password','aria-label':'password2'}),error_messages={'required':'Confirm new password is required'})
+
+    class Meta:
+        model=User
+        fields=['password1','password2']
+    
+    def clean_oldpassword(self):
+        oldpassword=self.cleaned_data['oldpassword']
+        if not self.instance.check_password(oldpassword):
+            raise forms.ValidationError('Wrong old password.')
+        else:
+           return oldpassword 

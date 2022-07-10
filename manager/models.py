@@ -9,7 +9,9 @@ from django.utils.crypto import get_random_string
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models import Max
 from django.utils.translation import gettext_lazy as _
-
+import environ
+env=environ.Env()
+environ.Env.read_env()
 
 class ExtendedAdmin(models.Model):
     user=models.OneToOneField(User,primary_key=True,on_delete=models.CASCADE)
@@ -52,7 +54,6 @@ def send_installation_email(sender, instance, created, **kwargs):
 
 
 
-
 def bgcolor():
     hex_digits=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
     digit_array=[]
@@ -62,6 +63,7 @@ def bgcolor():
     joined_digits=''.join(digit_array)
     color='#'+joined_digits
     return color
+
 
 
 
@@ -81,7 +83,7 @@ class ExtendedAuthUser(models.Model):
     phone=PhoneNumberField(null=True,blank=True,verbose_name='phone',unique=True,max_length=13)
     initials=models.CharField(max_length=10,blank=True,null=True)
     bgcolor=models.CharField(max_length=10,blank=True,null=True,default=bgcolor)
-    company=models.CharField(max_length=100,null=True,blank=True,default='Armlogi')
+    company=models.CharField(max_length=100,null=True,blank=True,default=env('SITE_NAME'))
     profile_pic=models.ImageField(upload_to='profiles/',null=True,blank=True,default="placeholder.jpg")
     role=models.CharField(choices=user_roles,max_length=200,null=True,blank=True)
     created_on=models.DateTimeField(default=now)

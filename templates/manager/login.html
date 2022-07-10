@@ -52,26 +52,13 @@
     <link href="{% static 'manager/assets/plugins/bootstrap-switch/bootstrap-switch.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'manager/assets/css/custom.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{% static 'manager/assets/css/animate.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="{% static 'manager/assets/css/validation/form-validation.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/plugins/pageloader/pageloader.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/plugins/rateit/rateit.css' %}" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
-    <style>
-        .bootstrap-select.form-control:not([class*="col-"])
-        {
-            width:28%;
-            text-align: left !important;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        #id_phone_1
-        {
-            width:70%;
-            float:right;
-        }
-    </style>
 </head>
 <body onload="load()">
 	 <!-- preloader -->
@@ -127,8 +114,9 @@
                                     {{form.username}}
                                     <div class="help-block font-small-3"></div>
 								</div>
-								<div class="form-group">
+								<div class="form-group  position-relative">
 									<label>Password</label>
+                                     <i class="fa fa-eye-slash reveal"></i>
                                      {{form.password}}
                                     <div class="help-block font-small-3"></div>
 								</div>

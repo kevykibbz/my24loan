@@ -287,3 +287,15 @@ padding-top: 100%;
     border:1px solid #000;
 
 }
+.reveal
+{
+    position:absolute;
+    right:20px;
+    top:39px;
+    cursor: pointer;
+    transition: all;
+}
+.reveal:hover
+{
+    color: green;
+}

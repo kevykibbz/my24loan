@@ -16,6 +16,8 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+SITE_ID=2 
+
 ALLOWED_HOSTS = ['my24loan.herokuapp.com','localhost','127.0.0.1']
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -89,12 +91,12 @@ WSGI_APPLICATION = 'my24loan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #postgres://agptkacumndmnj:9ae06c996a0a27b8915a51873db92f6102426d7548c182499476de8a99728de4@ec2-3-226-163-72.compute-1.amazonaws.com:5432/dd6bsac2dvd6ug
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 DATABASES = {
    'default': {

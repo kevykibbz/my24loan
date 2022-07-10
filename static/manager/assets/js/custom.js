@@ -98,3 +98,25 @@ $(document).on('submit','.ContactForm',function()
     });
   return false;
 });
+
+$(document).on('click','.btn-remove',function()
+{
+  $(this).parent().find('.loader-container').html(`<div class="loader"><svg class="circular" viewBox="25 25 50 50"><circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>`);
+  $(this).parent().hide(); 
+  return false;                                                
+});
+
+$(document).on('click','.reveal',function()
+{
+    var el=$(this);
+    if($('.login-password').attr('type') =='password')
+    {
+        $('.login-password').attr('type','text');
+        el.removeClass('fa-eye-slash').addClass('fa-eye');
+    }
+    else
+    {
+        $('.login-password').attr('type','password');
+        el.removeClass('fa-eye').addClass('fa-eye-slash');
+    }
+});

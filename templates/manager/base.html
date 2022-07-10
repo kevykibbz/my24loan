@@ -150,6 +150,7 @@
                                             <ul class="dropdown-menu">
                                                 <li id="1091" class=""><a href="javascript:void(0)"><i class="fa fa-envelope"></i>{{data.email}}</a></li>
                                                 <li id="1092" class=""><a href="{% url 'bussiness loan' %}"><i class="fa fa-user"></i>{{data.username}}</a></li>
+                                                <li id="1092" class=""><a href="{% url 'edit profile' %}"><i class="fa fa-edit"></i>Edit Profile</a></li>
                                             </ul>
                                         </li>
                                         <li id="108" class=""><a href="{% url 'logout' %}" class="btn btn-dark text-light">Customer Logout</a></li>
@@ -161,7 +162,7 @@
                             </div>
                             {% if data.is_authenticated %}
                             <div class="right d-md-block d-none">
-                               <button class="btn btn-fab btn-theme btn-round" type="button" id="dropdownMenubutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user.extendedauthuser.initials}}</button>
+                               <button class="btn btn-fab btn-theme btn-round" type="button" id="dropdownMenubutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{initials}}</button>
                              </div>
                              {% endif %}
                         </div>

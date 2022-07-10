@@ -41,10 +41,12 @@ def home(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':f'Welcome to {obj.site_name}',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/index.html',context=data)
 
@@ -54,10 +56,12 @@ def company(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'company',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/company.html',context=data)
 
@@ -69,10 +73,12 @@ class Prime(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         data={
             'title':'Prime Membership',
             'obj':obj,
             'data':request.user,
+            'initials':initials
         }
         return render(request,'manager/prime.html',context=data)
 
@@ -82,10 +88,12 @@ def elite(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Elite Membership',
         'obj':obj,
         'data':request.user,
+        'initials':initials,
     }
     return render(request,'manager/elite.html',context=data)
 
@@ -96,12 +104,14 @@ class PersonalLoan(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersLoanForm()
         data={
             'title':'Digital Personal Loan',
             'obj':obj,
             'data':request.user,
-            'form':form
+            'form':form,
+            'initials':initials,
         }
         return render(request,'manager/personal.html',context=data)
     def post(self,request):
@@ -138,12 +148,14 @@ class BussinessLoan(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersLoanForm()
         data={
             'title':'Digital Bussiness Loan',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'initials':initials,
         }
         return render(request,'manager/digital.html',context=data)
     def post(self,request):
@@ -179,10 +191,12 @@ def terms(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Terms And Conditions',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/terms.html',context=data)
 
@@ -192,10 +206,12 @@ def privacy(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Privacy Policy',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/privacy.html',context=data)
 
@@ -207,12 +223,14 @@ class Contact(View):
         if obj == 0:
             return redirect('/installation/')              
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersContactForm()
         data={
             'title':'Contact Us',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'initials':initials
         }
         return render(request,'manager/contact.html',context=data)
     def post(self,request):
@@ -231,12 +249,14 @@ class Login(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UserLoginForm()
         data={
             'title':'Login',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'initials':initials
         }
         return render(request,'manager/login.html',context=data)
     def post(self,request):
@@ -250,7 +270,7 @@ class Login(View):
                    request.session.set_expiry(0) 
                 login(request,user)
                 return JsonResponse({'valid':True,'message':'logged in  successfully!','home':True},content_type='application/json')
-            form_errors={"password": ["Password is incorrect or inactive account."]}
+            form_errors={"password": ["Password is incorrect."]}
             return JsonResponse({'valid':False,'form_errors':form_errors},content_type="application/json")
         else:
             return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
@@ -268,12 +288,14 @@ class Request(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersRequestForm()
         data={
             'title':'Raise A Request',
             'obj':obj,
             'data':request.user,
-            'form':form
+            'form':form,
+            'initials':initials
         }
         return render(request,'manager/request.html',context=data)
     def post(self,request):
@@ -290,10 +312,12 @@ def careers(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Careers',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/careers.html',context=data)
 
@@ -303,10 +327,12 @@ def updates(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Important Updates',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/updates.html',context=data)
 
@@ -316,10 +342,12 @@ def faqs(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'FAQS',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/faqs.html',context=data)
 
@@ -329,10 +357,12 @@ def returnFund(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Return Fund Policy',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/return_fund.html',context=data)
 
@@ -342,10 +372,12 @@ def disclaimer(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Disclaimer',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/disclaimer.html',context=data)
 
@@ -356,10 +388,12 @@ def loan_calculator(request):
     if obj == 0:
             return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data={
         'title':'Loan Calculator',
         'obj':obj,
         'data':request.user,
+        'initials':initials
     }
     return render(request,'manager/loan_calculator.html',context=data)
 
@@ -367,7 +401,7 @@ def generate_username():
     return get_random_string(6,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ0123456789')
 
 def generate_password():
-    return get_random_string(12,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ0123456789')
+    return get_random_string(8,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ0123456789')
 
 class Verification(View):
     def get(self,request,email):
@@ -375,6 +409,7 @@ class Verification(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersOTPForm()
         otp_flag=request.GET.get('otp_resend')
         if  otp_flag:
@@ -407,7 +442,8 @@ class Verification(View):
                 'email':email,
                 'form':form,
                 'flag':flag,
-                'message':otpmessage
+                'message':otpmessage,
+                'initials':initials
             }
             return render(request,'manager/verify.html',context=data)
         else:
@@ -417,6 +453,7 @@ class Verification(View):
                 'data':request.user,
                 'email':email,
                 'form':form,
+                'initials':initials
             }
             return render(request,'manager/verify.html',context=data)
     def post(self,request,email):
@@ -430,10 +467,8 @@ class Verification(View):
             preserver.is_verfied=True
             preserver.save()
             if not User.objects.filter(email=email).exists():
-                userdata=User.objects.create(first_name=data.name.split(" ")[0],last_name=data.name.split(" ")[1],email=email,username=username,password=make_password(password))
-                ty=userdata.save(commit=False)
-                ty.is_active=True
-                ty.save()
+                userdata=User.objects.create(first_name=data.name.split(" ")[0],last_name=data.name.split(" ")[1],email=email,username=username,password=make_password(password),is_active=True)
+                userdata.save()
                 message={
                             'user':data.name,
                             'site_name':obj.site_name,
@@ -444,16 +479,22 @@ class Verification(View):
                             'username':username,
                             'password':password,
                     }
-            message={
-                        'user':request.user.get_full_name,
-                        'site_name':obj.site_name,
-                        'site_url':obj.site_url,
-                        'category':data.category,
-                        'address':obj.address,
-                        'phone':obj.phone,
-                        'username':request.user.username,
-                        'password':'******** your account password',
-                }
+            else:
+                userdata=User.objects.get(email=email)
+                userdata.username=username
+                userdata.password=make_password(password)
+                userdata.is_verfied=True
+                userdata.save()
+                message={
+                            'user':data.name,
+                            'site_name':obj.site_name,
+                            'site_url':obj.site_url,
+                            'category':data.category,
+                            'address':obj.address,
+                            'phone':obj.phone,
+                            'username':username,
+                            'password':password,
+                    }
             subject='Temporary Logging Details.'
             template='emails/success.html'
             send_email(subject,email,message,template)
@@ -472,6 +513,7 @@ class Onbording(View):
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
         data=LoanModel.objects.filter(email=request.user.email).order_by("-id")
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         paginator=Paginator(data,10)
         page_num=request.GET.get('page')
         loans=paginator.get_page(page_num)
@@ -481,6 +523,7 @@ class Onbording(View):
             'data':request.user,
             'loans':loans,
             'count':paginator.count,
+            'initials':initials,
         }
         return render(request,'manager/onbording.html',context=data)
     def post(self,request):
@@ -500,12 +543,14 @@ class ApplySpecific(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersTotalLoanApplyForm()
         data={
             'title':'Apply for loan',
             'obj':obj,
             'data':request.user,
-            'form':form
+            'form':form,
+            'initials':initials
         }
         return render(request,'manager/apply.html',context=data)
     def post(self,request,loanid):
@@ -525,12 +570,14 @@ class Apply(View):
         if obj == 0:
                 return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersTotalLoanApplyForm()
         data={
             'title':'Apply for loan',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'initials':initials
         }
         return render(request,'manager/apply.html',context=data)
     def post(self,request):
@@ -548,12 +595,14 @@ class Suggestion(View):
         if obj == 0:
                 return redirect('/installation')
         obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersSuggestionForm()
         data={
             'title':'Add suggestion',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'initials':initials
         }
         return render(request,'manager/suggestion.html',context=data)
     def post(self,request):
@@ -572,6 +621,7 @@ def suggestions(request):
     if obj == 0:
         return redirect('/installation/')
     obj=SiteConstants.objects.all()[0]
+    initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
     data=SuggestionForm.objects.all().order_by("-id")
     paginator=Paginator(data,20)
     page_num=request.GET.get('page')
@@ -582,5 +632,61 @@ def suggestions(request):
         'data':request.user,
         'suggestions':suggestions,
         'count':paginator.count,
+        'initials':initials,
     }
     return render(request,'manager/view_suggestions.html',context=data)
+
+
+#EditProfile
+@method_decorator(login_required(login_url='/accounts/login'),name='dispatch')
+class EditProfile(View):
+    def get(self,request):
+        obj=SiteConstants.objects.count()
+        if obj == 0:
+                return redirect('/installation')
+        obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        form=UsersEditForm(instance=request.user)
+        data={
+            'title':'Edit Profile',
+            'obj':obj,
+            'data':request.user,
+            'form':form,
+            'initials':initials
+        }
+        return render(request,'manager/edit_profile.html',context=data)
+    def post(self,request):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            form=UsersEditForm(request.POST or None,instance=request.user)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'Profile changed successfully'},content_type="application/json")
+            else:
+                return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
+
+#UserChangePassword
+@method_decorator(login_required(login_url='/accounts/login'),name='dispatch')
+class UserChangePassword(View):
+    def get(self,request):
+        obj=SiteConstants.objects.count()
+        if obj == 0:
+                return redirect('/installation')
+        obj=SiteConstants.objects.all()[0]
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+        form=UserPasswordChangeForm()
+        data={
+            'title':'Change Password',
+            'obj':obj,
+            'data':request.user,
+            'form':form,
+            'initials':initials
+        }
+        return render(request,'manager/change_password.html',context=data)
+    def post(self,request):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            form=UserPasswordChangeForm(request.POST or None,instance=request.user)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'Password changed successfully'},content_type="application/json")
+            else:
+                return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
