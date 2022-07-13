@@ -79,11 +79,13 @@ class Prime(View):
         obj=SiteConstants.objects.all()[0]
         initials='AU'
         if request.user.is_authenticated:
-            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()        
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper() 
+        card=CardModel.objects.filter(card_type__icontains='prime membership').last()       
         data={
             'title':'Prime Membership',
             'obj':obj,
             'data':request.user,
+            'card':card,
             'initials':initials
         }
         return render(request,'manager/prime.html',context=data)
@@ -97,10 +99,12 @@ def elite(request):
     initials='AU'
     if request.user.is_authenticated:
        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    card=CardModel.objects.filter(card_type__icontains='elite membership').last()
     data={
         'title':'Elite Membership',
         'obj':obj,
         'data':request.user,
+        'card':card,
         'initials':initials,
     }
     return render(request,'manager/elite.html',context=data)
@@ -116,11 +120,13 @@ class PersonalLoan(View):
         if request.user.is_authenticated:
            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
         form=UsersLoanForm()
+        card=CardModel.objects.filter(card_type__icontains='prime membership').last()
         data={
             'title':'Digital Personal Loan',
             'obj':obj,
             'data':request.user,
             'form':form,
+            'card':card,
             'initials':initials,
         }
         return render(request,'manager/personal.html',context=data)
@@ -690,7 +696,9 @@ class Eligibility(View):
             data=LoanModel.objects.get(loanid=loanid)
             form=UsersEligibilityForm(request.POST or None,instance=data)
             if form.is_valid():
-                form.save()
+                t=form.save(commit=False)
+                t.eligible_amount=1.8*int(data.amount)+1.3*int(form.cleaned_data.get('monthly_income'))
+                t.save()
                 return JsonResponse({'valid':True,'message':'Data submitted successfully','step2':True,'loanid':loanid},content_type="application/json")
             else:
                 return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
@@ -713,10 +721,10 @@ class stepTwo(View):
             loan=LoanModel.objects.get(loanid=loanid)
             cardconfig=CardModel.objects.filter(loan_type__icontains=loan.category).last()
             r=int(cardconfig.interest)/100
-            first=round(int(loan.amount)*(r*(1+r)**12)/(((1+r)**12)-1))
-            second=round(int(loan.amount)*(r*(1+r)**36)/(((1+r)**36)-1))
-            third=round(int(loan.amount)*(r*(1+r)**48)/(((1+r)**48)-1))
-            fourth=round(int(loan.amount)*(r*(1+r)**60)/(((1+r)**60)-1))
+            first=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**12)/(((1+r)**12)-1))
+            second=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**36)/(((1+r)**36)-1))
+            third=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**48)/(((1+r)**48)-1))
+            fourth=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**60)/(((1+r)**60)-1))
             data={
                 'title':'Checking eligibilty | step two',
                 'obj':obj,
@@ -738,7 +746,6 @@ class stepTwo(View):
             }
             return render(request,'manager/404.html',context=data,status=404)
     def post(self,request,loanid):
-        print(request.POST)
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             data=LoanModel.objects.get(loanid=loanid)
             form=UsersTenatureForm(request.POST or None,instance=data)

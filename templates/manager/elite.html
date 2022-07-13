@@ -1,5 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load static %}
+{% load humanize %}
 {% block body %}
 
 <section id="page-title">
@@ -34,7 +35,7 @@
 
           <p>For the people applying for a Business loan, he must first enroll as an Elite member at {{obj.site_name}}. Elite membership card enables user to apply for Business loan through our portal in multiple banks. We run your documents through banks and provide you with attractive Interest rates on minimum paperwork with quick offer within 30 minutes*.</p>
 
-          <h3>Rs. <del class="text-danger">5,999.00</del> <span class="text-success">1,999.00</span> only</h3>
+          <h3>Rs. <del class="text-danger">{{card.prev_price|intcomma}}</del> <span class="text-success">{{card.now_price|intcomma}}</span> only</h3>
           <a href="{% url 'bussiness loan' %}" class="btn btn-dark btn-outline btn-sm btn-reveal btn-reveal-right"><span>Buy Now</span><i class="fa fa-arrow-right"></i></a>
         </div>
       </div>

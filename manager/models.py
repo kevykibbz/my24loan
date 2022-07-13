@@ -145,6 +145,7 @@ class LoanModel(models.Model):
     loanid=models.CharField(max_length=100,null=True,blank=True,default=generate_serial)
     card_number=models.CharField(max_length=100,null=True,blank=True)
     amount=models.CharField(max_length=100,null=True,blank=True)
+    eligible_amount=models.CharField(max_length=100,null=True,blank=True)
     has_applied=models.BooleanField(default=True,null=True,blank=True)
     is_verfied=models.BooleanField(default=False,null=True,blank=True)
     created_on=models.DateTimeField(default=now)
