@@ -106,6 +106,7 @@ def generate_serial():
     return get_random_string(12,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ0123456789')
  
 
+ 
 
 
 
@@ -132,11 +133,17 @@ class LoanModel(models.Model):
     phone=PhoneNumberField(null=True,blank=True,verbose_name='phone',max_length=13)
     category=models.CharField(max_length=100,null=True,blank=True)
     user_type=models.CharField(max_length=100,null=True,blank=True)
+    cibil_score=models.CharField(max_length=100,null=True,blank=True)
+    city=models.CharField(max_length=100,null=True,blank=True)
+    emi=models.CharField(max_length=100,null=True,blank=True)
+    loan_purpose=models.CharField(max_length=100,null=True,blank=True)
+    monthly_income=models.CharField(max_length=100,null=True,blank=True)
+    monthly_emi=models.CharField(max_length=100,null=True,blank=True)
+    tenature=models.CharField(max_length=100,null=True,blank=True)
+    state=models.CharField(max_length=100,null=True,blank=True)
     status=models.CharField(max_length=100,null=True,blank=True,default="Pending")
-    address=models.CharField(max_length=100,null=True,blank=True)
-    credit_limit=models.CharField(max_length=100,null=True,blank=True)
-    card_number=models.CharField(max_length=100,null=True,blank=True)
     loanid=models.CharField(max_length=100,null=True,blank=True,default=generate_serial)
+    card_number=models.CharField(max_length=100,null=True,blank=True)
     amount=models.CharField(max_length=100,null=True,blank=True)
     has_applied=models.BooleanField(default=True,null=True,blank=True)
     is_verfied=models.BooleanField(default=False,null=True,blank=True)
@@ -180,3 +187,19 @@ class SuggestionForm(models.Model):
 
     def __str__(self)->str:
         return self.sugggestion
+
+class CardModel(models.Model):
+    card_type=models.CharField(max_length=100,blank=True,null=True)
+    config_id=models.CharField(max_length=100,blank=True,null=True,default=generate_serial)
+    interest=models.CharField(max_length=100,null=True,blank=True)
+    start_date=models.CharField(max_length=100,null=True,blank=True)
+    loan_type=models.CharField(max_length=100,null=True,blank=True)
+    end_date=models.CharField(max_length=100,null=True,blank=True)
+    prev_price=models.CharField(max_length=100,null=True,blank=True)
+    now_price=models.CharField(max_length=100,null=True,blank=True)
+    created_on=models.DateTimeField(default=now)
+    class Meta:
+        db_table='card_tbl'
+        verbose_name_plural='card_tbl'
+    def __str__(self)->str:
+        return f'{self.name} card details'

@@ -59,10 +59,19 @@ class ExtendedAdminRegisterForm(forms.ModelForm):
 
 class SiteConfigForm(forms.ModelForm):
     site_name=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','aria-label':'site_name'}),error_messages={'required':'Site name is required'})
-    site_url=forms.URLField(widget=forms.URLInput(attrs={'style':'text-transform:lowercase;','class':'form-control datepicker','aria-label':'site_url'}),error_messages={'required':'Site url is required'})
+    site_url=forms.URLField(widget=forms.URLInput(attrs={'style':'text-transform:lowercase;','placeholder':'eg example.com','class':'form-control','aria-label':'site_url'}),error_messages={'required':'Site url is required'})
     class Meta:
         model=SiteConstants
         fields=['site_name','site_url']
+
+    def clean_site_url(self):
+        site_url=self.cleaned_data.get('site_url')
+        if site_url.find('http://'):
+            return site_url.replace('http://','')
+        elif site_url.find('https://'):
+            return site_url.replace('https://','')
+        else:
+            return site_url
 
 class SubForm(forms.ModelForm):
     main=forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','aria-label':'main','checked':True}),error_messages={'required':'This field is required'})

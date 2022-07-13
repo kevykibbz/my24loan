@@ -1,0 +1,72 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Payment Status</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Payment Status</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section class="reservation-form-over no-padding">
+  <div class="container">
+
+    <div class="row">
+      <!-- START : SUCCESS -->
+            <!-- END : SUCCESS -->
+
+      <!-- START : FAIL -->
+              <div class="col-lg-12 col-md-12 col-sm-12 p-cb p-0 m-0"> 
+          <div class="m-t-30 m-b-30 text-center">
+            <h1 class="icon pulse infinite text-danger m-0" data-animate="pulse infinite"><i class="icon-x-circle "></i></h1>
+            <h2 class="text-danger">Payment Unsuccessful</h2>
+            <p>Your loan application payment process has failed. Please try again. <br/> If you have any questions you can contact on our customer care number.</p>
+
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm m-t-10 text-uppercase">Go to Homepage</a>
+          </div>
+        </div>
+            <!-- END : FAIL -->
+    </div>
+  </div>
+</section>
+
+<section class="p-t-50 p-b-30">
+  <div class="container">
+    <div class="heading-text heading-plain text-center">
+      <h4>Membership Card Benefits</h4>
+    </div>
+
+    <div class="row p-t-20">
+      <div class="col-lg-4">
+        <div class="icon-box effect small border">
+          <div class="icon text-center"><h2><i></i>1</h2></div>
+          <h3>Get pre approval loan offer</h3>
+          <p class="text-dark">in multiple banks from one platform</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="icon-box effect small border">
+          <div class="icon text-center"><h2><i></i>2</h2></div>
+          <h3>Our Customer service</h3>
+          <p class="text-dark">for 4 years</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="icon-box effect small border">
+          <div class="icon text-center"><h2><i></i>3</h2></div>
+          <h3>Refer and Get earn upto 40%</h3>
+          <p class="text-dark">payout per membership card</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

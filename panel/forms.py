@@ -13,7 +13,7 @@ from installation.models import SiteConstants
 import re
 from urllib.parse import urlparse
 from manager.models import ExtendedAuthUser
-from manager.models import RequestModel,ContactModel,LoanModel
+from manager.models import RequestModel,ContactModel,LoanModel,CardModel
 
 class UserResetPassword(PasswordResetForm):
     email=forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Enter email address'}),error_messages={'required':'Email address is required'})
@@ -465,3 +465,42 @@ class UsersReplyForm(forms.ModelForm):
     class Meta:
         model=ContactModel
         fields=['reply',]
+
+class CardConfigForm(forms.ModelForm):
+    card_type=forms.ChoiceField(choices=[('prime membership','Prime membership'),('elite membership','Elie membership')],widget=forms.Select(attrs={'class':'form-control','aria-label':'card_type'}),error_messages={'required':'Card type is required'})
+    loan_type=forms.ChoiceField(choices=[('personal loan','Personal loan'),('bussiness loan','Bussiness loan')],widget=forms.Select(attrs={'class':'form-control','aria-label':'loan_type'}),error_messages={'required':'Loan type is required'})
+    interest=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Interest p.a','aria-label':'interest'}),error_messages={'required':'Interest value  is required'})
+    start_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Start date','aria-label':'start_date'}),error_messages={'required':'Start date  is required'})
+    end_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'End date','aria-label':'end_date'}),error_messages={'required':'End date  is required'})
+    prev_price=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Previous price','aria-label':'prev_price'}),error_messages={'required':'Previous price  is required'})
+    now_price=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Current price','aria-label':'now_price'}),error_messages={'required':'Current price  is required'})
+    class Meta:
+        model=CardModel
+        fields=['card_type','interest','start_date','end_date','prev_price','now_price','loan_type',]
+
+    def clean_loan_type(self):
+        loan_type=self.cleaned_data.get('loan_type')
+        if CardModel.objects.filter(loan_type__icontains=loan_type):
+            raise forms.ValidationError('Loan type infomation already exists')
+        else:
+            return loan_type
+
+    def clean_card_type(self):
+        card_type=self.cleaned_data.get('card_type')
+        if CardModel.objects.filter(card_type__icontains=card_type):
+            raise forms.ValidationError('Card type infomation already exists')
+        else:
+            return card_type
+
+
+class CardConfigEditForm(forms.ModelForm):
+    card_type=forms.ChoiceField(choices=[('prime membership','Prime membership'),('elite membership','Elite membership')],widget=forms.Select(attrs={'class':'form-control','aria-label':'card_type'}),error_messages={'required':'Card type is required'})
+    loan_type=forms.ChoiceField(choices=[('personal loan','Personal loan'),('bussiness loan','Bussiness loan')],widget=forms.Select(attrs={'class':'form-control','aria-label':'loan_type'}),error_messages={'required':'Loan type is required'})
+    interest=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Interest p.a','aria-label':'interest'}),error_messages={'required':'Interest value  is required'})
+    start_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Start date','aria-label':'start_date'}),error_messages={'required':'Start date  is required'})
+    end_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'End date','aria-label':'end_date'}),error_messages={'required':'End date  is required'})
+    prev_price=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Previous price','aria-label':'prev_price'}),error_messages={'required':'Previous price  is required'})
+    now_price=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Current price','aria-label':'now_price'}),error_messages={'required':'Current price  is required'})
+    class Meta:
+        model=CardModel
+        fields=['card_type','interest','start_date','end_date','prev_price','now_price','loan_type',]

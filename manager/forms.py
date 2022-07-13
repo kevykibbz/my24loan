@@ -208,17 +208,13 @@ class UsersLoanApplyForm(forms.ModelForm):
 
 class UsersTotalLoanApplyForm(forms.ModelForm):
     name=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Full name','aria-label':'name'}),error_messages={'required':'Full name is required'})
-    address=forms.CharField(widget=forms.Textarea(attrs={'rows':5,'aria-required':'true','class':'form-control','placeholder':'Full address','aria-label':'address'}),error_messages={'required':'Full address  is required'})
-    credit_limit=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Credit limit','aria-label':'credit_limit'}),error_messages={'required':'Credit limit   is required'})
-    card_number=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Card Number','aria-label':'card_number'}),error_messages={'required':'Card number  is required'})
     email=forms.EmailField(widget=forms.EmailInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Email address','aria-label':'email'}),error_messages={'required':'Email id is required'})
-    phone=PhoneNumberField(widget=PhoneNumberPrefixWidget(attrs={'aria-required':'true','class':'form-control','type':'tel','aria-label':'phone','placeholder':'Bank registered phone number'},initial="IN") ,error_messages={'required':'Phone number is required'})
     category=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'category'}),error_messages={'required':'Category is required'})
     user_type=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Enter User type','aria-label':'user_type'}),error_messages={'required':'User type  is required'})
     amount=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Loan amount','aria-label':'amount'}),error_messages={'required':'Loan amount is required'})
     class Meta:
         model=LoanModel
-        fields=['name','phone','category','email','user_type','amount','card_number','address','credit_limit']
+        fields=['name','category','email','user_type','amount',]
 
 #UsersEditForm
 class UsersEditForm(UserChangeForm):
@@ -279,3 +275,28 @@ class UserPasswordChangeForm(UserCreationForm):
             raise forms.ValidationError('Wrong old password.')
         else:
            return oldpassword 
+class UsersEligibilityForm(forms.ModelForm):
+    cibil_score=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Cibil score','aria-label':'cibil_score'}),error_messages={'required':'Cibil score is required'})
+    loan_purpose=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'loan_purpose'}),error_messages={'required':'Loan purpose is required'})
+    monthly_income=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Monthly income','aria-label':'monthly_income'}),error_messages={'required':'Monthly income is required'})
+    city=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'City','aria-label':'city'}),error_messages={'required':'City is required'})
+    monthly_emi=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Monthly EMI','aria-label':'monthly_emi'}),error_messages={'required':'Monthly EMI is required'})
+    state=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'state'}),error_messages={'required':'State is required'})
+
+    class Meta:
+        model=LoanModel
+        fields=['cibil_score','loan_purpose','monthly_income','city','monthly_emi','state',]
+
+tenatre_opts=[
+    ('12','12f Months'),
+    ('36','36 Months'),
+    ('48','48 Months'),
+    ('60','60 Months'),
+]
+class UsersTenatureForm(forms.ModelForm):
+    tenature=forms.ChoiceField(choices=tenatre_opts,widget=forms.RadioSelect(attrs={'aria-required':'true','class':'form-control','aria-label':'tenature'}),error_messages={'required':'Tenature  is required'})
+    emi=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'emi'}),error_messages={'required':'EMI is required'})
+
+    class Meta:
+        model=LoanModel
+        fields=['tenature','emi']

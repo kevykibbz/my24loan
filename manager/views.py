@@ -439,196 +439,113 @@ def generate_password():
 
 class Verification(View):
     def get(self,request,email):
-        obj=SiteConstants.objects.count()
-        if obj == 0:
-                return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials='AU'
-        if request.user.is_authenticated:
-            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
-        form=UsersOTPForm()
-        otp_flag=request.GET.get('otp_resend')
-        if  otp_flag:
-            presaver=LoanModel.objects.filter(email=email).last()
-            if presaver.is_verfied:
-                otpmessage='Sorry,this email is already been verified.'
-                flag=False
+        if LoanModel.objects.filter(email=email).exists():
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+            form=UsersOTPForm()
+            otp_flag=request.GET.get('otp_resend')
+            if  otp_flag:
+                presaver=LoanModel.objects.filter(email=email).last()
+                if presaver.is_verfied:
+                    otpmessage='Sorry,this email is already been verified.'
+                    flag=False
+                else:
+                    otpmessage='OTP number sent successfully!'
+                    otp=random.randint(999,999999)
+                    presaver.otp=otp
+                    presaver.save()
+                    message={
+                                'user':presaver.name,
+                                'site_name':obj.site_name,
+                                'site_url':obj.site_url,
+                                'category':presaver.category,
+                                'address':obj.address,
+                                'phone':obj.phone,
+                                'otp':otp,
+                        }
+                    subject='OTP Resent!.'
+                    flag=True
+                    template='emails/success.html'
+                    send_email(subject,email,message,template)
+                data={
+                    'title':'Verify email address',
+                    'obj':obj,
+                    'data':request.user,
+                    'email':email,
+                    'form':form,
+                    'flag':flag,
+                    'message':otpmessage,
+                    'initials':initials
+                }
+                return render(request,'manager/verify.html',context=data)
             else:
-                otpmessage='OTP number sent successfully!'
-                otp=random.randint(999,999999)
-                presaver.otp=otp
-                presaver.save()
-                message={
-                            'user':presaver.name,
-                            'site_name':obj.site_name,
-                            'site_url':obj.site_url,
-                            'category':presaver.category,
-                            'address':obj.address,
-                            'phone':obj.phone,
-                            'otp':otp,
-                    }
-                subject='OTP Resent!.'
-                flag=True
-                template='emails/success.html'
-                send_email(subject,email,message,template)
-            data={
-                'title':'Verify email address',
-                'obj':obj,
-                'data':request.user,
-                'email':email,
-                'form':form,
-                'flag':flag,
-                'message':otpmessage,
-                'initials':initials
-            }
-            return render(request,'manager/verify.html',context=data)
+                data={
+                    'title':'Verify email address',
+                    'obj':obj,
+                    'data':request.user,
+                    'email':email,
+                    'form':form,
+                    'initials':initials
+                }
+                return render(request,'manager/verify.html',context=data)
         else:
             data={
-                'title':'Verify email address',
-                'obj':obj,
-                'data':request.user,
-                'email':email,
-                'form':form,
-                'initials':initials
+                'title':'Error | Page Not Found',
+                'obj':obj
             }
-            return render(request,'manager/verify.html',context=data)
+            return render(request,'manager/404.html',context=data,status=404)  
     def post(self,request,email):
-        obj=SiteConstants.objects.all()[0]
         data=LoanModel.objects.filter(email=email).last()
         form=UsersOTPForm(request.POST or None,instance=data)
         if form.is_valid():
-            username=generate_username()
-            password=generate_password()
             preserver=form.save(commit=False)
             preserver.is_verfied=True
             preserver.save()
-            if not User.objects.filter(email=email).exists():
-                userdata=User.objects.create(first_name=data.name.split(" ")[0],last_name=data.name.split(" ")[1],email=email,username=username,password=make_password(password),is_active=True)
-                userdata.save()
-                message={
-                            'user':data.name,
-                            'site_name':obj.site_name,
-                            'site_url':obj.site_url,
-                            'category':data.category,
-                            'address':obj.address,
-                            'phone':obj.phone,
-                            'username':username,
-                            'password':password,
-                    }
-            else:
-                userdata=User.objects.get(email=email)
-                userdata.username=username
-                userdata.password=make_password(password)
-                userdata.is_verfied=True
-                userdata.save()
-                message={
-                            'user':data.name,
-                            'site_name':obj.site_name,
-                            'site_url':obj.site_url,
-                            'category':data.category,
-                            'address':obj.address,
-                            'phone':obj.phone,
-                            'username':username,
-                            'password':password,
-                    }
-            subject='Temporary Logging Details.'
-            template='emails/success.html'
-            send_email(subject,email,message,template)
-            return JsonResponse({'valid':True,'message':'Email verified.We have sent a temporary logging password to your email address.','login':True},content_type='application/json')
+            return JsonResponse({'valid':True,'message':'Email verified.','loanid':data.loanid},content_type='application/json')
         else:
             return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
 
 
 
-#Onbording
-@method_decorator(login_required(login_url='/accounts/login'),name='dispatch')
-class Onbording(View):
-    def get(self,request):
-        obj=SiteConstants.objects.count()
-        if obj == 0:
-                return redirect('/installation/')
-        obj=SiteConstants.objects.all()[0]
-        data=LoanModel.objects.filter(email=request.user.email).order_by("-id")
-        initials='AU'
-        if request.user.is_authenticated:
-            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
-        paginator=Paginator(data,10)
-        page_num=request.GET.get('page')
-        loans=paginator.get_page(page_num)
-        data={
-            'title':'Onbording',
-            'obj':obj,
-            'data':request.user,
-            'loans':loans,
-            'count':paginator.count,
-            'initials':initials,
-        }
-        return render(request,'manager/onbording.html',context=data)
-    def post(self,request):
-        form=UsersRequestForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'valid':True,'message':'Request submitted successfully!'},content_type='application/json')
-        else:
-            return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
 
 
 #Apply
-@method_decorator(login_required(login_url='/accounts/login'),name='dispatch')
 class ApplySpecific(View):
     def get(self,request,loanid):
-        obj=SiteConstants.objects.count()
-        if obj == 0:
-                return redirect('/installation/')
         obj=SiteConstants.objects.all()[0]
-        initials='AU'
-        if request.user.is_authenticated:
-            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
-        form=UsersTotalLoanApplyForm()
-        data={
-            'title':'Apply for loan',
-            'obj':obj,
-            'data':request.user,
-            'form':form,
-            'initials':initials
-        }
-        return render(request,'manager/apply.html',context=data)
+        try:
+            loan=LoanModel.objects.get(loanid=loanid)
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+            form=UsersTotalLoanApplyForm()
+            data={
+                'title':'Apply for loan',
+                'obj':obj,
+                'data':request.user,
+                'form':form,
+                'loan':loan,
+                'loanid':loanid,
+                'initials':initials
+            }
+            return render(request,'manager/apply.html',context=data)
+        except LoanModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
     def post(self,request,loanid):
         data=LoanModel.objects.get(loanid=loanid)
         form=UsersLoanApplyForm(request.POST or None,instance=data)
         if form.is_valid():
             form.save()
-            return JsonResponse({'valid':True,'message':'Loan application submitted successfully!'},content_type='application/json')
+            return JsonResponse({'valid':True,'message':'Loan application submitted successfully!','eligible':True,'loanid':loanid},content_type='application/json')
         else:
             return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
 
-
-#Apply
-class Apply(View):
-    def get(self,request):
-        obj=SiteConstants.objects.count()
-        if obj == 0:
-                return redirect('/installation/')
-        obj=SiteConstants.objects.all()[0]
-        initials='AU'
-        if request.user.is_authenticated:
-            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
-        form=UsersTotalLoanApplyForm()
-        data={
-            'title':'Apply for loan',
-            'obj':obj,
-            'data':request.user,
-            'form':form,
-            'initials':initials
-        }
-        return render(request,'manager/apply.html',context=data)
-    def post(self,request):
-        form=UsersTotalLoanApplyForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'valid':True,'message':'Request submitted successfully!'},content_type='application/json')
-        else:
-            return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
 
 #suggestion
 class Suggestion(View):
@@ -740,3 +657,183 @@ class UserChangePassword(View):
                 return JsonResponse({'valid':True,'message':'Password changed successfully'},content_type="application/json")
             else:
                 return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
+
+#Eligibility
+class Eligibility(View):
+    def get(self,request,loanid):
+        obj=SiteConstants.objects.all()[0]
+        try:
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+            form=UsersEligibilityForm()
+            loan=LoanModel.objects.get(loanid=loanid)
+            data={
+                'title':'Checking eligibilty',
+                'obj':obj,
+                'data':request.user,
+                'form':form,
+                'loanid':loanid,
+                'loan':loan,
+                'initials':initials,
+                'step1':True,
+            }
+            return render(request,'manager/eligibilty.html',context=data)
+        except LoanModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
+    def post(self,request,loanid):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            data=LoanModel.objects.get(loanid=loanid)
+            form=UsersEligibilityForm(request.POST or None,instance=data)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'Data submitted successfully','step2':True,'loanid':loanid},content_type="application/json")
+            else:
+                return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
+
+
+
+#generate card number
+def generate_card_number():
+    return get_random_string(16,'0123456789')
+
+
+#stepTwo
+class stepTwo(View):
+    def get(self,request,loanid):
+        obj=SiteConstants.objects.all()[0]
+        try:
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+            loan=LoanModel.objects.get(loanid=loanid)
+            cardconfig=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            r=int(cardconfig.interest)/100
+            first=round(int(loan.amount)*(r*(1+r)**12)/(((1+r)**12)-1))
+            second=round(int(loan.amount)*(r*(1+r)**36)/(((1+r)**36)-1))
+            third=round(int(loan.amount)*(r*(1+r)**48)/(((1+r)**48)-1))
+            fourth=round(int(loan.amount)*(r*(1+r)**60)/(((1+r)**60)-1))
+            data={
+                'title':'Checking eligibilty | step two',
+                'obj':obj,
+                'data':request.user,
+                'loanid':loanid,
+                'loan':loan,
+                'initials':initials,
+                'step2':True,
+                'first':first,
+                'second':second,
+                'third':third,
+                'fourth':fourth,
+            }
+            return render(request,'manager/eligibilty.html',context=data)
+        except LoanModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
+    def post(self,request,loanid):
+        print(request.POST)
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            data=LoanModel.objects.get(loanid=loanid)
+            form=UsersTenatureForm(request.POST or None,instance=data)
+            if form.is_valid():
+                udata=form.save(commit=False)
+                udata.card_number=generate_card_number()
+                udata.save()
+                return JsonResponse({'valid':True,'message':'Data submitted successfully','step3':True,'loanid':loanid},content_type="application/json")
+            else:
+                return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
+
+
+
+
+
+
+#stepThree
+class stepThree(View):
+    def get(self,request,loanid):
+        obj=SiteConstants.objects.all()[0]
+        try:
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+            loan=LoanModel.objects.get(loanid=loanid)
+            card=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            data={
+                'title':'Checking eligibilty | step four',
+                'obj':obj,
+                'data':request.user,
+                'loanid':loanid,
+                'loan':loan,
+                'initials':initials,
+                'card':card,
+                'card_number':loan.card_number[-4:],
+                'step3':True,
+            }
+            return render(request,'manager/eligibilty.html',context=data)
+        except LoanModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
+    def post(self,request,loanid):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            data=LoanModel.objects.get(loanid=loanid)
+            form=UsersTenatureForm(request.POST or None,instance=data)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'Data submitted successfully','step4':True,'loanid':loanid},content_type="application/json")
+            else:
+                return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")
+
+#Finish
+class Finish(View):
+    def get(self,request,loanid):
+        obj=SiteConstants.objects.all()[0]
+        try:
+            initials='AU'
+            if request.user.is_authenticated:
+                initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
+            loan=LoanModel.objects.get(loanid=loanid)
+            card=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            data={
+                'title':'Finishing...',
+                'obj':obj,
+                'data':request.user,
+                'loanid':loanid,
+                'loan':loan,
+                'card':card,
+                'initials':initials,
+                'step4':True,
+            }
+            return render(request,'manager/finish.html',context=data)
+        except LoanModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
+
+#payment
+def payment(request):
+    obj=SiteConstants.objects.count()
+    if obj == 0:
+            return redirect('/installation/')
+    obj=SiteConstants.objects.all()[0]
+    initials='AU'
+    if request.user.is_authenticated:
+        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+    data={
+        'title':'Payment status',
+        'obj':obj,
+        'data':request.user,
+        'initials':initials
+    }
+    return render(request,'manager/payment.html',context=data)

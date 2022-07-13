@@ -32,7 +32,7 @@
     <meta name="msapplication-TileColor" content="{{obj.theme_color}}">
     <meta name="msapplication-config" content="{% static 'manager/assets/images/logos/browserconfig.xml' %}">
     <meta name="theme-color" content="#ffffff">
-    <link rel="canonical" href="{{obj.site_url}}" />
+    <link rel="canonical" href="{{request.get_full_path}}" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -59,6 +59,7 @@
     <link href="{% static 'manager/assets/plugins/pageloader/pageloader.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'manager/assets/plugins/rateit/rateit.css' %}" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link href="https://my24loan.in/assets/css/style.css" rel="stylesheet" type="text/css" />
     <style>
      .right
      {
@@ -177,7 +178,7 @@
                     <div class="container">
                         <div class="row m-b-20">
                             <div class="col-md-3 col-sm-12 text-center">
-                                <img  style="width:100px" src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/logos/favicon.ico' %}" alt="{{obj.site_name]}" class="m-t-20 m-b-30">
+                                <img  style="width:100px" src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/logos/favicon.ico' %}" alt="{{obj.site_name}}" class="m-t-20 m-b-30">
                                 <h3>{{obj.site_name}}</h3>
                             </div>
 
@@ -275,5 +276,9 @@
     <script src="{% static 'manager/assets/plugins/particles/particles.js' %}" type="text/javascript"></script>
     <script src="{% static 'manager/assets/plugins/particles/particles-dots.js' %}" type="text/javascript"></script>
     <script src="{% static 'manager/assets/plugins/rateit/jquery.rateit.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'manager/assets/plugins/particles/particles-stars.js' %}" type="text/javascript"></script>
+    <script src="{% static 'manager/assets/plugins/particles/particles-bubble.js' %}" type="text/javascript"></script>
+    <script src="{% static 'manager/assets/plugins/particles/particles-snow.js' %}" type="text/javascript"></script>
+    <script src="{% static 'manager/assets/plugins/particles/particles-dots.js' %}" type="text/javascript"></script>
 </body>
 </html>

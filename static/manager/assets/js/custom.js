@@ -72,13 +72,25 @@ $(document).on('submit','.ContactForm',function()
             {
               window.location='/'+callback.email;
             }
-            if(callback.login)
+            if(callback.loanid)
             {
-              window.location='/accounts/login';
+              window.location='/apply/'+callback.loanid;
             }
-            if(callback.home)
+            if(callback.eligible)
             {
-              window.location='/onboarding';
+              window.location='/check/eligibility/'+callback.loanid;
+            }
+            if(callback.step2)
+            {
+              window.location='/check/eligibility/step2/'+callback.loanid;
+            }
+            if(callback.step3)
+            {
+              window.location='/check/eligibility/step3/'+callback.loanid;
+            }
+            if(callback.step4)
+            {
+              window.location='/check/eligibility/step4/'+callback.loanid;
             }
         }
         else
@@ -119,4 +131,34 @@ $(document).on('click','.reveal',function()
         $('.login-password').attr('type','password');
         el.removeClass('fa-eye').addClass('fa-eye-slash');
     }
+});
+$(function()
+{
+  $('#submitForm1').on('submit', function(e)
+  {
+      $('#form-submit1').attr('disabled', true);
+      $('#form-submit1').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> PROCESS...');
+  });
+});
+
+$(".animated-progress span").each(function ()
+{
+$(this).animate(
+  {
+        width: $(this).attr("data-progress") + "%",
+  },
+  1000
+    );
+        $(this).text($(this).attr("data-progress") + "%");
+});
+$(document).ready(function()
+{
+    $(document).on('change','.tenature',function()
+    {
+        $(this).each(function(key,value)
+        {
+            var data=$(this).data('value');
+            $('.emi').val(data);
+        });
+    });
 });

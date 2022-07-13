@@ -180,7 +180,7 @@ $(document).on('submit','.RegForm',function()
         {
             $.each(callback.uform_errors,function(key,value)
             {
-              el.find("input[aria-label='"+key+"']").addClass('is-invalid').parents('.form-group').find('.feedback').addClass('invalid-feedback').html('<i class="fa fa-exclamation-circle"></i> '+value);
+              el.find("input[aria-label='"+key+"'],select[aria-label='"+key+"']").addClass('is-invalid').parents('.form-group').find('.feedback').addClass('invalid-feedback').html('<i class="fa fa-exclamation-circle"></i> '+value);
             });
             $.each(callback.eform_errors,function(key,value)
             {

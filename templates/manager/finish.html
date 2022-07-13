@@ -1,0 +1,46 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="page-title">
+  <div class="container">
+    <h2>Finishing...</h2>
+    <div class="breadcrumb text-left">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Final Step</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+<section id="career">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class='text-center'><strong><i class="spinner-border spinner-border-sm" role="status"></i> Please wait...</p>
+            <form action="https://securegw.paytm.in/theia/processTransaction" name="frm1" id="frm1" method="post">
+                <input type="hidden" name="MID" value='MY24LO97698789932228'/>
+                <input type="hidden" name="ORDER_ID" value='1657573893427'/>
+                <input type="hidden" name="CUST_ID" value='0796268817'/>
+                <input type="hidden" name="INDUSTRY_TYPE_ID" value='Retail'/>
+                <input type="hidden" name="CHANNEL_ID" value='WEB'/>
+                <input type="hidden" name="TXN_AMOUNT" value='1298'/>
+                <input type="hidden" name="WEBSITE" value='DEFAULT'/>
+                <input type="hidden" name="CALLBACK_URL" value='https://my24loan.in/digital/buycardDigital'/>
+                <input type="hidden" name="CALLBACK_URL" value="{% url 'payment status' %}"/>
+                <input type="hidden" name="CHECKSUMHASH" value="q1jmetpfT7eTl5qmKnEUJ+MBh8KB+E5GMaiNZ1SN1UlPKhJjqhcgyGDL4Z4TO+XHjsAjmFR5S3QCnTG5QJmM6Oczl+6YsebHgKa3ih1KYwU=">
+            </form>
+        </div>
+    </div>
+  </div>
+</section>
+<script>
+   window.addEventListener('load',()=>
+   {
+    const form=document.getElementById('frm1');
+    form.submit();
+   });
+</script>
+{% endblock %}

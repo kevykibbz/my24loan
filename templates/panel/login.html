@@ -10,7 +10,7 @@
                     <div class="d-flex align-items-center h-100-vh">
                         <div class="login p-50">
                             <h1 class="mb-2 text-center text-capitalize">{{obj.site_name}}</h1>
-                            <p>Welcome back, please login to your account.</p>
+                            <p class="text-center">Welcome back, please login to your account.</p>
                             <form action="{% url 'login' %}" class="mt-3 mt-sm-5 loginForm" method="post" novalidate>
                                 {% csrf_token %}
                                 <div class="row">
@@ -36,9 +36,9 @@
                                                     Remember Me
                                                 </label>
                                             </div>
-                                            <div class="text-md-left text-center">
+                                        </div>
+                                        <div class="text-md-left text-center">
                                                 <a href="{% url 'reset_password' %}" class="ml-auto">Forgot Password ?</a>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-3 text-center">

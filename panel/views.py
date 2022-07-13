@@ -720,6 +720,8 @@ def delLoan(request,loanid):
 
 
 #Editloan
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
 class Editloan(View):
     def get(self,request,loanid):
         obj=SiteConstants.objects.all()[0]
@@ -749,3 +751,86 @@ class Editloan(View):
         return JsonResponse({'valid':True,'message':'Data saved successfully.'},content_type='application/json')       
 
 
+#CardConfig
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
+class CardConfig(View):
+    def get(self,request):
+        obj=SiteConstants.objects.all()[0]
+        form=CardConfigForm()
+        data={
+            'title':'Card configuration settings',
+            'obj':obj,
+            'data':request.user,
+            'form':form,
+        }
+        return render(request,'panel/card_config.html',context=data)
+
+    def post(self,request):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            form=CardConfigForm(request.POST or None)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'data saved'},content_type='application/json')
+            else:
+                return JsonResponse({'valid':False,'uform_errors':form.errors},content_type='application/json')
+
+#cards
+@login_required(login_url='/panel/accounts/login')
+@allowed_users(allowed_roles=['admins'])
+def cards(request):
+    obj=SiteConstants.objects.all()[0]
+    cards=CardModel.objects.all().order_by('-id')
+    data={
+        'title':'View available cards',
+        'obj':obj,
+        'data':request.user,
+        'cards':cards,
+    }
+    return render(request,'panel/card.html',context=data)
+
+#DeleteCard
+@login_required(login_url='/panel/accounts/login')
+@allowed_users(allowed_roles=['admins'])
+def DeleteCard(request,cardid):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        try:
+            obj=CardModel.objects.get(config_id=cardid)
+            obj.delete() 
+            return JsonResponse({'valid':False,'message':'Card deleted successfully.','id':id},content_type='application/json')       
+        except CardModel.DoesNotExist:
+            return JsonResponse({'valid':True,'message':'Card does not exist'},content_type='application/json')
+
+
+#Editcard
+@method_decorator(login_required(login_url='/panel/accounts/login'),name='dispatch')
+@method_decorator(allowed_users(allowed_roles=['admins']),name='dispatch')
+class Editcard(View):
+    def get(self,request,cardid):
+        obj=SiteConstants.objects.all()[0]
+        try:
+            card=CardModel.objects.get(config_id=cardid)
+            form=CardConfigEditForm(instance=card)
+            data={
+                'title':f'Edit {card.card_type} card',
+                'obj':obj,
+                'data':request.user,
+                'form':form,
+            }
+            return render(request,'panel/card_config.html',context=data)
+        except CardModel.DoesNotExist:
+            data={
+                'title':'Error | Page Not Found',
+                'obj':obj
+            }
+            return render(request,'manager/404.html',context=data,status=404)
+
+    def post(self,request,cardid):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            card=CardModel.objects.get(config_id=cardid)
+            form=CardConfigEditForm(request.POST or None,instance=card)
+            if form.is_valid():
+                form.save()
+                return JsonResponse({'valid':True,'message':'Card details updated successfully'},content_type='application/json')
+            else:
+                return JsonResponse({'valid':False,'uform_errors':form.errors},content_type='application/json')

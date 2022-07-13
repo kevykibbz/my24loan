@@ -32,10 +32,16 @@
                                    <th class="border-top-0">Phone</th>
                                    <th class="border-top-0">Email</th>
                                    <th class="border-top-0">Full Address</th>
+                                   <th class="border-top-0">State</th>
                                    <th class="border-top-0">Category</th>
+                                   <th class="border-top-0">Monthly Income</th>
+                                   <th class="border-top-0">Loan Purpose</th>
+                                   <th class="border-top-0">Cibil Score</th>
+                                   <th class="border-top-0">Monthly EMI Payment</th>
                                    <th class="border-top-0">Credit Limit</th>
                                    <th class="border-top-0">Alloted Card Number</th>
-                                   <th class="border-top-0">Amount </th>
+                                   <th class="border-top-0">Tenure </th>
+                                   <th class="border-top-0">EMI </th>
                                    <th class="border-top-0">Status</th>
                                    <th class="border-top-0">Created on</th>
                                    <th class="border-top-0">Action</th>
@@ -49,11 +55,17 @@
                                       <td>{{application.name}}</td>
                                       <td>{{application.phone}}</td>
                                       <td>{{application.email}}</td>
-                                      <td>{{application.address}}</td>
+                                      <td>{{application.city}}</td>
+                                      <td>{{application.state}}</td>
                                       <td>{{application.category}}</td>
-                                      <td>{{application.credit_limit}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.monthly_income|intcomma}}</td>
+                                      <td data-toggle="tooltip" data-placement="top" title="View Purpose" data-original-title="View Purpose" data-tip="{{application.name}}'s purpose posted on {{application.created_on}}" class="text-truncate view" style="cursor:pointer;">{{application.loan_purpose}}</td>
+                                      <td>{{application.cibil_score}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.monthly_emi|intcomma}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.amount|intcomma}}</td>
                                       <td>{{application.card_number}}</td>
-                                      <td><i class="fa fa-inr"></i>{{application.amount|intcomma}}</td>
+                                      <td>{{application.tenature}} Months</td>
+                                      <td><i class="fa fa-inr"></i> {{application.emi|intcomma}}</td>
                                       <td>
                                         {% if application.status == 'Pending' %}
                                             <label class="badge mb-0 badge-info-inverse">{{application.status}}</label>
@@ -76,7 +88,7 @@
                                  {% endfor %}
                               {% else %}
                               <tr>
-                                 <td colspan="12" class="text-center text-info">
+                                 <td colspan="18" class="text-center text-info">
                                     <i class="fa fa-exclamation-circle"></i> no applications data found
                                  </td>
                               </tr>
