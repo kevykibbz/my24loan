@@ -1,5 +1,6 @@
 {% extends 'panel/base.html' %}
 {% load static %}
+{% load indian_currency %}
 {% load humanize %}
 {% block body %}
  <div class="container-fluid">
@@ -43,6 +44,7 @@
                                    <th class="border-top-0">Tenure </th>
                                    <th class="border-top-0">EMI </th>
                                    <th class="border-top-0">Status</th>
+                                   <th class="border-top-0">Payment Status</th>
                                    <th class="border-top-0">Created on</th>
                                    <th class="border-top-0">Action</th>
                                </tr>
@@ -58,19 +60,26 @@
                                       <td>{{application.city}}</td>
                                       <td>{{application.state}}</td>
                                       <td>{{application.category}}</td>
-                                      <td><i class="fa fa-inr"></i> {{application.monthly_income|intcomma}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.monthly_income|indian_currency}}</td>
                                       <td data-toggle="tooltip" data-placement="top" title="View Purpose" data-original-title="View Purpose" data-tip="{{application.name}}'s purpose posted on {{application.created_on}}" class="text-truncate view" style="cursor:pointer;">{{application.loan_purpose}}</td>
                                       <td>{{application.cibil_score}}</td>
-                                      <td><i class="fa fa-inr"></i> {{application.monthly_emi|intcomma}}</td>
-                                      <td><i class="fa fa-inr"></i> {{application.amount|intcomma}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.monthly_emi|indian_currency}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.amount|indian_currency}}</td>
                                       <td>{{application.card_number}}</td>
                                       <td>{{application.tenature}} Months</td>
-                                      <td><i class="fa fa-inr"></i> {{application.emi|intcomma}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.emi|indian_currency}}</td>
                                       <td>
                                         {% if application.status == 'Pending' %}
                                             <label class="badge mb-0 badge-info-inverse">{{application.status}}</label>
                                         {% else %}
                                             <label class="badge mb-0 badge-success-inverse">{{application.status}}</label>
+                                        {% endif %}
+                                      </td>
+                                      <td>
+                                        {% if application.status %}
+                                        <label class="badge mb-0 badge-success-inverse">Yes</label>
+                                        {% else %}
+                                        <label class="badge mb-0 badge-danger-inverse">No</label>
                                         {% endif %}
                                       </td>
                                       <td>{{application.created_on}}</td>

@@ -22,7 +22,7 @@ from django.contrib.auth import update_session_auth_hash
 import re
 import datetime
 from django.contrib.humanize.templatetags.humanize import intcomma
-from django.template.defaulttags import register
+from django import template
 import math
 from django.utils.crypto import get_random_string
 from manager.addons import send_email
@@ -33,7 +33,6 @@ from django.templatetags.static import static
 from installation.models import SiteConstants
 import os
 from django.contrib.auth.hashers import make_password
-
 
 # Create your views here.
 def home(request):
@@ -51,6 +50,8 @@ def home(request):
         'initials':initials
     }
     return render(request,'manager/index.html',context=data)
+
+
 
 #company
 def company(request):
@@ -138,6 +139,8 @@ class PersonalLoan(View):
             otp=random.randint(999,999999)
             presaver.has_applied=True
             presaver.otp=otp
+            presaver.page='2'
+            presaver.page_status=True
             presaver.save()
             data=LoanModel.objects.all().last()
             message={
@@ -184,6 +187,8 @@ class BussinessLoan(View):
             otp=random.randint(999,999999)
             presaver.has_applied=True
             presaver.otp=otp
+            presaver.page='2'
+            presaver.page_status=True
             presaver.save()
             data=LoanModel.objects.all().last()
             message={
@@ -508,6 +513,8 @@ class Verification(View):
         if form.is_valid():
             preserver=form.save(commit=False)
             preserver.is_verfied=True
+            preserver.page='3'
+            preserver.page_status=True
             preserver.save()
             return JsonResponse({'valid':True,'message':'Email verified.','loanid':data.loanid},content_type='application/json')
         else:
@@ -547,7 +554,10 @@ class ApplySpecific(View):
         data=LoanModel.objects.get(loanid=loanid)
         form=UsersLoanApplyForm(request.POST or None,instance=data)
         if form.is_valid():
-            form.save()
+            t=form.save(commit=False)
+            t.page='4'
+            t.page_status=True
+            t.save()
             return JsonResponse({'valid':True,'message':'Loan application submitted successfully!','eligible':True,'loanid':loanid},content_type='application/json')
         else:
             return JsonResponse({'valid':False,'form_errors':form.errors},content_type='application/json')
@@ -698,6 +708,8 @@ class Eligibility(View):
             if form.is_valid():
                 t=form.save(commit=False)
                 t.eligible_amount=1.8*int(data.amount)+1.3*int(form.cleaned_data.get('monthly_income'))
+                t.page='5'
+                t.page_status=True
                 t.save()
                 return JsonResponse({'valid':True,'message':'Data submitted successfully','step2':True,'loanid':loanid},content_type="application/json")
             else:
@@ -752,6 +764,8 @@ class stepTwo(View):
             if form.is_valid():
                 udata=form.save(commit=False)
                 udata.card_number=generate_card_number()
+                udata.page='6'
+                udata.page_status=True
                 udata.save()
                 return JsonResponse({'valid':True,'message':'Data submitted successfully','step3':True,'loanid':loanid},content_type="application/json")
             else:
@@ -795,7 +809,10 @@ class stepThree(View):
             data=LoanModel.objects.get(loanid=loanid)
             form=UsersTenatureForm(request.POST or None,instance=data)
             if form.is_valid():
-                form.save()
+                udata=form.save(commit=False)
+                udata.page='7'
+                udata.page_status=True
+                udata.save()
                 return JsonResponse({'valid':True,'message':'Data submitted successfully','step4':True,'loanid':loanid},content_type="application/json")
             else:
                 return JsonResponse({'valid':False,'form_errors':form.errors},content_type="application/json")

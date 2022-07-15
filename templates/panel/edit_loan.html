@@ -1,5 +1,6 @@
 {% extends 'panel/base.html' %}
 {% load static %}
+{% load indian_currency %}
 {% load humanize %}
 {% block body %}
  <div class="container-fluid">
@@ -62,8 +63,8 @@
                             <div class="feedback"></div>
                         </div>
                         <div class="form-group">
-                            <label for="id_answer">Amount (<i class="fa fa-inr"></i>)</label>               
-                            <input class="form-control" type="text" value="{{loan.amount|intcomma}}" readonly>
+                            <label for="id_answer">Amount </label>               
+                            <input class="form-control" type="text" value="{{loan.amount|indian_currency}}" readonly>
                             <div class="feedback"></div>
                         </div>
                         <div class="form-group">    

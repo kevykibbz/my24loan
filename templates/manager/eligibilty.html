@@ -1,5 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load static %}
+{% load indian_currency %}
 {% load humanize %}
 {% block body %}
 
@@ -52,6 +53,7 @@
                     {% csrf_token %}
                     {% if step1 %}
                     <div class="row">
+                        <input type="hidden" class="form-control" name="loanid" value="{{loan.loanid}}">
                         <div class="col-md-10 col-12">
                             <div class="animated-progress progress-green">
                                 <span data-progress="25"></span>
@@ -71,7 +73,7 @@
                             <h5 class="text-dark" for="mobile"><strong>Email address :</strong> {{loan.email}}</h5>
                         </div>
                         <div class="form-group col-md-4">
-                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|intcomma}}</h5>
+                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|indian_currency}}</h5>
                         </div>
                         <div class="form-group col-md-12"><hr/></div>
                         <div class="form-group col-md-4">
@@ -116,7 +118,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label class="text-dark" for="state">State</label>
-                            <select name="state" aria-required="true" id="state" class="form-control" required>
+                            <select aria-label="state" name="state" aria-required="true" id="state" class="form-control" required>
                                 <option value="">Select State</option>
                                 <option  value="Andaman and Nicobar Islands" >Andaman and Nicobar Islands</option><option  value="Andhra Pradesh" >Andhra Pradesh</option><option  value="Arunachal Pradesh" >Arunachal Pradesh</option><option  value="Assam" >Assam</option><option  value="Bihar" >Bihar</option><option  value="Chandigarh" >Chandigarh</option><option  value="Chhattisgarh" >Chhattisgarh</option><option  value="Dadra and Nagar Haveli" >Dadra and Nagar Haveli and Daman and Diu</option><option  value="Daman and Diu" >Daman and Diu</option><option  value="Delhi" >Delhi</option><option  value="Goa" >Goa</option><option  value="Gujarat" >Gujarat</option><option  value="Haryana" >Haryana</option><option  value="Himachal Pradesh" >Himachal Pradesh</option><option  value="Jammu and Kashmir" >Jammu and Kashmir</option><option  value="Jharkhand" >Jharkhand</option><option  value="Karnataka" >Karnataka</option><option  value="Kerala" >Kerala</option><option  value="Ladakh" >Ladakh</option><option  value="Lakshadweep" >Lakshadweep</option><option  value="Madhya Pradesh" >Madhya Pradesh</option><option  value="Maharashtra" >Maharashtra</option><option  value="Manipur" >Manipur</option><option  value="Meghalaya" >Meghalaya</option><option  value="Mizoram" >Mizoram</option><option  value="Nagaland" >Nagaland</option><option  value="Odisha" >Odisha</option><option  value="Puducherry" >Puducherry</option><option  value="Punjab" >Punjab</option><option  value="Rajasthan" >Rajasthan</option><option  value="Sikkim" >Sikkim</option><option  value="Tamil Nadu" >Tamil Nadu</option><option  value="Telangana" >Telangana</option><option  value="Tripura" >Tripura</option><option  value="Uttar Pradesh" >Uttar Pradesh</option><option  value="Uttarakhand" >Uttarakhand</option><option  value="West Bengal" >West Bengal</option>						</select>
                             <div class="help-block font-small-3"></div>
@@ -130,6 +132,7 @@
                     </div>
                     {% elif step2 %}
                     <div class="row">
+                        <input type="hidden" class="form-control" name="loanid" value="{{loan.loanid}}">
                         <div class="col-md-10 col-12">
                             <div class="animated-progress progress-green">
                                 <span data-progress="50"></span>
@@ -152,14 +155,14 @@
                             </div>
         
                             <div class="form-group col-md-4">
-                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|intcomma}}</h5>
+                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|indian_currency}}</h5>
                             </div>
         
                             <div class="form-group col-md-12 text-center">
                                 <hr/>
-                                <h4 class="text-success">Cogratulation! Your pre-approval <span class="text-lowercase">Personal Loan</span> eligibility offer is Rs. {{loan.eligible_amount|intcomma}} </h4>
+                                <h4 class="text-success">Cogratulation! Your pre-approval <span class="text-lowercase">Personal Loan</span> eligibility offer is Rs. {{loan.eligible_amount|indian_currency}} </h4>
         
-                                <h5>As per your required loan amount - Rs. <strong>{{loan.amount|intcomma}}</strong>. Your monthly EMI are as below. Kindly select any option:</h5>
+                                <h5>As per your required loan amount - Rs. <strong>{{loan.amount|indian_currency}}</strong>. Your monthly EMI are as below. Kindly select any option:</h5>
                             </div>
         
                             <div class="form-group col-sm-12 col-md-12 text-center text-dark">
@@ -170,34 +173,35 @@
                                 </div>
         
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input tenature" data-value="{{first|intcomma}}" name="tenature" id="years2" value="12" checked>
+                                    <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{first|intcomma}}" name="tenature" id="years2" value="12" checked>
                                     <label class="form-check-label m-l-10" for="years2">
                                         12 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{first|intcomma}}                          
+                                        Rs. {{first|indian_currency}}                          
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input tenature" data-value="{{second|intcomma}}" name="tenature" id="years3" value="36" >
+                                    <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{second|intcomma}}" name="tenature" id="years3" value="36" >
                                     <label class="form-check-label m-l-10" for="years3">
                                         36 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{second|intcomma}}                           
+                                        Rs. {{second|indian_currency}}                           
                                     </label>
                                 </div>
         
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input tenature" data-value="{{third|intcomma}}" name="tenature" id="years4" value="48">
+                                    <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{third|intcomma}}" name="tenature" id="years4" value="48">
                                     <label class="form-check-label m-l-10" for="years4">
                                         48 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{third|intcomma}}							
+                                        Rs. {{third|indian_currency}}							
                                     </label>
                                 </div>
         
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input tenature" data-value="{{fourth|intcomma}}" name="tenature" id="years5" value="60">
+                                    <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{fourth|intcomma}}" name="tenature" id="years5" value="60">
                                     <label class="form-check-label m-l-10" for="years5">
                                         60 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{fourth|intcomma}}							
+                                        Rs. {{fourth|indian_currency}}							
                                     </label>
+                                    <div class="help-block font-small-3"></div>
                                 </div>
                             </div>
         
@@ -258,7 +262,7 @@
         
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center m-t-10">
                                 <h4>Membership Card Fees</h4>
-                                <h3>Rs. <del class="text-danger">{{card.prev_price|intcomma}}</del> <span class="text-success">{{card.now_price|intcomma}}</span> only</h3>						
+                                <h3><del class="text-danger">{{card.prev_price|indian_currency}}</del> <span class="text-success">{{card.now_price|indian_currency}}</span> only</h3>						
                                 <p class="m-b-0">
                                     <span class="text-success m-r-10"><i class="fa fa-chevron-right m-r-5"></i> Offer Ending Soon</span> 
                                     <span class="text-dark m-r-10"><i class="fa fa-chevron-right m-r-5"></i> GST Additional</span>

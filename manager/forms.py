@@ -83,7 +83,20 @@ class UsersLoanForm(forms.ModelForm):
         if LoanModel.objects.filter(email=email).exists():
             data=LoanModel.objects.filter(email=email).last()
             if data.has_applied:
-                raise forms.ValidationError('Sorry your application is still active.')
+                link=''
+                if data.page =='2':
+                    link="/"+data.email
+                elif data.page == '3':
+                    link="/apply/"+data.loanid
+                elif data.page == '4':
+                    link="/check/eligibility/"+data.loanidel
+                elif data.page == '5':
+                    link="/check/eligibility/step2/"+data.loanid
+                elif data.page == '6':
+                    link="/check/eligibility/step3/"+data.loanid
+                else:
+                    link="/finish/"+data.loanid
+                raise forms.ValidationError('Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
             else:
                 return email
         try:
@@ -97,8 +110,20 @@ class UsersLoanForm(forms.ModelForm):
         if LoanModel.objects.filter(phone=phone).exists():
             data=LoanModel.objects.filter(phone=phone).last()
             if data.has_applied:
-                raise forms.ValidationError('Sorry your application is still active.')
-
+                link=''
+                if data.page =='2':
+                    link="/"+data.email
+                elif data.page == '3':
+                    link="/apply/"+data.loanid
+                elif data.page == '4':
+                    link="/check/eligibility/"+data.loanidel
+                elif data.page == '5':
+                    link="/check/eligibility/step2/"+data.loanid
+                elif data.page == '6':
+                    link="/check/eligibility/step3/"+data.loanid
+                else:
+                    link="/finish/"+data.loanid
+                raise forms.ValidationError('Sorry your application is still active. Click <a href="'+link+'">finish/<str:loanid></a> to continue.')
 class UsersOTPForm(forms.ModelForm):
     otp=forms.CharField(widget=forms.NumberInput(attrs={'maxlength':6, 'data-validation-regex':'[0-9]+','aria-required':'true','class':'form-control text-center','placeholder':'OTP number','aria-label':'otp'}),error_messages={'required':'OTP number is required','maxlength':'Minimum of six digits is required.'})
     class Meta:
@@ -198,12 +223,36 @@ class UsersSuggestionForm(forms.ModelForm):
         return email
 
 class UsersLoanApplyForm(forms.ModelForm):
+    email=forms.EmailField(widget=forms.EmailInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Enter email address','aria-label':'email'}),error_messages={'required':'Email address is required'})
+    bank_email=forms.EmailField(widget=forms.EmailInput(attrs={'aria-required':'true','class':'form-control','aria-label':'bank_email'}),error_messages={'required':'Registered bank email address is required'})
     user_type=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Enter User type','aria-label':'user_type'}),error_messages={'required':'User type  is required'})
     amount=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Loan amount','aria-label':'amount'}),error_messages={'required':'Loan amount is required'})
 
     class Meta:
         model=LoanModel
-        fields=['amount','user_type',]
+        fields=['amount','user_type','email','bank_email']
+
+    def clean(self):
+        cleaned_data=super().clean()
+        email=cleaned_data.get('email')
+        if LoanModel.objects.filter(email=email).exists():
+            data=LoanModel.objects.filter(email=email).last()
+            if data.has_applied:
+                link=''
+                page_no=int(data.page)
+                if page_no > 3:
+                    if page_no == 4:
+                        link="/check/eligibility/"+data.loanid
+                    elif page_no == 5:
+                        link="/check/eligibility/step2/"+data.loanid
+                    elif page_no == 6:
+                        link="/check/eligibility/step3/"+data.loanid
+                    else:
+                        link="/finish/"+data.loanid
+                    self.add_error('amount','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
+            else:
+                return email
+
 
 
 class UsersTotalLoanApplyForm(forms.ModelForm):
@@ -277,6 +326,7 @@ class UserPasswordChangeForm(UserCreationForm):
            return oldpassword 
 class UsersEligibilityForm(forms.ModelForm):
     cibil_score=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Cibil score','aria-label':'cibil_score'}),error_messages={'required':'Cibil score is required'})
+    loanid=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'loanid'}),error_messages={'required':'Loan id is required'})
     loan_purpose=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'loan_purpose'}),error_messages={'required':'Loan purpose is required'})
     monthly_income=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Monthly income','aria-label':'monthly_income'}),error_messages={'required':'Monthly income is required'})
     city=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'City','aria-label':'city'}),error_messages={'required':'City is required'})
@@ -287,6 +337,26 @@ class UsersEligibilityForm(forms.ModelForm):
         model=LoanModel
         fields=['cibil_score','loan_purpose','monthly_income','city','monthly_emi','state',]
 
+    def clean(self):
+        cleaned_data=super().clean()
+        loanid=cleaned_data.get('loanid')
+        url=cleaned_data.get('url')
+        if LoanModel.objects.filter(loanid=loanid).exists():
+            data=LoanModel.objects.filter(loanid=loanid).last()
+            if data.has_applied:
+                link=''
+                page_no=int(data.page)
+                if page_no > 4:
+                    if page_no == 5:
+                        link="/check/eligibility/step2/"+data.loanid
+                    elif page_no == 6:
+                        link="/check/eligibility/step3/"+data.loanid
+                    else:
+                        link="/finish/"+data.loanid
+                    self.add_error('state','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
+            else:
+                return email
+
 tenatre_opts=[
     ('12','12f Months'),
     ('36','36 Months'),
@@ -294,9 +364,27 @@ tenatre_opts=[
     ('60','60 Months'),
 ]
 class UsersTenatureForm(forms.ModelForm):
+    loanid=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'loanid'}),error_messages={'required':'Loan id is required'})
     tenature=forms.ChoiceField(choices=tenatre_opts,widget=forms.RadioSelect(attrs={'aria-required':'true','class':'form-control','aria-label':'tenature'}),error_messages={'required':'Tenature  is required'})
     emi=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'emi'}),error_messages={'required':'EMI is required'})
 
     class Meta:
         model=LoanModel
         fields=['tenature','emi']
+    def clean(self):
+        cleaned_data=super().clean()
+        loanid=cleaned_data.get('loanid')
+        url=cleaned_data.get('url')
+        if LoanModel.objects.filter(loanid=loanid).exists():
+            data=LoanModel.objects.filter(loanid=loanid).last()
+            if data.has_applied:
+                link=''
+                page_no=int(data.page)
+                if page_no > 5:
+                    if page_no == 6:
+                        link="/check/eligibility/step3/"+data.loanid
+                    else:
+                        link="/finish/"+data.loanid
+                    self.add_error('tenature','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
+            else:
+                return email

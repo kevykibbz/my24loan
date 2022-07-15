@@ -97,7 +97,7 @@ $(document).on('submit','.ContactForm',function()
         {
             $.each(callback.form_errors,function(key,value)
             {
-                el.find("input[aria-label='"+key+"']").attr('aria-invalid',true).parents('.form-group').addClass('error').find('.help-block').html('<ul role="alert"><li>'+value+'</li></ul>');
+              el.find("input[aria-label='"+key+"'],select[aria-label='"+key+"']").attr('aria-invalid',true).parents('.form-group,.form-check').addClass('error').find('.help-block').html('<ul role="alert"><li>'+value+'</li></ul>');
             });
         }
       },
