@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 SITE_ID=2 
 
@@ -91,23 +91,29 @@ WSGI_APPLICATION = 'my24loan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 #postgres://agptkacumndmnj:9ae06c996a0a27b8915a51873db92f6102426d7548c182499476de8a99728de4@ec2-3-226-163-72.compute-1.amazonaws.com:5432/dd6bsac2dvd6ug
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME':env('DATABASE_NAME'),
-       'HOST':env('DATABASE_HOST'),
-       'USER':env('DATABASE_USER'),
-       'PASSWORD':env('DATABASE_PASSWORD'),
-       'PORT':5432
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': 
+#             {
+
+#                 'ENGINE': 'mysql.connector.django',
+#                 'NAME':env('DATABASE_NAME'),
+#                 'USER':env('DATABASE_USER'),
+#                 'PASSWORD':env('DATABASE_PASSWORD'),
+#                 'HOST':env('DATABASE_HOST'),
+#                 'PORT':env('DATABASE_PORT'),
+#                 'OPTIONS':
+#                 {
+#                     'autocommit':True,
+#                 },
+#             }
+# }
 
 # DATABASES = {
 #    'default': 

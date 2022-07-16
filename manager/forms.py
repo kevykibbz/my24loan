@@ -39,12 +39,13 @@ class UsersContactForm(forms.ModelForm):
 
     def clean_name(self):
         name=self.cleaned_data['name']
-        first_name=name.split(" ")[0]
-        last_name=name.split(" ")[1]
-        if not str(first_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
-        elif not str(last_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
+        if len(name.split(" ")) > 1:
+            first_name=name.split(" ")[0]
+            last_name=name.split(" ")[1]
+            if not str(first_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
+            elif not str(last_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
         return name
 
            
@@ -70,12 +71,13 @@ class UsersLoanForm(forms.ModelForm):
 
     def clean_name(self):
         name=self.cleaned_data['name']
-        first_name=name.split(" ")[0]
-        last_name=name.split(" ")[1]
-        if not str(first_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
-        elif not str(last_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
+        if len(name.split(" ")) > 1:
+            first_name=name.split(" ")[0]
+            last_name=name.split(" ")[1]
+            if not str(first_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
+            elif not str(last_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
         return name
 
     def clean_email(self):
@@ -169,12 +171,13 @@ class UsersRequestForm(forms.ModelForm):
 
     def clean_name(self):
         name=self.cleaned_data['name']
-        first_name=name.split(" ")[0]
-        last_name=name.split(" ")[1]
-        if not str(first_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
-        elif not str(last_name).isalpha():
-            raise forms.ValidationError('only characters are allowed')
+        if len(name.split(" ")) > 1:
+            first_name=name.split(" ")[0]
+            last_name=name.split(" ")[1]
+            if not str(first_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
+            elif not str(last_name).isalpha():
+                raise forms.ValidationError('only characters are allowed')
         return name
 
     def clean_email(self):

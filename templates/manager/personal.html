@@ -86,8 +86,8 @@
 
           <div id="logo"> 
             <a href="{% url 'dashboard' %}">
-              <span class="logo-default"><img src="https://my24loan.in/assets/images/logo.png" alt="My24Loan" width="200"></span>
-              <span class="logo-dark"><img src="https://my24loan.in/assets/images/logo.png" alt="My24Loan" width="200"></span>
+              <span class="logo-default">{{obj.site_name}}</span>
+              <span class="logo-dark">{{obj.site_name}}</span>
             </a> 
           </div>
 
@@ -164,7 +164,7 @@
                                     <div class="mt-2 form-group" style="margin-top:80px !important;">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
-                                            <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize My24Loan representatives to Call / SMS for this application / My24Loan Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
+                                            <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize {{obj.site_name}} representatives to Call / SMS for this application / {{obj.site_name}} Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
                                             <div class="help-block font-small-3"></div>
                                         </div>
                                     </div>                            

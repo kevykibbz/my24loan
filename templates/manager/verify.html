@@ -61,7 +61,7 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
 </head>
 <body onload="load()">
-	 <!-- preloader -->
+     <!-- preloader -->
      <div class="placeholder">
         <div class="overlay">
             <div class="row">
@@ -79,15 +79,15 @@
      </div>
     <!-- //preloader -->
     <div class="main-display " style="display:none">
-	   <div class="body-inner">
+       <div class="body-inner">
     <header id="header" data-transparent="true" data-fullwidth="true" class="submenu-light header-disable-fixed">
       <div class="header-inner">
         <div class="container">
 
           <div id="logo"> 
             <a href="{% url 'dashboard' %}">
-              <span class="logo-default"><img src="https://my24loan.in/assets/images/logo.png" alt="My24Loan" width="200"></span>
-              <span class="logo-dark"><img src="https://my24loan.in/assets/images/logo.png" alt="My24Loan" width="200"></span>
+              <span class="logo-default">{{obj.site_name}}</span>
+              <span class="logo-dark">{{obj.site_name}}</span>
             </a> 
           </div>
 
@@ -168,7 +168,7 @@
                                             <p class="text-light"><i class="fa fa-check-circle"></i> {{message}}</p>
                                         </div>
                                         {% endif %}
-                                    </form>							
+                                    </form>                         
                                 </div>
                                 <div class="p-t-20 text-center">
                                     <p>Already have an account? 
@@ -185,29 +185,29 @@
     </section>
     
 <section class="p-t-30 p-b-20">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-12 m-b-20">
-				<h6 class="text-theme">Salaried Person Eligibility Criteria</h6>
-				<p><small>(1) Minimum salary Rs. 15,000/- per month (2) 1 year job stability (3) Minimum age 21 years</small></p>
-				
-				<h6 class="text-theme">Self-Employed Person Eligibility Criteria</h6>
-				<p><small>(1) Minimum 1 year IT return (2) 1 year business stability (3) Minimum age 21 years</small></p>
-			</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-12 m-b-20">
+                <h6 class="text-theme">Salaried Person Eligibility Criteria</h6>
+                <p><small>(1) Minimum salary Rs. 15,000/- per month (2) 1 year job stability (3) Minimum age 21 years</small></p>
+                
+                <h6 class="text-theme">Self-Employed Person Eligibility Criteria</h6>
+                <p><small>(1) Minimum 1 year IT return (2) 1 year business stability (3) Minimum age 21 years</small></p>
+            </div>
 
-			<div class="col-md-4 col-12 m-b-20">
-				<h6 class="text-theme">How to works?</h6>
-				<p><small>(1) Quick registration (2) Check eligibility (3) Buy membership card (4) Submit documents (5) Bank Verification (6) Bank Sanction</small></p>
-				<h6 class="text-theme">Membership Card Benefits</h6>
-				<p><small>(1) Let you apply for personal loan in multiple banks (2) You get 4 years free loan consultancy (3) Get 40% referral payout bonus (4) Get loan offers from multiple banks anytime-anywhere (5) You stay at home; our team will go to multiple banks for you (6) On-call Assistance on all your doubts</small></p>
-			</div>
+            <div class="col-md-4 col-12 m-b-20">
+                <h6 class="text-theme">How to works?</h6>
+                <p><small>(1) Quick registration (2) Check eligibility (3) Buy membership card (4) Submit documents (5) Bank Verification (6) Bank Sanction</small></p>
+                <h6 class="text-theme">Membership Card Benefits</h6>
+                <p><small>(1) Let you apply for personal loan in multiple banks (2) You get 4 years free loan consultancy (3) Get 40% referral payout bonus (4) Get loan offers from multiple banks anytime-anywhere (5) You stay at home; our team will go to multiple banks for you (6) On-call Assistance on all your doubts</small></p>
+            </div>
 
-			<div class="col-md-4 col-12 m-b-20">
-				<h6 class="text-theme">Why {{obj.site_name}}?</h6>
-				<p><small>(1) Per month 1000+ happy customers (2) Minimum documents - depend customer profile (3) Compare to multiple banks - loan up to Rs. 15,00,000/-* (4) Annual percentage rate - minimum 12.5% and maximum 24%* (5) Flexible repayment terms - 1 to 6 years (6) Processing fees - depand on customer profile & banks</small></p>
-			</div>
-		</div>
-	</div>
+            <div class="col-md-4 col-12 m-b-20">
+                <h6 class="text-theme">Why {{obj.site_name}}?</h6>
+                <p><small>(1) Per month 1000+ happy customers (2) Minimum documents - depend customer profile (3) Compare to multiple banks - loan up to Rs. 15,00,000/-* (4) Annual percentage rate - minimum 12.5% and maximum 24%* (5) Flexible repayment terms - 1 to 6 years (6) Processing fees - depand on customer profile & banks</small></p>
+            </div>
+        </div>
+    </div>
 </section>          
 
     <footer id="footer" class="">
@@ -233,7 +233,7 @@
         </div>
     </div>
   </div> 
-    	<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+        <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
     </div>
     <script src="{% static 'manager/assets/js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static 'manager/assets/js/bootstrap.min.js' %}"></script>

@@ -33,6 +33,8 @@ from django.templatetags.static import static
 from installation.models import SiteConstants
 import os
 from django.contrib.auth.hashers import make_password
+from django_otp.oath import hotp
+
 
 # Create your views here.
 def home(request):
@@ -110,6 +112,12 @@ def elite(request):
     }
     return render(request,'manager/elite.html',context=data)
 
+def create_otp(n):
+    range_start=10**(n-1)
+    range_end=(10**n)-1
+    return random.randint(range_start,range_end)
+
+
 #PersonalLoan
 class PersonalLoan(View):
     def get(self,request):
@@ -136,7 +144,7 @@ class PersonalLoan(View):
         form=UsersLoanForm(request.POST or None)
         if form.is_valid():
             presaver=form.save(commit=False)
-            otp=random.randint(999,999999)
+            otp=create_otp(6)
             presaver.has_applied=True
             presaver.otp=otp
             presaver.page='2'
@@ -184,7 +192,7 @@ class BussinessLoan(View):
         form=UsersLoanForm(request.POST or None)
         if form.is_valid():
             presaver=form.save(commit=False)
-            otp=random.randint(999,999999)
+            otp=create_otp(6)
             presaver.has_applied=True
             presaver.otp=otp
             presaver.page='2'

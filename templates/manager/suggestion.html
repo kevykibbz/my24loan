@@ -88,7 +88,7 @@
                       <div class="mt-2 form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" aria-required="true" name="conditions" id="conditions" class="custom-control-input" value="1" required>
-                                <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize My24Loan representatives to Call / SMS for this application / My24Loan Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
+                                <label class="custom-control-label" for="conditions"><small>By proceeding, you agree to the <a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a>, <a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a> and hereby authorize {{obj.site_name}} representatives to Call / SMS for this application / {{obj.site_name}} Membership Card and other products / services. This consent will override any registration by me for DNC / NDNC.</small></label>
                                 <div class="help-block font-small-3"></div>
                             </div>
                         </div>                  
@@ -124,7 +124,7 @@
             </div>
 
             <div class="col-md-4 col-12 m-b-20">
-              <h6 class="text-theme">Why My24Loan?</h6>
+              <h6 class="text-theme">Why {{obj.site_name}}?</h6>
               <p><small>(1) Per month 1000+ happy customers (2) Minimum documents - depend customer profile (3) Compare to multiple banks (4) Flexible repayment terms 1 to 6 years (5) Processing fees & insurance depand banks</small></p>
             </div>
           </div>
