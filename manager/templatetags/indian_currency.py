@@ -8,4 +8,7 @@ register=template.Library()
 def indian_currency(number,locale=None):
     if locale is None:
         locale=to_locale(get_language())
-    return format_currency(number,'INR',locale='en_IN')
+        s, *d = str(number).partition(".")
+        r = ",".join([s[x-2:x] for x in range(-3, -len(s), -2)][::-1] + [s[-3:]])
+        #return format_currency(number,'INR',locale=locale)
+        return "".join([r] + d)

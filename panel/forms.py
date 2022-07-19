@@ -468,7 +468,7 @@ class UsersReplyForm(forms.ModelForm):
 
 class CardConfigForm(forms.ModelForm):
     card_type=forms.ChoiceField(choices=[('prime membership','Prime membership'),('elite membership','Elie membership')],widget=forms.Select(attrs={'class':'form-control','aria-label':'card_type'}),error_messages={'required':'Card type is required'})
-    loan_type=forms.ChoiceField(choices=[('personal loan','Personal loan'),('bussiness loan','Bussiness loan')],widget=forms.Select(attrs={'class':'form-control','aria-label':'loan_type'}),error_messages={'required':'Loan type is required'})
+    loan_type=forms.ChoiceField(choices=[('personal loan','Personal loan'),('business loan','Bussiness loan')],widget=forms.Select(attrs={'class':'form-control','aria-label':'loan_type'}),error_messages={'required':'Loan type is required'})
     interest=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Interest p.a','aria-label':'interest'}),error_messages={'required':'Interest value  is required'})
     start_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Start date','aria-label':'start_date'}),error_messages={'required':'Start date  is required'})
     end_date=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'End date','aria-label':'end_date'}),error_messages={'required':'End date  is required'})

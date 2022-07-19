@@ -72,6 +72,18 @@
         opacity: 1;
         z-index: 399;
     }
+    .credit__part.elite-card 
+    {
+        background-image: url({% static 'manager/assets/images/slider/membership-elite-plain.jpg' %}) !important;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .credit__part.prime-card 
+    {
+        background-image: url({% static 'manager/assets/images/slider/membership-prime-plain.jpg' %}) !important;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
     </style>
 </head>
 <body onload="load()">
@@ -116,7 +128,7 @@
             <header id="header">
                 <div class="header-inner">
                     <div class="container">
-                      <div id="logo"> 
+                       <div id="logo"> 
                         <a href="{% url 'dashboard' %}">
                           <span class="logo-default">{{obj.site_name}}</span>
                           <span class="logo-dark">{{obj.site_name}}</span>

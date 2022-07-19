@@ -26,18 +26,20 @@
         <img src="{% static 'manager/assets/images/loader.gif' %}" data-src="{% static 'manager/assets/images/slider/membership-card-elite.png' %}" alt="elite membership card" class="img-fluid rounded">
       </div>
 
-      <div class="col-lg-7 col-md-7 col-12">
-        <div class="heading-text heading-plain">
+      <div class="mt-md-0 mt-2 col-lg-7 col-md-7 col-12">
+        <div class="heading-text heading-plain text-md-left text-center">
           <h4>Elite Membership Card</h4>
         </div>
 
         <div class="m-b-20 text-justify">
-          <p class="lead">Elite Membership Card for Business Loan Applicant</p>
+          <p class="lead text-md-left text-center">Elite Membership Card for Business Loan Applicant</p>
 
           <p>For the people applying for a Business loan, he must first enroll as an Elite member at {{obj.site_name}}. Elite membership card enables user to apply for Business loan through our portal in multiple banks. We run your documents through banks and provide you with attractive Interest rates on minimum paperwork with quick offer within 30 minutes*.</p>
 
-          <h3>Rs. <del class="text-danger">{{card.prev_price|indian_currency}}</del> <span class="text-success">{{card.now_price|indian_currency}}</span> only</h3>
-          <a href="{% url 'bussiness loan' %}" class="btn btn-dark btn-outline btn-sm btn-reveal btn-reveal-right"><span>Buy Now</span><i class="fa fa-arrow-right"></i></a>
+          <h3 class="text-md-left text-center">Rs. <del class="text-danger"><i class="fa fa-inr"></i> {{card.prev_price|indian_currency}}</del> <span class="text-success"><i class="fa fa-inr"></i>{{card.now_price|indian_currency}}</span> only</h3>
+          <div class="text-md-left text-center">
+            <a href="{% url 'bussiness loan' %}" class="btn btn-dark btn-outline btn-sm btn-reveal btn-reveal-right"><span>Buy Now</span><i class="fa fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>

@@ -20278,13 +20278,13 @@ body[data-bg-image] {
 }
 
 .credit__part.prime-card {
-    background-image: url(../images/slider/membership-prime-plain.jpg);
+    background-image: url(../images/slider/membership-prime-plain.png);
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 .credit__part.elite-card {
-    background-image: url(../images/slider/membership-elite-plain.jpg);
+    background-image: url(../images/slider/membership-elite-plain.png);
     background-position: center center;
     background-repeat: no-repeat;
 }

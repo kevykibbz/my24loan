@@ -73,7 +73,7 @@
                             <h5 class="text-dark" for="mobile"><strong>Email address :</strong> {{loan.email}}</h5>
                         </div>
                         <div class="form-group col-md-4">
-                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|indian_currency}}</h5>
+                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{loan.amount|indian_currency}}</h5>
                         </div>
                         <div class="form-group col-md-12"><hr/></div>
                         <div class="form-group col-md-4">
@@ -155,14 +155,14 @@
                             </div>
         
                             <div class="form-group col-md-4">
-                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> {{loan.amount|indian_currency}}</h5>
+                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{loan.amount|indian_currency}}</h5>
                             </div>
         
                             <div class="form-group col-md-12 text-center">
                                 <hr/>
-                                <h4 class="text-success">Cogratulation! Your pre-approval <span class="text-lowercase">Personal Loan</span> eligibility offer is Rs. {{loan.eligible_amount|indian_currency}} </h4>
+                                <h4 class="text-success">Cogratulation! Your pre-approval <span class="text-lowercase">Personal Loan</span> eligibility offer is Rs. <i class="fa fa-inr"></i> {{loan.eligible_amount|indian_currency}} </h4>
         
-                                <h5>As per your required loan amount - Rs. <strong>{{loan.amount|indian_currency}}</strong>. Your monthly EMI are as below. Kindly select any option:</h5>
+                                <h5>As per your required loan amount - Rs. <i class="fa fa-inr"></i> <strong>{{loan.amount|indian_currency}}</strong>. Your monthly EMI are as below. Kindly select any option:</h5>
                             </div>
         
                             <div class="form-group col-sm-12 col-md-12 text-center text-dark">
@@ -176,14 +176,14 @@
                                     <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{first|intcomma}}" name="tenature" id="years2" value="12" checked>
                                     <label class="form-check-label m-l-10" for="years2">
                                         12 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{first|indian_currency}}                          
+                                        Rs. <i class="fa fa-inr"></i> {{first|indian_currency}}                          
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{second|intcomma}}" name="tenature" id="years3" value="36" >
                                     <label class="form-check-label m-l-10" for="years3">
                                         36 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{second|indian_currency}}                           
+                                        Rs. <i class="fa fa-inr"></i> {{second|indian_currency}}                           
                                     </label>
                                 </div>
         
@@ -191,7 +191,7 @@
                                     <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{third|intcomma}}" name="tenature" id="years4" value="48">
                                     <label class="form-check-label m-l-10" for="years4">
                                         48 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{third|indian_currency}}                           
+                                        Rs. <i class="fa fa-inr"></i> {{third|indian_currency}}                         
                                     </label>
                                 </div>
         
@@ -199,7 +199,7 @@
                                     <input aria-label="tenature" type="radio" class="form-check-input tenature" data-value="{{fourth|intcomma}}" name="tenature" id="years5" value="60">
                                     <label class="form-check-label m-l-10" for="years5">
                                         60 Months <i class="fa fa-long-arrow-alt-right m-r-10 m-l-10"></i> 
-                                        Rs. {{fourth|indian_currency}}                          
+                                        Rs. <i class="fa fa-inr"></i> {{fourth|indian_currency}}                            
                                     </label>
                                     <div class="help-block font-small-3"></div>
                                 </div>
@@ -262,7 +262,7 @@
         
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center m-t-10">
                                 <h4>Membership Card Fees</h4>
-                                <h3><del class="text-danger">{{card.prev_price|indian_currency}}</del> <span class="text-success">{{card.now_price|indian_currency}}</span> only</h3>                       
+                                <h3><del class="text-danger"><i class="fa fa-inr"></i> {{card.prev_price|indian_currency}}</del> <span class="text-success"><i class="fa fa-inr"></i> {{card.now_price|indian_currency}}</span> only</h3>                       
                                 <p class="m-b-0">
                                     <span class="text-success m-r-10"><i class="fa fa-chevron-right m-r-5"></i> Offer Ending Soon</span> 
                                     <span class="text-dark m-r-10"><i class="fa fa-chevron-right m-r-5"></i> GST Additional</span>

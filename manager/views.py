@@ -740,7 +740,7 @@ class stepTwo(View):
                 initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
             loan=LoanModel.objects.get(loanid=loanid)
             cardconfig=CardModel.objects.filter(loan_type__icontains=loan.category).last()
-            r=int(cardconfig.interest)/100
+            r=float(cardconfig.interest)/100
             first=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**12)/(((1+r)**12)-1))
             second=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**36)/(((1+r)**36)-1))
             third=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**48)/(((1+r)**48)-1))
