@@ -20,20 +20,31 @@
   <div class="container">
 
     <div class="row">
-      <!-- START : SUCCESS -->
-            <!-- END : SUCCESS -->
+          {% if success %}
+          <!-- START : SUCCESS -->
+           <div class="col-lg-12 col-md-12 col-sm-12 p-cb p-0 m-0"> 
+              <div class="m-t-30 m-b-30 text-center">
+                <h1 class="icon pulse infinite text-success m-0" data-animate="pulse infinite"><i class="fa fa-check-circle "></i></h1>
+                <h2 class="text-success">Payment successful</h2>
+                <p>Your loan application payment process has successfully been submitted.<br/> Incase of any questions you can contact on our customer care number.</p>
 
-      <!-- START : FAIL -->
-              <div class="col-lg-12 col-md-12 col-sm-12 p-cb p-0 m-0"> 
-          <div class="m-t-30 m-b-30 text-center">
-            <h1 class="icon pulse infinite text-danger m-0" data-animate="pulse infinite"><i class="icon-x-circle "></i></h1>
-            <h2 class="text-danger">Payment Unsuccessful</h2>
-            <p>Your loan application payment process has failed. Please try again. <br/> If you have any questions you can contact on our customer care number.</p>
+                <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm m-t-10 text-uppercase">Go to Homepage</a>
+              </div>
+            </div>
+          <!-- END : SUCCESS -->
+          {% else %}
+            <!-- START : FAIL -->
+            <div class="col-lg-12 col-md-12 col-sm-12 p-cb p-0 m-0"> 
+              <div class="m-t-30 m-b-30 text-center">
+                <h1 class="icon pulse infinite text-danger m-0" data-animate="pulse infinite"><i class="icon-x-circle "></i></h1>
+                <h2 class="text-danger">Payment Unsuccessful</h2>
+                <p>Your loan application payment process has failed. Please try again. <br/> If you have any questions you can contact on our customer care number.</p>
 
-            <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm m-t-10 text-uppercase">Go to Homepage</a>
-          </div>
-        </div>
-            <!-- END : FAIL -->
+                <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-sm m-t-10 text-uppercase">Go to Homepage</a>
+              </div>
+            </div>
+          <!-- END : FAIL -->
+          {% endif %}
     </div>
   </div>
 </section>

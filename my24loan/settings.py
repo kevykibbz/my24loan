@@ -18,7 +18,7 @@ DEBUG = True
 
 SITE_ID=2 
 
-ALLOWED_HOSTS = ['my24loan.herokuapp.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['24x7loan.in','www.24x7loan.in','localhost','127.0.0.1']
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -183,9 +183,9 @@ USE_TZ = True
 
 
 #login
-LOGIN_URL='/accounts/login'
-LOGIN_REDIRECT_URL='/onboarding/'
-LOGOUT_REDIRECT_URL='/accounts/login'
+LOGIN_URL='/panel/accounts/login'
+LOGIN_REDIRECT_URL='/panel/'
+LOGOUT_REDIRECT_URL='/panel/accounts/login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

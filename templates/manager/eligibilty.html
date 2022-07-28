@@ -17,6 +17,7 @@
     </div>
   </div>
 </section>
+
 <section class="background-gradient-4">
     <div id="particles-snow" class="particles"></div>
     <div class="container">
@@ -28,6 +29,7 @@
         </div>
     </div>
 </section>
+
 <section class="reservation-form-over no-padding">
     <div class="container">
         <div class="form-wrapper row position-relative">
@@ -73,7 +75,7 @@
                             <h5 class="text-dark" for="mobile"><strong>Email address :</strong> {{loan.email}}</h5>
                         </div>
                         <div class="form-group col-md-4">
-                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{loan.amount|indian_currency}}</h5>
+                            <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{amount|indian_currency}} (at {{interest}} % interest p.a)</h5>
                         </div>
                         <div class="form-group col-md-12"><hr/></div>
                         <div class="form-group col-md-4">
@@ -130,7 +132,7 @@
                             <p class="m-b-0"><small>By proceeding, you agree to the <strong><a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a></strong> and <strong><a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a></strong> of {{obj.site_name}}</small></p>
                         </div>
                     </div>
-                    {% elif step2 %}
+                    {% else %}
                     <div class="row">
                         <input type="hidden" class="form-control" name="loanid" value="{{loan.loanid}}">
                         <div class="col-md-10 col-12">
@@ -155,7 +157,7 @@
                             </div>
         
                             <div class="form-group col-md-4">
-                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{loan.amount|indian_currency}}</h5>
+                                <h5 class="text-dark" for="loanamount"><strong>Loan Amount :</strong> <i class="fa fa-inr"></i> {{amount|indian_currency}} (at {{interest}} % interest p.a)</h5>
                             </div>
         
                             <div class="form-group col-md-12 text-center">
@@ -216,76 +218,14 @@
                                 <p class="m-b-0"><small>Need to know about eligibility criteria, <a class="text-primary" data-target="#infomodal" data-toggle="modal" href="#">Click here.</a></small></p>
                             </div>
                         </div>
-                    </div>
-                    {% elif step3 %}
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 row p-b-20 m-0">
-                            <div class="col-md-10 col-12">
-                                <div class="animated-progress progress-green">
-                                       <span data-progress="75"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-12 text-right">
-                                <p>Step: <strong>3/</strong>4</p>
-                            </div>
-                            <div class="col-md-12 col-12 text-center">
-                                <h3 class="text-theme">Buy Membership Card</h3>
-                                <hr/>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 row p-0 m-0">
-                            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                                <div class="credit text-light">
-                                    {% if loan.category == 'personal loan' %}
-                                      <div class="credit__front credit__part prime-card">
-                                            <div class="credit__head">
-                                            </div>
-                                            <p class="credit_numer text-left">**** **** **** {{card_number}}</p>
-                                            <div class="credit__space-full text-left">
-                                              <span class="credit__label">VALID FROM {{card.start_date}} VALID TO {{card.end_date}}</span>
-                                              <p class="credit__info">{{loan.name}}</p>
-                                            </div>
-                                      </div>
-                                    {% else %}
-                                    <div class="credit__front credit__part elite-card">
-                                            <div class="credit__head">
-                                            </div>
-                                            <p class="credit_numer text-left">**** **** **** {{card_number}}</p>
-                                            <div class="credit__space-full text-left">
-                                              <span class="credit__label">VALID FROM {{card.start_date}} VALID TO {{card.end_date}}</span>
-                                              <p class="credit__info">{{loan.name}}</p>
-                                            </div>
-                                      </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-        
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center m-t-10">
-                                <h4>Membership Card Fees</h4>
-                                <h3><del class="text-danger"><i class="fa fa-inr"></i> {{card.prev_price|indian_currency}}</del> <span class="text-success"><i class="fa fa-inr"></i> {{card.now_price|indian_currency}}</span> only</h3>                       
-                                <p class="m-b-0">
-                                    <span class="text-success m-r-10"><i class="fa fa-chevron-right m-r-5"></i> Offer Ending Soon</span> 
-                                    <span class="text-dark m-r-10"><i class="fa fa-chevron-right m-r-5"></i> GST Additional</span>
-                                </p>
-                            </div>
-        
-                            <div class="form-group col-md-12 text-center text-uppercase">
-                                <a href="{% url 'step4' loanid=loanid %}" class="btn btn-secondary">BUY NOW</a>
-                                <div id="resmessage"></div>
-                            </div>
-                            
-                            <div class="form-group col-md-12 text-center p-t-20">
-                                <p class="m-b-0"><small>By proceeding, you agree to the <strong><a href="{% url 'privacy policy' %}" target="_blank">Privacy Policy</a></strong> and <strong><a href="{% url 'terms and conditions' %}" target="_blank">Terms of Use</a></strong> of {{obj.site_name}}</small></p>
-                                <p class="m-b-0"><small>(1) Let you apply for personal loan in multiple banks (2) You get 4 years free loan consultancy (3) Get 40% referral payout bonus (4) Get loan offers from multiple banks anytime-anywhere (5) You stay at home; our team will go to multiple banks for you (6) On-call Assistance on all your doubts</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
+                    </div>                   
                 </form>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
+
 <section class="p-b-30">
     <div class="container">
         <div class="heading-text heading-plain text-center">

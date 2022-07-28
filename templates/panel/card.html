@@ -26,6 +26,7 @@
                                    <th class="border-top-0">Loan Type</th>
                                    <th class="border-top-0">Card Type</th>
                                    <th class="border-top-0">Interest % p.a</th>
+                                   <th class="border-top-0">Customer discount </th>
                                    <th class="border-top-0">Prev Price</th>
                                    <th class="border-top-0">Curent Price</th>
                                    <th class="border-top-0">Start Validity Date</th>
@@ -42,8 +43,9 @@
                                       <td>{{card.loan_type|default:'No data'}}</td>
                                       <td>{{card.card_type|default:'No data'}}</td>
                                       <td>{{card.interest|default:'No data'}} %</td>
-                                      <td>{{card.prev_price|indian_currency}}</td>
-                                      <td>{{card.now_price|indian_currency}}</td>
+                                      <td>{{card.discount|default:'No data'}} %</td>
+                                      <td><i class="fa fa-inr"></i> {{card.prev_price|indian_currency}}</td>
+                                      <td><i class="fa fa-inr"></i> {{card.now_price|indian_currency}}</td>
                                       <td>{{card.now_date|default:'No data'}}</td>
                                       <td>{{card.start_date|default:'No data'}}</td>
                                       <td>{{card.end_date|default:'No data'}}</td>

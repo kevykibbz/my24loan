@@ -86,7 +86,7 @@ $(document).on('submit','.ContactForm',function()
             }
             if(callback.step3)
             {
-              window.location='/check/eligibility/step3/'+callback.loanid;
+              window.location='/finish/'+callback.loanid;
             }
             if(callback.step4)
             {

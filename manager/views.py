@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import View
 from django.contrib.auth import authenticate,login,logout
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse,HttpResponse,HttpResponseBadRequest
 from installation.models import SiteConstants
 from django.shortcuts import redirect
 from .forms import *
@@ -19,8 +19,7 @@ import json
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
-import re
-import datetime
+import razorpay
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django import template
 import math
@@ -28,14 +27,16 @@ from django.utils.crypto import get_random_string
 from manager.addons import send_email
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import csv
 from django.templatetags.static import static
 from installation.models import SiteConstants
 import os
+from six.moves import urllib
 from django.contrib.auth.hashers import make_password
-from django_otp.oath import hotp
+import environ
+env=environ.Env()
+environ.Env.read_env()
 
-
+client=razorpay.Client(auth=(env('RAZORPAY_API_KEY'),env('RAZORPAY_API_SECRET')))
 # Create your views here.
 def home(request):
     obj=SiteConstants.objects.count()
@@ -151,6 +152,10 @@ class PersonalLoan(View):
             presaver.page_status=True
             presaver.save()
             data=LoanModel.objects.all().last()
+            if LoanModel.objects.filter(email=form.cleaned_data.get('email')).count() > 1:
+                usrobj=LoanModel.objects.filter(email=form.cleaned_data.get('email')).last()
+                usrobj.is_new=False
+                usrobj.save()
             message={
                         'user':form.cleaned_data.get('name'),
                         'site_name':obj.site_name,
@@ -199,6 +204,10 @@ class BussinessLoan(View):
             presaver.page_status=True
             presaver.save()
             data=LoanModel.objects.all().last()
+            if LoanModel.objects.filter(email=form.cleaned_data.get('email')).count() > 1:
+                usrobj=LoanModel.objects.filter(email=form.cleaned_data.get('email')).last()
+                usrobj.is_new=False
+                usrobj.save()
             message={
                         'user':form.cleaned_data.get('name'),
                         'site_name':obj.site_name,
@@ -692,10 +701,16 @@ class Eligibility(View):
                 initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
             form=UsersEligibilityForm()
             loan=LoanModel.objects.get(loanid=loanid)
+            print('loan category:',loan.category)
+            cardconfig=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            r=float(cardconfig.interest)/100
+            interested_amount=int(loan.amount)+r*int(loan.amount)
             data={
                 'title':'Checking eligibilty',
                 'obj':obj,
                 'data':request.user,
+                'interest':cardconfig.interest,
+                'amount':interested_amount,
                 'form':form,
                 'loanid':loanid,
                 'loan':loan,
@@ -745,12 +760,15 @@ class stepTwo(View):
             second=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**36)/(((1+r)**36)-1))
             third=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**48)/(((1+r)**48)-1))
             fourth=round(int(loan.eligible_amount.split(".")[0])*(r*(1+r)**60)/(((1+r)**60)-1))
+            interested_amount=int(loan.amount)+r*int(loan.amount)
             data={
                 'title':'Checking eligibilty | step two',
                 'obj':obj,
                 'data':request.user,
                 'loanid':loanid,
                 'loan':loan,
+                'interest':cardconfig.interest,
+                'amount':interested_amount,
                 'initials':initials,
                 'step2':True,
                 'first':first,
@@ -794,12 +812,28 @@ class stepThree(View):
                 initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
             loan=LoanModel.objects.get(loanid=loanid)
             card=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            amount=int(loan.amount)
+            r=float(card.interest)/100
+            interested_amount=int(amount)+r*int(amount)
+            if loan.is_new:
+                amount_payable=(100-card.discount)/100*interested_amount
+            else:
+                amount_payable=interested_amount
+            payment_order=client.order.create(dict(amount=round(amount_payable),currency='INR',payment_capture="1"))
+            payment_order_id=payment_order['id']
+            loan.order_id=payment_order_id
+            loan.amount_due=amount_payable
+            loan.save()
             data={
                 'title':'Checking eligibilty | step four',
                 'obj':obj,
                 'data':request.user,
                 'loanid':loanid,
                 'loan':loan,
+                'interest':card.interest,
+                'amount':round(interested_amount),
+                'api_key':env('RAZORPAY_API_KEY'),
+                'payment_order_id':payment_order_id,
                 'initials':initials,
                 'card':card,
                 'card_number':loan.card_number[-4:],
@@ -835,11 +869,25 @@ class Finish(View):
                 initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()      
             loan=LoanModel.objects.get(loanid=loanid)
             card=CardModel.objects.filter(loan_type__icontains=loan.category).last()
+            amount=int(loan.amount)
+            interested_amount=float(card.interest)/100*amount + amount
+            if loan.is_new:
+                amount_payable=(100-card.discount)/100*interested_amount
+            else:
+                amount_payable=interested_amount
+            payment_order=client.order.create(dict(amount=round(amount_payable),currency='INR',payment_capture="1"))
+            payment_order_id=payment_order['id']
+            loan.order_id=payment_order_id
+            loan.amount_due=amount_payable
+            loan.save()
             data={
                 'title':'Finishing...',
                 'obj':obj,
                 'data':request.user,
                 'loanid':loanid,
+                'amount':round(amount_payable),
+                'api_key':env('RAZORPAY_API_KEY'),
+                'payment_order_id':payment_order_id,
                 'loan':loan,
                 'card':card,
                 'initials':initials,
@@ -853,19 +901,72 @@ class Finish(View):
             }
             return render(request,'manager/404.html',context=data,status=404)
 
+   
 #payment
-def payment(request):
-    obj=SiteConstants.objects.count()
-    if obj == 0:
+class Payment(View):
+    def post(self,request):
+        if SiteConstants.objects.count() == 0:
             return redirect('/installation/')
-    obj=SiteConstants.objects.all()[0]
-    initials='AU'
-    if request.user.is_authenticated:
-        initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
-    data={
-        'title':'Payment status',
-        'obj':obj,
-        'data':request.user,
-        'initials':initials
-    }
-    return render(request,'manager/payment.html',context=data)
+        obj=SiteConstants.objects.all()[0]
+        initials='AU'
+        if request.user.is_authenticated:
+            initials=request.user.first_name[0].upper()+request.user.last_name[0].upper()
+        if "razorpay_signature" in request.POST:
+            loanid=request.POST['loanid']
+            due_amount=request.POST.get('due_amount','')
+            razorpay_payment_id=request.POST.get('razorpay_payment_id','')
+            razorpay_order_id=request.POST.get('razorpay_order_id','')
+            razorpay_signature=request.POST.get('razorpay_signature','')
+            params_dict={
+                "razorpay_payment_id":razorpay_payment_id,
+                "razorpay_order_id":razorpay_order_id,
+                "razorpay_signature":razorpay_signature
+            }
+
+            loan=LoanModel.objects.get(loanid=loanid)
+            try:
+                client.utility.verify_payment_signature(params_dict)
+                loan.payment_id=razorpay_payment_id
+                loan.signature_id=razorpay_signature
+                loan.status='Paid'
+                loan.amount_paid=due_amount
+                loan.has_applied=False
+                success=True
+                if loan.is_new:
+                    loan.is_new=False
+                loan.save()
+                data={
+                        'title':'Payment status',
+                        'obj':obj,
+                        'data':request.user,
+                        'initials':initials,
+                        'success':success
+                }
+                return render(request,'manager/payment.html',context=data)
+            except Exception as e:
+                loan.status='Failed'
+                success=False
+                loan.save()
+                data={
+                        'title':'Payment status',
+                        'obj':obj,
+                        'data':request.user,
+                        'initials':initials,
+                        'success':success
+                }
+                return render(request,'manager/payment.html',context=data)
+        else:
+            success=False
+            payment_id=json.loads(request.POST.get("error[metadata]")).get("payment_id")
+            order_id=json.loads(request.POST.get("error[metadata]")).get("order_id")
+            loan=LoanModel.objects.get(order_id=order_id)
+            loan.status='Failed'
+            loan.save()
+            data={
+                'title':'Payment status',
+                'obj':obj,
+                'data':request.user,
+                'initials':initials,
+                'success':success
+            }
+            return render(request,'manager/payment.html',context=data)

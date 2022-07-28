@@ -40,6 +40,8 @@
                                    <th class="border-top-0">Cibil Score</th>
                                    <th class="border-top-0">Monthly EMI Payment</th>
                                    <th class="border-top-0">Credit Limit</th>
+                                   <th class="border-top-0">Amount Due</th>
+                                   <th class="border-top-0">Amount Paid</th>
                                    <th class="border-top-0">Alloted Card Number</th>
                                    <th class="border-top-0">Tenure </th>
                                    <th class="border-top-0">EMI </th>
@@ -65,6 +67,8 @@
                                       <td>{{application.cibil_score}}</td>
                                       <td><i class="fa fa-inr"></i> {{application.monthly_emi|indian_currency}}</td>
                                       <td><i class="fa fa-inr"></i> {{application.amount|indian_currency}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.amount_due|indian_currency}}</td>
+                                      <td><i class="fa fa-inr"></i> {{application.amount_paid|indian_currency}}</td>
                                       <td>{{application.card_number}}</td>
                                       <td>{{application.tenature}} Months</td>
                                       <td><i class="fa fa-inr"></i> {{application.emi|indian_currency}}</td>

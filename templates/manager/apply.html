@@ -73,7 +73,15 @@
                   </div>
                   <div class="form-group btn-group-toggle" data-toggle="buttons">
                     <label class="text-dark" for="useremail">Loan category</label>
-                    <input type="text" class="form-control" name="category" value="{{loan.category}}" readonly>
+                    <select class="form-control" name="category">
+                      {% if loan.category == 'personal loan' %}
+                      <option value="personal loan" selected>Personal loan</option>
+                      <option value="business loan">Business loan</option>
+                      {% else %}
+                      <option value="personal loan" >Personal loan</option>
+                      <option value="business loan" selected>Business loan</option>
+                      {% endif %}
+                    </select>
                   </div>
                   <div class="form-group">
                     <label class="text-dark" for="useremail">Email id</label>

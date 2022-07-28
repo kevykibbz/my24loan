@@ -94,8 +94,6 @@ class UsersLoanForm(forms.ModelForm):
                     link="/check/eligibility/"+data.loanidel
                 elif data.page == '5':
                     link="/check/eligibility/step2/"+data.loanid
-                elif data.page == '6':
-                    link="/check/eligibility/step3/"+data.loanid
                 else:
                     link="/finish/"+data.loanid
                 raise forms.ValidationError('Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
@@ -121,11 +119,13 @@ class UsersLoanForm(forms.ModelForm):
                     link="/check/eligibility/"+data.loanidel
                 elif data.page == '5':
                     link="/check/eligibility/step2/"+data.loanid
-                elif data.page == '6':
-                    link="/check/eligibility/step3/"+data.loanid
                 else:
                     link="/finish/"+data.loanid
-                raise forms.ValidationError('Sorry your application is still active. Click <a href="'+link+'">finish/<str:loanid></a> to continue.')
+                raise forms.ValidationError('Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
+            else:
+                return phone
+        return phone
+
 class UsersOTPForm(forms.ModelForm):
     otp=forms.CharField(widget=forms.NumberInput(attrs={'maxlength':6, 'data-validation-regex':'[0-9]+','aria-required':'true','class':'form-control text-center','placeholder':'OTP number','aria-label':'otp'}),error_messages={'required':'OTP number is required','maxlength':'Minimum of six digits is required.'})
     class Meta:
@@ -135,7 +135,7 @@ class UsersOTPForm(forms.ModelForm):
     def clean_otp(self):
         otp=self.cleaned_data['otp']
         if self.instance.otp == int(otp):
-            data=LoanModel.objects.get(otp=otp)
+            data=LoanModel.objects.filter(otp=otp).last()
             if data.is_verfied:
                 raise forms.ValidationError('Sorry,this email is already been verified.')
             else:
@@ -230,10 +230,11 @@ class UsersLoanApplyForm(forms.ModelForm):
     bank_email=forms.EmailField(widget=forms.EmailInput(attrs={'aria-required':'true','class':'form-control','aria-label':'bank_email'}),error_messages={'required':'Registered bank email address is required'})
     user_type=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Enter User type','aria-label':'user_type'}),error_messages={'required':'User type  is required'})
     amount=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','placeholder':'Loan amount','aria-label':'amount'}),error_messages={'required':'Loan amount is required'})
+    category=forms.CharField(widget=forms.TextInput(attrs={'aria-required':'true','class':'form-control','aria-label':'category'}),error_messages={'required':'Category is required'})
 
     class Meta:
         model=LoanModel
-        fields=['amount','user_type','email','bank_email']
+        fields=['category','amount','user_type','email','bank_email']
 
     def clean(self):
         cleaned_data=super().clean()
@@ -248,8 +249,6 @@ class UsersLoanApplyForm(forms.ModelForm):
                         link="/check/eligibility/"+data.loanid
                     elif page_no == 5:
                         link="/check/eligibility/step2/"+data.loanid
-                    elif page_no == 6:
-                        link="/check/eligibility/step3/"+data.loanid
                     else:
                         link="/finish/"+data.loanid
                     self.add_error('amount','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
@@ -352,8 +351,6 @@ class UsersEligibilityForm(forms.ModelForm):
                 if page_no > 4:
                     if page_no == 5:
                         link="/check/eligibility/step2/"+data.loanid
-                    elif page_no == 6:
-                        link="/check/eligibility/step3/"+data.loanid
                     else:
                         link="/finish/"+data.loanid
                     self.add_error('state','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
@@ -384,10 +381,7 @@ class UsersTenatureForm(forms.ModelForm):
                 link=''
                 page_no=int(data.page)
                 if page_no > 5:
-                    if page_no == 6:
-                        link="/check/eligibility/step3/"+data.loanid
-                    else:
-                        link="/finish/"+data.loanid
+                    link="/finish/"+data.loanid
                     self.add_error('tenature','Sorry your application is still active. Click <a href="'+link+'">here</a> to continue.')
             else:
                 return email
